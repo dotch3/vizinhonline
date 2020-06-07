@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+// vizinhoonline
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts/main/Home');
+});
+
+Route::get('/Feed', function () {
+    return view('layouts/main/Feed');
 });

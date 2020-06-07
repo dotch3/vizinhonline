@@ -2,13 +2,13 @@
 <!-- head -->
 
 <link href="{{ asset('/css/estilo.css') }}" rel="stylesheet">
-@include('.layouts/main/header')
+
+@include('.layouts/main/Header')
 <!-- end head -->
 <body>
 <main>
 
     <div class="row">
-        <p>main content</p>
         @yield('content')
     </div>
 
@@ -18,9 +18,11 @@
 </body>
 <!-- footer -->
 
-@section('footer')
-    @include('.layouts/main/footer')
-@endsection
+
+@include('.layouts/main/Footer')
+
+
+
 
 <!-- end footer -->
 </html>

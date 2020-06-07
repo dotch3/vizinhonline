@@ -4,8 +4,7 @@
 <section class="section_header">
     <div>
         <a href="#">
-            <img src={{asset('/img/logo.png')}} width="120" height="100" alt="logo" , title="logo" class="logo"/>
-            <img src="img/icons/logo-2.png" width="120" height="100" alt="logo" , title="logo" class="logo"/>
+            <img src={{asset('/img/icons/logo.png')}} width="120" height="100" alt="logo" , title="logo" class="logo"/>
         </a>
         <nav>
 
