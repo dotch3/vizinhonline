@@ -1,0 +1,178 @@
+/* CSS do main */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+body {
+  margin: 0;
+  background: white;
+  font-family: Josefin Sans;
+}
+.main {
+  width: 100%;
+  /* background-color: rgba(196, 196, 196, 0.25); */
+  background: white;
+  margin: 10px 0 0 0;
+}
+
+
+/* Estilo da secao dos items do Feed */
+.main .container .div_feed_items {
+  flex-basis: calc(100% - 40px);
+  border-radius: 10px;
+  margin: 20px 0 20px 5px;
+  background: white;
+  position: relative;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+}
+.main .container .div_feed_items .article_items {
+  flex-basis: calc(100% - 40px);
+  max-width: 800px;
+  left: 582px;
+  top: 206px;
+  margin: 20px 0;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width:226px;
+}
+
+.main .container .div_feed_items .article_items h2 { 
+  height: 40px;
+  text-align: center;
+  background-color: azure;
+ }
+
+.main .container .div_feed_items .article_items a img{
+  width:226px;
+  height:137px;
+} 
+
+.main .container .div_feed_items p {
+  font-weight: lighter;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.article_items {
+  /* border: 2px solid rgb(3, 9, 92); */
+  /* position: relative; */
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 0px 0px;
+
+  width: 280px;
+  height: 160px;
+  /* padding: 50px; */
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+}
+
+/*css para a função de carregar a imagem*/
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 5px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f044";
+  font-family: "FontAwesome";
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 220px;
+  height: 171px;
+  position: relative;
+  border-radius: 10%;
+  border: 0px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius:0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#trash_div img {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 50;
+    right: 150px;
+    
+  }
+  #trash_div a {
+    vertical-align: bottom;
+    border-style: none;
+    margin-bottom: 0px;
+    width: 16px;
+    bottom: 0px;
+    
+  }
+/* detalhe do item maior */
+
+
+
+
+/* ESTLO DO IMPUT */
+
+.input-container {
+  position: relative;
+}
+
+input {
+  border: 0;
+  color: #616161;
+  border-bottom: 1px solid #ced4da;
+  outline: none;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+
+
+input,
+label {
+  width: 100%;
+  height: 50px;
+  font-size: 1rem;
+}

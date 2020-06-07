@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+
+body,
+p,
+h1,
+h2 {
+  margin: 0;
+  font-family: Josefin Sans;
+}
+
+.user_data {
+  width: 100%;
+  margin: 0px 0 0 20px;
+  background: white;
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  position: relative;
+  padding: 10px 40px 0px 40px;
+  box-sizing: border-box;
+}
+.user_data h1 {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  line-height: 25px;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.user_data h2 {
+  text-align: center;
+  font-size: 36px;
+  line-height: 36px;
+  text-shadow: 1px #111111;
+  font-family: "Josefin Sans", sans-serif;
+  color: #a60356;
+}
+
+.user_data p {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+.user_data a {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.user_data a img {
+  height: 150px;
+  width: auto;
+  border-radius: 50%;
+  margin-right: auto;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}

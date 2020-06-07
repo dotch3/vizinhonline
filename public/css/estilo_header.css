@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+
+.section_header div {
+  background: rgba(196, 196, 196, 0.25);
+  text-align: right;
+  overflow: hidden;
+}
+
+.section_header nav {
+  float: right;
+  margin: 50px 50px 0 0;
+}
+
+.section_header nav ul li {
+  display: inline-block;
+}
+
+.section_header nav ul li a {
+  text-decoration: none;
+  color: #a60356;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.section_header nav ul li:hover {
+  background-color: #cf6d81;
+  color: #111;
+}
+.section_header nav ul li a:hover {
+  background-color: #cf6d81;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+}
+
+.logo {
+  float: left;
+  position: relative;
+  margin: 10px 10px 10 40px;
+}

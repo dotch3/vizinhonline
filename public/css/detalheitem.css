@@ -1,0 +1,41 @@
+
+
+/* CSS do main */
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+
+.article_items div {
+  /* border: 2px solid rgb(3, 9, 92); */
+  /* position: relative; */
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 0px 0px;
+
+  width: 280px;
+  height: 180px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+}
+
+table, th, td {
+  text-align: center;
+  vertical-align: middle;
+}
+/*
+div{
+  text-align: center;
+  border: 2px solid rgb(3, 9, 92);
+  /* width: 50%; 
+  max-width: 80%;
+  min-width: 190px;
+  padding: 5px;
+  margin: 2.0%;*/
+  /*float: left;*/
+/*  box-sizing: border-box;
+  text-align: center;
+}*/
+
+/* Feed Fim*/
+/* ESTLO DO IMPUT */
