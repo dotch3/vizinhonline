@@ -26,3 +26,16 @@ Route::get('/', function () {
 Route::get('/Feed', function () {
     return view('layouts/main/Feed');
 });
+
+Route::get('/CadastroItem', function () {
+    return view('layouts/items/CadastroItem');
+});
+
+Route::get('/PerfilUsuario', function () {
+    return view('layouts/users/PerfilUsuario');
+});
+
+
+Route::get('/PerfilVizinho', function () {
+    return view('layouts/users/PerfilVizinho');
+});

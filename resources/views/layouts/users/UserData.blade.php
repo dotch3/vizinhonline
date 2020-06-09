@@ -13,7 +13,7 @@ $emailUSuario = '';
 $aptoUsuario = '';
 
 $pagina = basename($_SERVER['PHP_SELF']);
-if ($pagina == "PerfilVizinho.php") {
+if ($pagina == "PerfilVizinho") {
     $usuario = "Marcelo";
     $nomeUsuario = "Marcelo Silva";
     $emailUSuario = "marcelo.silva@gmail.com";

@@ -1,9 +1,10 @@
-<html lang="pt-br" class="full-height">
+<html lang="pt-br">
 <!-- head -->
 
 <link href="{{ asset('/css/estilo.css') }}" rel="stylesheet">
-
-@include('.layouts/main/Header')
+@section('header')
+    @include('.layouts/main/Header')
+@show()
 <!-- end head -->
 <body>
 <main>
@@ -18,9 +19,9 @@
 </body>
 <!-- footer -->
 
-
-@include('.layouts/main/Footer')
-
+@section('footer')
+    @include('.layouts/main/Footer')
+@show()
 
 
 
