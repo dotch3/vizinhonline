@@ -39,3 +39,8 @@ Route::get('/PerfilUsuario', function () {
 Route::get('/PerfilVizinho', function () {
     return view('layouts/users/PerfilVizinho');
 });
+
+Route::get('/CadastroUsuario', function () {
+    return view('layouts/users/CadastroUsuario');
+
+});

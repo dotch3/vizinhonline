@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,12 @@
             <nav>
                 <ul class="nav">
                     <li class="nav-item col-2 mt-1">Logo</li>
-                    <li class="nav-item col-7 mt-3">Cadastre-se</li>
+                    <li class="nav-item col-7">
+                        
+                    <button onclick="window.location.href='/CadastroUsuario'" class="buttonHeader" data-toggle="modal">Cadastre-se </button> 
+                
+                </li>
+                     
                     <li class="nav-item col-3">
                         <button class="buttonHeader" data-toggle="modal"
                                 data-target="#login">Entrar
