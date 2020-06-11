@@ -162,7 +162,9 @@
                                 </div>
                                 <div class="col-5">
                                     <button type="button"
+                                            onclick="window.location.href='/CadastroUsuario'" 
                                             class="btn btn-secondary btn-lg btn-block">Cadastre-se
+                                            
                                     </button>
                                 </div>
                             </div>

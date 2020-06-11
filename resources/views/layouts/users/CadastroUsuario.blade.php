@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('/css/estilo.css') }}" rel="stylesheet">
-    <script src="../js/cpf_formater.js"></script>
+    <script src="{{ asset('/js/cpf_tel_formater.js') }}"></script>
     <title>Cadastro - Vizinho online</title>
 </head>
 
@@ -14,8 +14,6 @@
                 <nav>
                     <ul class="nav">
                         <li class="nav-item col-2 mt-1">Logo</li>
-                        <li class="nav-item col-7 mt-3">Cadastre-se</li>
-                        <li class="nav-item col-3"><button class="buttonHeader" data-toggle="modal" data-target="#login">Entrar</button></li>
                     </ul>
                 </nav>
             </header>
