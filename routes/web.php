@@ -40,7 +40,21 @@ Route::get('/PerfilVizinho', function () {
     return view('layouts/users/PerfilVizinho');
 });
 
-Route::get('/CadastroUsuario', function () {
-    return view('layouts/users/CadastroUsuario');
 
-});
+// Provisional Routes for the CRUD operations - Backend
+
+//This will provide CRUD for favorites as example for others entities
+Route::get('/favorites', 'FavoritesController@listFavorites');
+
+
+//Detail favorite:
+Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite');
+
+// Creating route for the update
+Route::put('/detailFavorite/', 'FavoritesController@update')->name('favorite.update');
+
+
+
+Route::get('/editFavorite/{id}', 'FavoritesController@editFavorite');
+
+Route::get('/deleteFavorite/{id}', 'FavoritesController@deleteFavorite');
