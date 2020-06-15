@@ -161,7 +161,9 @@
                                     </button>
                                 </div>
                                 <div class="col-5">
-                                    1
+                                    <button type="button" class="btn btn-secondary btn-lg btn-block"
+                                            onclick="window.location.href='/CadastroUsuario'">Cadastrar
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
