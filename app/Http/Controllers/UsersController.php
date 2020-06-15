@@ -15,19 +15,20 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'rg' => 'required|string|max:15',
-            'name' => 'required|string|max:45',
-            'last_name' => 'nullable|string|max:45',
-            'username' => 'required|string|max:45',
-            'password' => 'nullable|string|max:45',
-            'email' => 'nullable|string|max:45',
-            'cpf' => 'nullable|string|max:15',
-            'age' => 'nullable|integer|max:11',
-            'ranking' => 'nullable',
-            'cellphone' => 'nullable|string|max:50',
-            'image_id' => 'nullable',
-        ]);
+        //Need to review the validations against the database
+//        $request->validate([
+//            'rg' => 'required|string|max:15',
+//            'name' => 'required|string|max:45',
+//            'last_name' => 'nullable|string|max:45',
+//            'username' => 'required|string|max:45',
+//            'password' => 'nullable|string|max:45',
+//            'email' => 'nullable|string|max:45',
+//            'cpf' => 'nullable|string|max:15',
+//            'age' => 'nullable|integer|max:11',
+//            'ranking' => 'nullable',
+//            'cellphone' => 'nullable|string|max:50',
+//            'image_id' => 'nullable',
+//        ]);
 
         $user = new User([
             'rg' => $request->get('rg'),
@@ -66,23 +67,23 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            //validating the fields
-            'rg' => 'required|string|max:15',
-            'name' => 'required|string|max:45',
-            'last_name' => 'nullable|string|max:45',
-            'username' => 'required|string|max:45',
-            'password' => 'nullable|string|max:45',
-            'email' => 'nullable|string|max:45',
-            'cpf' => 'nullable|string|max:15',
-            'age' => 'nullable|integer|max:11',
-            'ranking' => 'nullable',
-            'cellphone' => 'nullable|string|max:50',
-            'image_id' => 'nullable',
-
-        ]);
-
-        echo dd($request);
+        //Need to review the validations against the database
+//    {  dd($request);
+//        $request->validate([
+//            //validating the fields
+//            'rg' => 'required|string|max:15',
+//            'name' => 'required|string|max:45',
+//            'last_name' => 'nullable|string|max:45',
+//            'username' => 'required|string|max:45',
+//            'password' => 'nullable|string|max:45',
+//            'email' => 'nullable|string|max:45',
+//            'cpf' => 'nullable|string|max:15',
+//            'age' => 'nullable|integer|max:11',
+//            'ranking' => 'nullable',
+//            'cellphone' => 'nullable|string|max:50',
+//            'image_id' => 'nullable',
+//
+//        ]);
         $user = User::find($id);
         $user->rg = $request->input('rg');
         $user->name = $request->input('name');
@@ -95,7 +96,6 @@ class UsersController extends Controller
         $user->ranking = $request->input('ranking');
         $user->cellphone = $request->input('cellphone');
         $user->image_id = $request->input('image_id');
-
 
 
         $user->save();

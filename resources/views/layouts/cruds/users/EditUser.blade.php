@@ -14,8 +14,7 @@
         </div>
         <div class="row container ">
             <div class="container col-md-12 mb-3">
-                <form class="needs-validation border border-secondary"
-                      method="POST"
+                <form class="needs-validation border border-secondary" method="POST"
                       action="{{ route('users.update',$user->id_user)}}" autocomplete="off">
                     @method('PATCH')
                     @csrf
@@ -169,14 +168,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="created_at">Created at</label>
                             <input type="text" class="form-control" id="created_at" name="created_at"
-                                   value="{{$user->create_date}}" disabled>
+                                   value="{{$user->created_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="updated_at">Updated at</label>
                             <input type="text" class="form-control" id="updated_at" name="updated_at"
-                                   value="{{$user->modify_date}}" disabled>
+                                   value="{{$user->updated_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>

@@ -14,7 +14,10 @@
         </div>
         <div class="row container card-body">
             <div class="container col-md-12 mb-3 ">
-                <form class="needs-validation border border-secondary">
+                <form class="needs-validation border border-secondary"
+                      method="post" action="{{ route('users.store') }}">
+                    @csrf
+
                     <div class="form-row container">
                         <div class="col-md-2 mb-3">
                             <label for="name">Name</label>
@@ -186,8 +189,6 @@
                                 </button>
 
                                 <button class="btn btn-success btn-lg " type="submit">Create user</button>
-
-                                {{--                            <button class="btn btn-outline-danger btn-lg " type="submit">Delete</button>--}}
                             </div>
                             <div class="col-3">
                             </div>
