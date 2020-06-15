@@ -18,11 +18,11 @@
                 <ul class="nav">
                     <li class="nav-item col-2 mt-1">Logo</li>
                     <li class="nav-item col-7">
-                        
-                    <button onclick="window.location.href='/CadastroUsuario'" class="buttonHeader" data-toggle="modal">Cadastre-se </button> 
-                
+
+                    <button onclick="window.location.href='/CadastroUsuario'" class="buttonHeader" data-toggle="modal">Cadastre-se </button>
+
                 </li>
-                     
+
                     <li class="nav-item col-3">
                         <button class="buttonHeader" data-toggle="modal"
                                 data-target="#login">Entrar
@@ -161,11 +161,7 @@
                                     </button>
                                 </div>
                                 <div class="col-5">
-                                    <button type="button"
-                                            onclick="window.location.href='/CadastroUsuario'" 
-                                            class="btn btn-secondary btn-lg btn-block">Cadastre-se
-                                            
-                                    </button>
+                                    1
                                 </div>
                             </div>
                             <div class="row">

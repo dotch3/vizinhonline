@@ -12,5 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+
+        //Calling to the factory of "Favorites"
+        $this->call(FavoritesSeeder::class);
     }
 }
