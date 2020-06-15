@@ -10,8 +10,8 @@ $factory->define(Favorite::class, function (Faker $faker) {
         //fake data for Favorite
         //ToDo: Review if are needed the 3 fields? seems like not :/
 
-        'name' => $faker->unique()->randomElement(['favored','disfavored']),
-        'favorite_code' => $faker->unique()->randomElement(['FAV','DISFAV']),
-        'favorite_status'=>$faker->unique()->boolean
+        'name' => $faker->randomElement(['FAVORED','DISFAVORED']),
+        'favorite_code' => $faker->randomElement(['FAV','DISFAV']),
+        'favorite_status'=>$faker->randomElement(['Active','Inactive'])
     ];
 });

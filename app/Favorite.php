@@ -23,4 +23,12 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function posts()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function items()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

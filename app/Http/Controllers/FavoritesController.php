@@ -11,9 +11,10 @@ class FavoritesController extends Controller
     public function index()
     {
         $favorites = Favorite::all();
-        return view('layouts.favorites.CrudFavorites', compact('favorites'));
+        return view('layouts.cruds.favorites.CrudFavorites', compact('favorites'));
     }
 
+    //Controlling the CRUD operations
     public function store(Request $request)
     {
         $request->validate([
@@ -29,33 +30,30 @@ class FavoritesController extends Controller
 
         ]);
         $favorite->save();
-        return redirect('/favorites')->with('success', 'Favorite saved!');
+        return redirect()->route('favorites.index')->with('success', 'Favorite saved!');
     }
 
     public function create()
     {
-        return view('layouts.favorites.CreateFavorite');
+        return view('layouts.cruds.favorites.CreateFavorite');
     }
 
 
     public function detailFavorite($id_favorite)
     {
-//        dd($id_favorite);
         $detailFavorite = Favorite::findOrFail($id_favorite);
-//        dd($detailFavorite);
-        return view('layouts.favorites.DetailFavorite', ['detailFavorite' => $detailFavorite]);
+        return view('layouts.cruds.favorites.DetailFavorite', ['detailFavorite' => $detailFavorite]);
     }
 
     public function edit($id)
     {
         $favorite = Favorite::findOrFail($id);
-        return view('layouts.favorites.EditFavorite', compact('favorite'));
+        return view('layouts.cruds.favorites.EditFavorite', compact('favorite'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            //validacao dos campos dos dados do usuario
             'name' => 'nullable|string|max:45',
             'favorite_code' => 'nullable|string|max:45',
             'favorite_status' => 'nullable|string|',
@@ -74,12 +72,9 @@ class FavoritesController extends Controller
     {
         $favorite = Favorite::findOrFail($id);
         $favorite->delete();
-        return redirect()->route('favorites.index')->with('alert-success','Favorite has been deleted!');
+        return redirect()->route('favorites.index')->with('alert-success', 'Favorite has been deleted!');
 
     }
-
-
-    //Controlling the CRUD operations
 
 
 }

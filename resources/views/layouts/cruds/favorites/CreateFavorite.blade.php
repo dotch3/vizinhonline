@@ -45,7 +45,7 @@
                             <button type="button" onclick="window.location.href='/favorites'"
                                     class="btn btn-outline-secondary btn-lg ">Voltar
                             </button>
-                            <button type="submit" class="btn btn-outline-primary btn-lg">Add Favorite</button>
+                            <button type="submit" class="btn btn-outline-success btn-lg">Add Favorite</button>
 
                         </div>
                         <div class="col-3">

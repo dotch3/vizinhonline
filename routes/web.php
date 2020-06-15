@@ -55,3 +55,14 @@ Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite');
 
 // Creating route for the update
 Route::resource('favorites', 'FavoritesController');
+
+//Section for Users
+Route::resource('users', 'UsersController');
+
+Route::get('/users', 'UsersController@index')->name('users.index');
+Route::get('/createUser', 'UsersController@create')->name('users.create');
+Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
+Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
+Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
+Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
+

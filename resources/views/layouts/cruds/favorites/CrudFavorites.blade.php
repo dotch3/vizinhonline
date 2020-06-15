@@ -9,14 +9,14 @@
         <div class=" jumbotron version_banner">
             <div class="row">
                 <h4><span
-                        class="badge badge-pill badge-secondary">Create Favorite</span></h4>
+                        class="badge badge-pill badge-secondary">List Favorites</span></h4>
             </div>
 
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <a href="{{route('favorites.create')}}" class="btn btn-primary">
+            <a href="{{route('favorites.create')}}" class="btn btn-success">
                 Add Favorite
             </a>
         </div>
