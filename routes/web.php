@@ -44,17 +44,14 @@ Route::get('/PerfilVizinho', function () {
 // Provisional Routes for the CRUD operations - Backend
 
 //This will provide CRUD for favorites as example for others entities
-Route::get('/favorites', 'FavoritesController@listFavorites');
-
+Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
+Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
+Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
+Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.update');
+Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 //Detail favorite:
 Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite');
 
 // Creating route for the update
-Route::put('/detailFavorite/', 'FavoritesController@update')->name('favorite.update');
-
-
-
-Route::get('/editFavorite/{id}', 'FavoritesController@editFavorite');
-
-Route::get('/deleteFavorite/{id}', 'FavoritesController@deleteFavorite');
+Route::resource('favorites', 'FavoritesController');
