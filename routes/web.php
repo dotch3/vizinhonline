@@ -41,6 +41,11 @@ Route::get('/PerfilVizinho', function () {
 });
 
 
+Route::get('/CadastroUsuario', function () {
+    return view('layouts/users/CadastroUsuario');
+});
+
+
 // Provisional Routes for the CRUD operations - Backend
 
 //This will provide CRUD for favorites as example for others entities
