@@ -44,7 +44,7 @@ class UsersController extends Controller
             'image_id' => $request->get('image_id'),
         ]);
         $user->save();
-        return redirect()->route('users.index')->with('success', 'User saved!');
+        return redirect()->route('users.index')->with('alert-success', 'User saved!');
     }
 
     public function create()
@@ -67,7 +67,7 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        //Need to review the validations against the database
+//        Need to review the validations against the database
 //    {  dd($request);
 //        $request->validate([
 //            //validating the fields
@@ -100,7 +100,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('Success', 'User updated!');
+        return redirect()->route('users.index')->with('alert-success', 'User updated!');
 
     }
 

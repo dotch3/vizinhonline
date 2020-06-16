@@ -56,7 +56,7 @@ Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 //Detail favorite:
-Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite');
+Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite')->name('favorites.detail');
 
 // Creating route for the update
 Route::resource('favorites', 'FavoritesController');
@@ -69,5 +69,5 @@ Route::get('/createUser', 'UsersController@create')->name('users.create');
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
-Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
+Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
 

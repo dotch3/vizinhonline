@@ -158,14 +158,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="created_at">Created at</label>
                             <input type="text" class="form-control" id="created_at" name="created_at"
-                                   value="{{$detailsUser->create_date}}" disabled>
+                                   value="{{$detailsUser->created_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="updated_at">Updated at</label>
                             <input type="text" class="form-control" id="updated_at" name="updated_at"
-                                   value="{{$detailsUser->modify_date}}" disabled>
+                                   value="{{$detailsUser->update_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>

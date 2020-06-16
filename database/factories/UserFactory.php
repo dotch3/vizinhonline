@@ -28,7 +28,7 @@ $factory->define(User::class, function () use ($faker) {
         'name' => $faker->name,
         'last_name' => $faker->lastName,
         'username'=>$faker->unique()->userName,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => $faker->unique()->password, // password
         'email' => $faker->unique()->email,
         'email_verified_at' => now(),
         'cpf'=>$faker->unique()->cpf,
