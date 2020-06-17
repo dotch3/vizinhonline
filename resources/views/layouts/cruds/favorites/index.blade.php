@@ -1,6 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Favorites')
-
+@section('title', 'List Favorites')
 
 @section('content')
     @if (session('alert-success'))
@@ -17,27 +16,24 @@
 
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <a href="{{route('favorites.create')}}" class="btn btn-success">
+    <div class="container ">
+        <div class="container-fluid" style="text-align:center;">
+            <a href="{{route('favorites.create')}}" class="btn btn-success btn-lg btn-block">
                 Add Favorite
             </a>
         </div>
-        <div class="row">
-        </div>
-
-        <div class="row col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered table-responsive table-striped text-center">
+        <div class=" container-fluid">
+            <div class="table-responsive-lg">
+                <table class="table table-bordered table table-striped text-center">
                     <caption>List of Favorites</caption>
                     <thead class="thead-light">
-                    <th class="text-center" >Id</th>
-                    <th class="text-center" >name</th>
-                    <th class="text-center" >favorite_code</th>
-                    <th class="text-center" >favorite_status</th>
-                    <th class="text-center" >created at</th>
-                    <th class="text-center" >updated at</th>
-                    <th class="text-center" >Actions</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">name</th>
+                    <th class="text-center">favorite_code</th>
+                    <th class="text-center">favorite_status</th>
+                    <th class="text-center">created at</th>
+                    <th class="text-center">updated at</th>
+                    <th class="text-center">Actions</th>
 
                     </thead>
                     @forelse($favorites as $favorite)
@@ -50,32 +46,29 @@
                             <td>{{$favorite->created_at}}</td>
                             <td>{{$favorite->updated_at}}</td>
                             <td>
-                                <div class="row container col-md-9">
-                                    <div class="col-md-4 btn-group">
-                                    <span class="table-remove"><button type="button"
-                                                                       onclick="window.location.href='{{ route('favorites.detail',$favorite->id_favorite)}}'"
-                                                                       class="btn btn-outline-info btn-rounded btn-sm my-0 ">Details
-                                    </button></span>
+                                <div class="container-fluid ">
+                                    <a class="btn btn-outline-info btn-rounded my-0"
+                                       href="{{ route('favorites.show',$favorite->id_favorite)}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-
-                                        <span class="table-remove"><button type="button"
-                                                                           onclick="window.location.href='{{ route('favorites.edit',$favorite->id_favorite)}}'"
-                                                                           class="btn btn-outline-warning btn-rounded btn-sm my-0 "> Edit
-                                    </button></span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <form class="form-horizontal"
-                                              action="{{ route('favorites.destroy', $favorite->id_favorite)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="form-group col-sm-9">
-                                                <button type="submit"
-                                                        class="btn btn-outline-danger btn-rounded btn-sm my-0 "> Delete
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <a class="btn btn-outline-warning btn-rounded  my-0"
+                                       href="{{ route('favorites.edit',$favorite->id_favorite)}}
+                                           "><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <!--Delete section-->
+                                    <form method="post" id="delete-form-{{$favorite->id_favorite}}"
+                                          action="{{ route('favorites.destroy', $favorite->id_favorite)}}"
+                                          style="display:none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button onclick="if (confirm('Are you sure you want delete this data?')) {
+                                        event.preventDefault();
+                                        document.getElementById('delete-form-{{$favorite->id_favorite}}').submit();
+                                        }else{
+                                        event.preventDefault();
+                                        }
+                                        " class="btn btn-outline-danger btn-rounded my-0" href="">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -84,8 +77,11 @@
                         </tbody>
                     @endforelse
                 </table>
+                <!-- Pagination -->
+                {{$favorites->links()}}
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('footer')

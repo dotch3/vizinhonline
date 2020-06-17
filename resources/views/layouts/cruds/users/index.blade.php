@@ -1,9 +1,6 @@
 @extends('layouts.main.app')
 @section('title', 'List Users')
 
-
-
-
 @section('content')
     @if (session('alert-success'))
         <div class="container alert alert-success" role="alert">
@@ -16,28 +13,29 @@
                 <h4><span
                         class="badge badge-pill badge-secondary">List users</span></h4>
             </div>
-
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <a href="{{route('users.create')}}" class="btn btn-success">
-                Add User
-            </a>
+    <div class="container col-md-12">
+        <div class="container col-md-10">
+            <div class="container" style="text-align:center;">
+                <a href="{{route('users.create')}}" class="btn btn-success btn-lg btn-block">
+                    Add User
+                </a>
+                <a href="{{url('/CadastroUsuario')}}" class="btn btn-info btn-lg btn-block">
+                    Cadastrar User
+                </a>
+            </div>
         </div>
-        <div class="row">
-        </div>
-
-        <div class="row container">
-            <div class="table-responsive">
-                <table class="table table-bordered table-responsive table-striped text-center">
+        <div class=" container col-md-10">
+            <div class="table-responsive-lg">
+                <table class="table table-bordered table table-striped text-center">
                     <caption>List of Users</caption>
-                    <thead class="thead-light">
+                    <thead class="black white-text">
                     <th class="text-center">Id</th>
                     <th class="text-center">RG</th>
                     <th class="text-center">name</th>
                     <th class="text-center">Lastname</th>
-                    <th class="text-center">username</th>
+{{--                    <th class="text-center">username</th>--}}
                     <th class="text-center">password</th>
                     <th class="text-center">E-mail</th>
                     <th class="text-center">Cellphone</th>
@@ -56,7 +54,7 @@
                             <td>{{$user->rg}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->last_name}}</td>
-                            <td>{{$user->username}}</td>
+{{--                            <td>{{$user->username}}</td>--}}
                             <td>{{$user->password}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->cellphone}}</td>
@@ -67,31 +65,29 @@
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
                             <td>
-                                <div class=" row container">
-                                    <div class="col-md-7 btn-group">
-                                        <span class="table-remove"><button type="button"
-                                                                           onclick="window.location.href='{{route ('users.view',$user->id_user)}}'"
-                                                                           class="btn btn-outline-info btn-rounded btn-sm my-0">Details
-                                    </button></span>
-                                        <span class="table-remove"><button type="button"
-                                                                           onclick="window.location.href='{{ route('users.edit',$user->id_user)}}'"
-                                                                           class="btn btn-outline-warning btn-rounded btn-sm my-0"> Edit
-                                        </button></span>
-                                    </div>
-                                    <div class="row col-md-2">
-                                        <form class="form-horizontal"
-                                              action="{{ route('users.destroy', $user->id_user)}}"
-                                              method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="form-group col-sm-9">
-                                                <button type="submit"
-                                                        class="btn btn-outline-danger btn-rounded btn-sm my-0">
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class=" container-fluid">
+                                    <a class="btn btn-outline-info btn-rounded my-0"
+                                       href="{{route ('users.view',$user->id_user)}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>View</a>
+                                    <a class="btn btn-outline-warning btn-rounded  my-0"
+                                       href="{{route ('users.edit',$user->id_user)}}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                    <!--Delete section-->
+                                    <form method="post" id="delete-form-{{$user->id_user}}"
+                                          action="{{ route('users.destroy', $user->id_user)}}"
+                                          style="display:none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button onclick="if (confirm('Are you sure you want delete this data?')) {
+                                        event.preventDefault();
+                                        document.getElementById('delete-form-{{$user->id_user}}').submit();
+                                        }else{
+                                        event.preventDefault();
+                                        }
+                                        " class="btn btn-outline-danger btn-rounded btn-sm my-0" href="">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -100,8 +96,11 @@
                         </tbody>
                     @endforelse
                 </table>
+                <!-- Pagination -->
+                {{$users->links()}}
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('footer')

@@ -25,74 +25,76 @@
     @endif
 
     <div class="container cadastro">
-
         <div class="row no-gutters">
-            <div class="col-3 fundo_img">
+            <div class=" fundo_img">
                 <h2>Sua Foto</h2>
             </div>
             <div class="img_upload">
                 <input type="file" name="foto">
             </div>
 
-            <div class="col-1"></div>
-
-            <div class="col-5 text-center">
+            <div class="col-10 text-center">
                 <h2> Cadastro </h2>
                 <form id="signin" class="needs-validation border border-secondary"
                       method="post" action="{{ route('users.store') }}">
                     @csrf
+                    <div class="form-group">
+                        <br/>
+                        <input type="text" name="name" placeholder="Name">
+                        <input type="text" name="last_name" placeholder="Last name">
+                        <hr/>
+                        <br/>
+                        <input type="text" name="rg" id="rg" placeholder="RG">
+                        <input type="text" name="cpf" maxlength="14" placeholder="CPF"
+                               onkeydown="javascript: fMasc( this, mCPF );">
+                        <hr/>
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <input type="e-mail" name="email" placeholder="E-mail">
+                        <input type="number" name="age" placeholder="Age">
+                    </div>
+                    <hr/>
+                    <br/>
 
-                    <input type="text" name="nome" placeholder="Nome Completo">
-                    <hr/>
-                    <br/>
-                    <input type="e-mail" name="email" placeholder="Seu e-mail">
-                    <hr/>
-                    <br/>
-                    <input type="text" name="cpf" maxlength="14" placeholder="CPF"
-                           onkeydown="javascript: fMasc( this, mCPF );">
+                    <div class="form-group">
+                        <input type="text" name="cellphone" maxlength="17" placeholder="Cellphone"
+                               onkeydown="javascript: fMasc( this, mTel );">
+                        <input type="text" name="interfone" placeholder="Interfone">
+                        <hr/>
+                        <br/>
+                    </div>
                     <hr/>
                     <br/>
                     <div>
                         <div class="form-group">
-                            <input type="text" name="telefone" maxlength="14" placeholder="Telefone"
-                                   onkeydown="javascript: fMasc( this, mTel );">
-                            <input type="text" name="interfone" placeholder="Interfone">
+                            <input type="text" name="build" placeholder="Build name">
+                            <input type="text" name="apt_umber" placeholder="Door number">
+                            <hr/>
+                            <br/>
+                            <input type="text" name="address" placeholder="Address">
+                            <input type="text" name="branch" placeholder="Intercom branch">
                             <hr/>
                             <br/>
                         </div>
                         <hr/>
                         <br/>
-                        <div>
-                            <div class="form-group">
-                                <input type="text" name="ap" placeholder="Apto">
-                                <input type="text" name="bloco" placeholder="Bloco">
-                                <hr/>
-                                <br/>
-                            </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Password">
+                            <input type="rep_password" name="repeat-password" placeholder="Confirm password">
                             <hr/>
                             <br/>
-                            <div class="form-group">
-                                <input type="text" name="password" placeholder="Senha">
-                                <input type="text" name="repeat-password" placeholder="Confirmar Senha">
-                                <hr/>
-                                <br/>
-                            </div>
-
-
                         </div>
-
-                        <div>
-
-                            <button type="button" class="btn btn-secondary"
-                                    onclick="window.location.href='{{ url('/')}}'">Cancelar
-                            </button>
-                            <button type="submit" class="btn btn-success">Cadastrar
-                            </button>
-                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary"
+                                onclick="window.location.href='{{ url('/')}}'">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-success">Cadastrar
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 @endsection

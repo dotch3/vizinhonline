@@ -15,7 +15,7 @@ class FavoritesController extends Controller
     public function index()
     {
         //
-        $favorites = Favorite::all();
+        $favorites = Favorite::paginate(5);
         return view('layouts.cruds.favorites.index', compact('favorites'));
     }
 
@@ -59,9 +59,10 @@ class FavoritesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_favorite)
     {
-        //
+        $detailFavorite = Favorite::findOrFail($id_favorite);
+        return view('layouts.cruds.favorites.DetailFavorite', ['detailFavorite' => $detailFavorite]);
     }
 
     /**
@@ -114,9 +115,5 @@ class FavoritesController extends Controller
         return redirect()->route('favorites.index')->with('alert-success', 'Favorite has been deleted!');
     }
 
-    public function detailFavorite($id_favorite)
-    {
-        $detailFavorite = Favorite::findOrFail($id_favorite);
-        return view('layouts.cruds.favorites.DetailFavorite', ['detailFavorite' => $detailFavorite]);
-    }
+
 }

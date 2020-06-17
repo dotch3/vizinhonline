@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('layouts.cruds.users.index', compact('users'));
     }
 
@@ -29,20 +29,21 @@ class UsersController extends Controller
 //            'cellphone' => 'nullable|string|max:50',
 //            'image_id' => 'nullable',
 //        ]);
-
+//        dd($request);
         $user = new User([
-            'rg' => $request->get('rg'),
             'name' => $request->get('name'),
             'last_name' => $request->get('last_name'),
-            'username' => $request->get('username'),
-            'password' => $request->get('password'),
-            'email' => $request->get('email'),
+            'rg' => $request->get('rg'),
             'cpf' => $request->get('cpf'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+//            'username' => $request->get('username'),
             'age' => $request->get('age'),
-            'ranking' => $request->get('ranking'),
             'cellphone' => $request->get('cellphone'),
+            'ranking' => $request->get('ranking'),
             'image_id' => $request->get('image_id'),
         ]);
+        dd($user);
         $user->save();
         return redirect()->route('users.index')->with('alert-success', 'User saved!');
     }
@@ -88,7 +89,7 @@ class UsersController extends Controller
         $user->rg = $request->input('rg');
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
-        $user->username = $request->input('username');
+//        $user->username = $request->input('username');
         $user->password = $request->input('password');
         $user->email = $request->input('email');
         $user->cpf = $request->input('cpf');
@@ -96,6 +97,7 @@ class UsersController extends Controller
         $user->ranking = $request->input('ranking');
         $user->cellphone = $request->input('cellphone');
         $user->image_id = $request->input('image_id');
+        $user->updated_at = now();
 
 
         $user->save();

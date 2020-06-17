@@ -49,19 +49,26 @@ Route::get('/CadastroUsuario', function () {
 // Provisional Routes for the CRUD operations - Backend
 
 //This will provide CRUD for favorites as example for others entities
+
+//Get  object(s)
 Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
-Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
-Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
-Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.update');
-Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 //Detail favorite:
-Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite')->name('favorites.detail');
+Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
+
+//Create
+Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
+
+//Update
+Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
+Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.update');
+
+//Delete
+Route::delete('FavoritesController@destroy')->name('favorites.destroy');
+
 
 // Creating route for the update
 Route::resource('favorites', 'FavoritesController');
-
-//Section for Users
 Route::resource('users', 'UsersController');
 
 Route::get('/users', 'UsersController@index')->name('users.index');

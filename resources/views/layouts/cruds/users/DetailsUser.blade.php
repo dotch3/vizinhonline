@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <div class="container row card">
+        <div class="container">
             <div class=" jumbotron version_banner">
                 <div class="row">
                     <h4><span
@@ -16,7 +16,7 @@
             <div class="container col-md-12 mb-3">
                 <form class="needs-validation border border-secondary">
                     <div class="form-row container">
-                        <div class="col-md-2 mb-3">
+                        <div class="container-fluid col-md-2 mb-3">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name"
                                    value="{{$detailsUser->name}}" name="name"
@@ -34,7 +34,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" id="rg"
-                                   value="{{$detailsUser->rg}}" name="rg" required>
+                                   value="{{$detailsUser->rg}}" name="rg" >
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>
@@ -59,7 +59,7 @@
                                 </div>
                                 <input type="text" class="form-control" id="username"
                                        aria-describedby="validationTooltipUsernamePrepend"
-                                       value="{{$detailsUser->username}}" name="username" required>
+                                       value="{{$detailsUser->username}}" name="username" disabled>
                                 <div class="invalid-tooltip">
                                     Por favor digite um unico e valido username.
                                 </div>
@@ -165,7 +165,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="updated_at">Updated at</label>
                             <input type="text" class="form-control" id="updated_at" name="updated_at"
-                                   value="{{$detailsUser->update_at}}" disabled>
+                                   value="{{$detailsUser->updated_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>
