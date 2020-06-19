@@ -71,6 +71,7 @@ Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update'
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
+//Section for Feedbacks
 
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
 Route::get('/createFeedbacks', 'FeedbacksController@create')->name('feedbacks.create');

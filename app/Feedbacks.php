@@ -9,9 +9,4 @@ class Feedbacks extends Model
     public $table = "feedbacks";
     public $primaryKey = "id_feedbacks";
 
-    /**
-    *protected $fillable = [
-    * 'title', 'comment', 'score'
-    *];
-*/
-}
+};
