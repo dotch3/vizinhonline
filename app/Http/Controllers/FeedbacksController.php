@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Feedbacks;
 
 class FeedbacksController extends Controller
 {
@@ -13,7 +14,9 @@ class FeedbacksController extends Controller
      */
     public function index()
     {
-        //
+        $feedbacks = Feedbacks::all();
+        echo $feedbacks;
+
     }
 
     /**
@@ -23,7 +26,7 @@ class FeedbacksController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,7 +37,11 @@ class FeedbacksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $feedback = new Feedbacks([
+            'title' => $request->get('title'),
+            'comment' => $request->get('comment'),
+            'score' => $request->get('score'),
+            ]);
     }
 
     /**

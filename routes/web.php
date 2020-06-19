@@ -70,3 +70,11 @@ Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
+
+
+Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
+Route::get('/createFeedbacks', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/EditFeedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/detailsFeedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::delete('/detailsFeedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/detailsFeedbacks/{id}', 'FeedbacksController@detailsUser');
