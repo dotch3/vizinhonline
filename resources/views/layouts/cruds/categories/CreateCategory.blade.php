@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Create Favorite')
+@section('title', 'Create Category')
 @section('content')
     <div class="container">
         <div class=" jumbotron version_banner">
