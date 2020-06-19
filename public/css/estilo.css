@@ -178,7 +178,7 @@ height: 217px;
 top: 169px;
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 100px;
+border-radius: 180px;
 }
 
 .button_cadastro{
@@ -188,4 +188,20 @@ border: 1px solid #000000;
 box-sizing: border-box;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 10px;
-}  
+}
+
+/*Style for the test tables*/
+
+.jumbotron {
+    height: 80px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.version_banner {
+    height: 80px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 2rem;
+    text-decoration-style: dotted;
+}

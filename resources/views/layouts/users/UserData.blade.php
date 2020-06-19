@@ -1,10 +1,10 @@
-<!-- Esta pagina vai utilizar direito o estilo CSS "user_data" quie se encontra no CSS principal. estilo_feed_include.css 
+<!-- Esta pagina vai utilizar direito o estilo CSS "user_data" quie se encontra no CSS principal. estilo_feed_include.css
 Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-<link rel="stylesheet" href="./css/estilo_userData.css">
+<link href="{{ asset('/css/estilo_userData.css') }}" rel="stylesheet">
 <script src="../js/rendered-js.js"></script>
 <!-- Obtendo o nome do usuario dinamicamente segundo a pagina -->
 <?php
@@ -13,7 +13,7 @@ $emailUSuario = '';
 $aptoUsuario = '';
 
 $pagina = basename($_SERVER['PHP_SELF']);
-if ($pagina == "PerfilVizinho.php") {
+if ($pagina == "PerfilVizinho") {
     $usuario = "Marcelo";
     $nomeUsuario = "Marcelo Silva";
     $emailUSuario = "marcelo.silva@gmail.com";
@@ -57,7 +57,7 @@ if ($pagina == "PerfilVizinho.php") {
 <div class="container">
 <ul class="fa-ul">
     <li><span class="fa-li"><i class="fas fa-cog" style="font-size:20px ; color: #000000"></i></span> Configuração de conta</li>
-    <li><a style="color:inherit" href="../../public/index.php"><span class="fa-li"><i class="fas fas fa-sign-out-alt" style="font-size:20px ; color: #000000"></i></span> Sair</a></li>
+    <li><a style="color:inherit" href="/"><span class="fa-li"><i class="fas fas fa-sign-out-alt" style="font-size:20px ; color: #000000"></i></span> Sair</a></li>
 
 </ul>
 </div>
