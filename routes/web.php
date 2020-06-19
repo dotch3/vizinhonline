@@ -71,6 +71,17 @@ Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update'
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
+//Section for Feedbacks
+Route::resource('feedbacks', 'FeedbacksController');
+
+
+Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
+Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
 
 //Categories
 Route::resource('categories', 'CategoriesController');
