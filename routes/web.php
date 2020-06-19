@@ -71,3 +71,6 @@ Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update'
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
+//File upload
+Route::get('/imagem', 'UploadController@enviarImagem');
+Route::post('/imagem', 'UploadController@enviarImagem');
