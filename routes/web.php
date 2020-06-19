@@ -68,9 +68,11 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/createUser', 'UsersController@create')->name('users.create');
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
-Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
+Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
 //File upload
-Route::get('/imagem', 'UploadController@enviarImagem');
-Route::post('/imagem', 'UploadController@enviarImagem');
+Route::get('/imagem', function () {
+    return view('layouts/cruds/images/imagem');
+});
+Route::post('/imagem', 'UploadController@enviarImagem')->name('image.upload');
