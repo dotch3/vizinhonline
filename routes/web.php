@@ -72,10 +72,13 @@ Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destro
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
 //Section for Feedbacks
+Route::resource('feedbacks', 'FeedbacksController');
+
 
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
-Route::get('/createFeedbacks', 'FeedbacksController@create')->name('feedbacks.create');
-Route::get('/EditFeedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
-Route::patch('/detailsFeedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::delete('/detailsFeedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
-Route::get('/detailsFeedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');

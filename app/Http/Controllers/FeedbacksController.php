@@ -15,8 +15,9 @@ class FeedbacksController extends Controller
     public function index()
     {
         $feedbacks = Feedbacks::all();
-        echo $feedbacks;
-        
+        foreach ($feedbacks as $key => $value) {
+            echo $value;
+        }
     }
 
     /**
@@ -43,6 +44,7 @@ class FeedbacksController extends Controller
             'comment' => $request->get('comment'),
             'score' => $request->get('score'),
             ]);
+            $feedbacks->save();
     }
 
     /**
@@ -64,8 +66,7 @@ class FeedbacksController extends Controller
      */
     public function edit($id)
     {
-        $feedback = Feedbacks::findOrFail($id);
-        echo $feedbacks
+        $feedbacks = Feedbacks::findOrFail($id);
 
     }
 
@@ -78,10 +79,12 @@ class FeedbacksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $feedbacks = Feedbacks::find($id);
-        $feedbacks->title = $request->input('Title');
-        $feedbacks->score = $request->input('Score');
-        $feedbacks->comment = $request->input('Comment');    }
+        $feedbacks = Feedbacks::findOrFail($id);
+        $feedbacks->title = $request->input('title');
+        $feedbacks->score = $request->input('score');
+        $feedbacks->comment = $request->input('comment');   
+        $feedbacks->save();
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -91,6 +94,8 @@ class FeedbacksController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $feedbacks = Feedbacks::findOrFail($id);
+    $feedbacks->delete();
+
     }
 }
