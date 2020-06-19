@@ -52,7 +52,7 @@ Route::get('/CadastroUsuario', function () {
 Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
 Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
-Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.update');
+Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 //Detail favorite:
@@ -71,3 +71,13 @@ Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update'
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
+
+//Categories
+Route::resource('categories', 'CategoriesController');
+
+Route::get('/categories', 'CategoriesController@index')->name('categories.index');
+Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
+Route::get('/categories/{id}', 'CategoriesController@show')->name('categories.show');
+Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
+Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
+Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
