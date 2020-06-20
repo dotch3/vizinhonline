@@ -72,7 +72,5 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
 
 //File upload
-Route::get('/imagem', function () {
-    return view('layouts/cruds/images/imagem');
-});
-Route::post('/imagem', 'UploadController@enviarImagem')->name('image.upload');
+Route::get('/imagem', 'UploadController@index')->name('image.index');
+Route::post('/imagem', 'UploadController@imageUploadProfile')->name('image.upload.profile');

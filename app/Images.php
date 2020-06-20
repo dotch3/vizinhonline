@@ -11,5 +11,9 @@ class Images extends Model
     protected $primaryKey = "id_image";
     public $timestamps = "false";
 
+    //Criating the fillable for the factory
+    protected $fillable = [
+        'name', 'path_location', 'format_image', 'size_image'
+    ];
 
 }

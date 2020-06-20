@@ -8,42 +8,63 @@ use Illuminate\Http\Request;
 class UploadController extends Controller
 {
 
-    public function enviarImagem(Request $request)
+    public function index()
     {
-//        if ($request->method('GET'))
-//        return view ('imagem');
-//        $nome = $request->file('file')->getClientOriginalName();
-//        $save = $request->file('file')->storeAs('public/img',$nome);
-//        $urlBase ='storage/img/'.$nome;
-//        return view ('imagem', ['linkimg=>$urlBase']);
-//    }
+        $images = Images::all();
+        return view('layouts/cruds/images/image', compact('images'));
+    }
+
+    public function imageUploadProfile(Request $request)
+    {
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            request()->validate([
+                'name' => 'required|string|max:80',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            //Getting info from the image to upload
+            $destinationPath = public_path('/img/avatar/');
+            $imageName = $request->get('name');
+            $imageFormat = $request->image->clientExtension();
+            /*
+                    Methods to get the file properties:
+                   $ext=$request->image->extension();
+                   $extension2=$request->image->extension();
+                   $path=$request->image->path();
+                    File Details
+                   $file = $request->image;
+                   $filename = $file->getClientOriginalName();
+                   $extension = $file->getClientOriginalExtension();
+                   $tempPath = $file->getRealPath();
+                   $fileSize = $file->getSize();
+                   $mimeType = $file->getMimeType();
+
+                   'format_image' => $request->image->hashName(),
 
 
-        if ($request->hasfile('image')) {
-            $request->validate([
-                    'name' => 'required|string|max:100',
-                    'description' => 'required|string|max:100',
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'path_location' => 'required|string|max:100',
-                    'format_image' => 'required|string|max:100',
-                    'size_image' => 'required|float']
-            );
-            //Creating the new object
+                    // Valid File Extensions
+                   $valid_extension = array("jpg","jpeg","png");
+
+                    // MB in Bytes
+                   $maxFileSize = 2097152;
+                   */
+            // Saving the image as object into the database
             $image = new Images([
-                $image = $request->file('image'),
-                $image = $request->file('image'),
-                $image = $request->file('image'),
+                'name' => $imageName,
+                'path_location' => $destinationPath,
+                'format_image' => $imageFormat,
+                'size_image' => $request->image->getSize(), // Get the size in Bytes
 
-                $imageName = time() . '.' . $image->getClientOriginalExtension()]);
-            request()->image->move(public_path('uploads'), $imageName);
-
-            //Saving the object
+            ]);
+//            dd($image);
             $image->save();
+            request()->image->move($destinationPath, $imageName . '.' . $imageFormat);
             return back()
                 ->with('success', 'You have successfully upload image.')
-                ->with('image', $imageName);
+                ->with('image', $request->get('name'));
         }
-
     }
+
 }
 
