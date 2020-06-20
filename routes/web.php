@@ -61,9 +61,9 @@ Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.cre
 
 //Update
 Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
-Route::patch('/detailFavorite/', 'FavoritesController@update')->name('favorites.update');
 
-//Delete
+Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
+
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 
@@ -78,3 +78,24 @@ Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update'
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
 
+//Section for Feedbacks
+Route::resource('feedbacks', 'FeedbacksController');
+
+
+Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
+Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
+
+//Categories
+Route::resource('categories', 'CategoriesController');
+
+Route::get('/categories', 'CategoriesController@index')->name('categories.index');
+Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
+Route::get('/categories/{id}', 'CategoriesController@show')->name('categories.show');
+Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
+Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
+Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
