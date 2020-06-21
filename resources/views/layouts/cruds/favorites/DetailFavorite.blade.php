@@ -82,13 +82,9 @@
                         </div>
 
                         <div class="col-6 btn-group btn-group-lg">
-                            <button type="button" onclick="window.location.href='/favorites'"
+                            <button type="button" onclick="window.location.href='{{url('/favorites')}}'"
                                     class="btn btn-outline-secondary btn-lg ">Voltar
                             </button>
-
-{{--                            <button class="btn btn-outline-warning btn-lg " type="submit">Editar</button>--}}
-
-{{--                            <button class="btn btn-outline-danger btn-lg " type="submit">Eliminar</button>--}}
                         </div>
                         <div class="col-3">
                         </div>
@@ -97,6 +93,7 @@
 
             </form>
         </div>
+    </div>
 
 @endsection
 @section('footer')
