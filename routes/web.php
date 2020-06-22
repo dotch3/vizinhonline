@@ -75,7 +75,7 @@ Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/createUser', 'UsersController@create')->name('users.create');
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
-Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
+Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
 Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
 
 //Section for Feedbacks
@@ -86,7 +86,7 @@ Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
 Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
 Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
 Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::delete('/feedbacks/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
 Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
 Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
 
@@ -99,3 +99,6 @@ Route::get('/categories/{id}', 'CategoriesController@show')->name('categories.sh
 Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
 Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+
+//Items
+Route::resource('items', 'ItemsController');

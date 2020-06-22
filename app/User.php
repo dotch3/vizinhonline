@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Favorite;
 
 class User extends Authenticatable
 {
@@ -39,4 +40,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Start the section for the relationships among User and other objects
+    public function favorites()
+    {
+        return $this->belongsToMany(Favorite::Class, 'users_favorites', 'id_user', 'id_favorite');
+    }
+
+
+//    public function favorite_user($id_user)
+//    {
+//
+//        $fav = Favorite::find($id_user)->favorites;
+//        dd($fav);
+//        return $fav;
+//    }
 }

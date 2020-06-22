@@ -113,5 +113,6 @@ class UsersController extends Controller
         return redirect()->route('users.index')->with('alert-success', 'User has been deleted!');
 
     }
-
 }
+
+

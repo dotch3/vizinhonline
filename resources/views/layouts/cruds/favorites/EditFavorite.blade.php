@@ -77,7 +77,15 @@
                     </div>
                 </div>
                 <div class="form-row container">
-
+                    <h6 class="heading-small text-primary mb-4">Usuarios:</h6>
+                    <div class="col-md-4 mb-3">
+                        <label for="updated_at">User Id</label>
+                        <input type="text" class="form-control" id="updated_at"
+                               value="{{$favorite->id_favorite}}" name="user_id" required>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
                 </div>
 
                 <div class="container">

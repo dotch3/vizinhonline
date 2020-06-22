@@ -33,6 +33,7 @@
                     <th class="text-center">favorite_status</th>
                     <th class="text-center">created at</th>
                     <th class="text-center">updated at</th>
+                    <th class="text-center">Usuarios</th>
                     <th class="text-center">Actions</th>
 
                     </thead>
@@ -44,6 +45,7 @@
                             <td>{{$favorite->favorite_code}}</td>
                             <td>{{$favorite->favorite_status}}</td>
                             <td>{{$favorite->created_at}}</td>
+                            <td>{{$favorite->updated_at}}</td>
                             <td>{{$favorite->updated_at}}</td>
                             <td>
                                 <div class="container-fluid ">

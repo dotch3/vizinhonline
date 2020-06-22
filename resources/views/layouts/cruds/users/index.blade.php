@@ -34,17 +34,18 @@
                     <th class="text-center">Id</th>
                     <th class="text-center">RG</th>
                     <th class="text-center">name</th>
-                    <th class="text-center">Lastname</th>
-{{--                    <th class="text-center">username</th>--}}
-                    <th class="text-center">password</th>
-                    <th class="text-center">E-mail</th>
-                    <th class="text-center">Cellphone</th>
-                    <th class="text-center">CPF</th>
-                    <th class="text-center">Age</th>
-                    <th class="text-center">Ranking</th>
-                    <th class="text-center">Image Id</th>
+                    {{--                    <th class="text-center">Lastname</th>--}}
+                    {{--                    <th class="text-center">username</th>--}}
+                    {{--                    <th class="text-center">password</th>--}}
+                    {{--                    <th class="text-center">E-mail</th>--}}
+                    {{--                    <th class="text-center">Cellphone</th>--}}
+                    {{--                    <th class="text-center">CPF</th>--}}
+                    {{--                    <th class="text-center">Age</th>--}}
+                    {{--                    <th class="text-center">Ranking</th>--}}
+                    {{--                    <th class="text-center">Image Id</th>--}}
                     <th class="text-center">Created at</th>
                     <th class="text-center">Updated at</th>
+                    <th class="text-center" scope="col">USER_FAVORITE-></th>
                     <th class="text-center" scope="col">Ação</th>
                     </thead>
                     @forelse($users as $user)
@@ -53,17 +54,19 @@
                             <td>{{$user->id_user}}</td>
                             <td>{{$user->rg}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->last_name}}</td>
-{{--                            <td>{{$user->username}}</td>--}}
-                            <td>{{$user->password}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->cellphone}}</td>
-                            <td>{{$user->cpf}}</td>
-                            <td>{{$user->age}}</td>
-                            <td>{{$user->ranking}}</td>
-                            <td>{{$user->image_id}}</td>
+                            {{--                            <td>{{$user->last_name}}</td>--}}
+                            {{--                            <td>{{$user->username}}</td>--}}
+                            {{--                            <td>{{$user->password}}</td>--}}
+                            {{--                            <td>{{$user->email}}</td>--}}
+                            {{--                            <td>{{$user->cellphone}}</td>--}}
+                            {{--                            <td>{{$user->cpf}}</td>--}}
+                            {{--                            <td>{{$user->age}}</td>--}}
+                            {{--                            <td>{{$user->ranking}}</td>--}}
+                            {{--                            <td>{{$user->image_id}}</td>--}}
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
+                            <td>{{$user->favorites()->id_user_favorite}}
+                            </td>
                             <td>
                                 <div class=" container-fluid">
                                     <a class="btn btn-outline-info btn-rounded my-0"
