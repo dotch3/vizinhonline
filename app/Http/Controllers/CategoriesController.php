@@ -6,6 +6,7 @@ use App\Categorie;
 use App\Categories;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class CategoriesController extends Controller
 {
@@ -17,10 +18,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-
         return view('layouts.cruds.categories.Categories', compact('categories'));
-
- 
     }
 
     /**
@@ -43,18 +41,19 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category_code' => 'nullable'
+            'category_code' => 'nullable|numeric',
+            'description' => 'nullable'
         ]);
 
         $category = new Category([
             'name' => $request->get('name'),
-            'category_code' => $request->get('category_code')
+            'category_code' => $request->get('category_code'),
+            'description' => $request->get('description')
         ]);
 
         $category->save();
-        
-        echo($request->get('name'));
-    
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -93,11 +92,16 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'nullable|string|max:45',
-            'category_code' => 'nullable|string|max:45',
+            'category_code' => 'nullable|numeric|max:45',
+            'description' => 'nullable'
         ]);
         $category = Category::find($id);
         $category->name = $request->input('name');
+        $category->category_code = $request->input('category_code');
+        $category->description = $request->input('description');
         $category->save();
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -110,5 +114,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }
