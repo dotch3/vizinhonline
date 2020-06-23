@@ -15,9 +15,8 @@ class FeedbacksController extends Controller
     public function index()
     {
         $feedbacks = Feedbacks::all();
-        foreach ($feedbacks as $key => $value) {
-            echo $value;
-        }
+            return view('layouts.cruds.feedbacks.index', compact('feedbacks'));
+        
     }
 
     /**
@@ -27,6 +26,7 @@ class FeedbacksController extends Controller
      */
     public function create()
     {
+        return view('layouts.cruds.feedbacks.CreateFeedbacks');
 
     }
 
@@ -45,6 +45,9 @@ class FeedbacksController extends Controller
             'score' => $request->get('score'),
             ]);
             $feedbacks->save();
+
+            return redirect()->route('feedbacks.index')->with('success', 'Feedback saved!');
+
     }
 
     /**
@@ -55,7 +58,9 @@ class FeedbacksController extends Controller
      */
     public function show($id)
     {
-        //
+        $feedback = Feedbacks::findOrFail($id);
+
+        return view('layouts.cruds.feedbacks.DetailFeedbacks', compact('feedback'));
     }
 
     /**
@@ -67,6 +72,8 @@ class FeedbacksController extends Controller
     public function edit($id)
     {
         $feedbacks = Feedbacks::findOrFail($id);
+        return view('layouts.cruds.feedbacks.EditFeedbacks', compact('feedback'));
+
 
     }
 
