@@ -30,8 +30,8 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="rg">Comments</label>
-                            <input type="comments" class="form-control" id="comments"
-                                   value="{{$feedback->comments}}" name="comment" required>
+                            <input type="comment" class="form-control" id="comment"
+                                   value="{{$feedback->comment}}" name="comment" required>
 
                         </div>
 
@@ -39,14 +39,14 @@
                         <div class="col-md-3 mb-3">
                             <label for="created_at">Created at</label>
                             <input type="text" class="form-control" id="created_at" name="created_at"
-                                   value="{{$feedback->create_date}}" disabled>
+                                   value="{{$feedback->created_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="updated_at">Updated at</label>
                             <input type="text" class="form-control" id="updated_at" name="updated_at"
-                                   value="{{$feedback->modify_date}}" disabled>
+                                   value="{{$feedback->updated_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>

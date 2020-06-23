@@ -15,9 +15,8 @@ class FeedbacksController extends Controller
     public function index()
     {
         $feedbacks = Feedbacks::all();
-        foreach ($feedbacks as $key => $value) {
             return view('layouts.cruds.feedbacks.index', compact('feedbacks'));
-        }
+        
     }
 
     /**
@@ -73,7 +72,7 @@ class FeedbacksController extends Controller
     public function edit($id)
     {
         $feedbacks = Feedbacks::findOrFail($id);
-        return view('layouts.cruds.feedbacks.EditFeedbacks', compact('user'));
+        return view('layouts.cruds.feedbacks.EditFeedbacks', compact('feedback'));
 
 
     }

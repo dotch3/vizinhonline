@@ -10,7 +10,7 @@ class Feedbacks extends Model
     public $primaryKey = "id_feedback";
 
     protected $fillable = [
-        'title', 'score'
+        'title', 'score', 'comment', 'created_at', 'update_at'
     ];
 
 };
