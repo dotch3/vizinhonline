@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <div class="container row card">
+        <div class="container ">
             <div class=" jumbotron version_banner">
                 <div class="row">
                     <h4><span
@@ -44,7 +44,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" id="rg"
-                                   value="{{$user->rg}}" name="rg" required>
+                                   value="{{$user->rg}}" name="rg" >
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-md-2 mb-3">
                             <label for="email">E-mail</label>
                             <input type="email" class="form-control" id="email"
-                                   value="{{$user->email}}" name="email" required>
+                                   value="{{$user->email}}" name="email" >
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <input type="text" class="form-control" id="username"
                                        aria-describedby="validationTooltipUsernamePrepend"
-                                       value="{{$user->username}}" name="username" required>
+                                       value="same email" name="username" disabled>
                                 <div class="invalid-tooltip">
                                     Por favor digite um unico e valido username.
                                 </div>

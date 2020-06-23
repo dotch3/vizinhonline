@@ -9,6 +9,11 @@
 <body>
 <main>
 
+    @if (session('SuccessMessage'))
+        <div class="alert alert-success" role="alert">
+            {{session('alert-success')}}
+        </div>
+    @endif
     <div class="row">
         @yield('content')
     </div>

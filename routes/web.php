@@ -49,19 +49,26 @@ Route::get('/CadastroUsuario', function () {
 // Provisional Routes for the CRUD operations - Backend
 
 //This will provide CRUD for favorites as example for others entities
+
+//Get  object(s)
 Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
-Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
-Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
-Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
-Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 //Detail favorite:
-Route::get('/detailFavorite/{id}', 'FavoritesController@detailFavorite');
+Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
+
+//Create
+Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
+
+//Update
+Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
+
+Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
+
+Route::delete('FavoritesController@destroy')->name('favorites.destroy');
+
 
 // Creating route for the update
 Route::resource('favorites', 'FavoritesController');
-
-//Section for Users
 Route::resource('users', 'UsersController');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
@@ -69,7 +76,7 @@ Route::get('/createUser', 'UsersController@create')->name('users.create');
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
 Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
-Route::get('/detailsUser/{id}', 'UsersController@detailsUser');
+Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
@@ -80,7 +87,7 @@ Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.c
 Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
 Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
 Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
-Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
 Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
 
 //Categories

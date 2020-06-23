@@ -2,19 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Favorite;
+use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $favorites = Favorite::all();
-        return view('layouts.cruds.favorites.CrudFavorites', compact('favorites'));
+        //
+        $favorites = Favorite::paginate(5);
+        return view('layouts.cruds.favorites.index', compact('favorites'));
     }
 
-    //Controlling the CRUD operations
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('layouts.cruds.favorites.CreateFavorite');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -30,27 +50,40 @@ class FavoritesController extends Controller
 
         ]);
         $favorite->save();
-        return redirect()->route('favorites.index')->with('success', 'Favorite saved!');
+        return redirect(route('favorites.index'))->with('alert-success', 'Favorite created!');
     }
 
-    public function create()
-    {
-        return view('layouts.cruds.favorites.CreateFavorite');
-    }
-
-
-    public function detailFavorite($id_favorite)
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id_favorite)
     {
         $detailFavorite = Favorite::findOrFail($id_favorite);
         return view('layouts.cruds.favorites.DetailFavorite', ['detailFavorite' => $detailFavorite]);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $favorite = Favorite::findOrFail($id);
         return view('layouts.cruds.favorites.EditFavorite', compact('favorite'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -64,16 +97,22 @@ class FavoritesController extends Controller
         $favorite->favorite_status = $request->input('favorite_status');
         $favorite->save();
 
-        return redirect()->route('favorites.index')->with('Success', 'Contact updated!');
-
+//        return redirect()->route('favorites.index')->with('Success', 'Contact updated!');
+        return redirect(route('favorites.index'))->with('alert-success', 'Favorite updated!');
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $favorite = Favorite::findOrFail($id);
         $favorite->delete();
         return redirect()->route('favorites.index')->with('alert-success', 'Favorite has been deleted!');
-
     }
 
 
