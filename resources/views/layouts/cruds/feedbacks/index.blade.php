@@ -54,20 +54,6 @@
                                             class="btn btn-outline-primary ">Details
                                         - {{$feedbacks->id_feedback}}
                                     </button>
-                                    <button type="button"
-                                            onclick="window.location.href='{{ route('feedbacks.edit',$feedbacks->id_feedback)}}'"
-                                            class="btn btn-outline-warning "> Edit
-                                        - {{$feedbacks->id_feedback}}
-                                    </button>
-                                    <form class="form-inline"
-                                          action="{{ route('feedbacks.destroy', $feedbacks->id_feedbacks)}}"
-                                          method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="btn btn-outline-danger "> Delete
-                                            - {{feedbacks->id_feedback}}
-                                        </button>
 
                                     </form>
                                 </div>

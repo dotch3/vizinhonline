@@ -17,41 +17,6 @@
                 <form class="needs-validation border border-secondary"
                       method="post" action="{{ route('feedbacks.store') }}">
                     @csrf
-
-                    <div class="form-row container">
-                        <div class="col-md-2 mb-3">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name"
-                                   value="" name="name"
-                                   required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="last_name">LastName</label>
-                            <input type="text" class="form-control" id="last_name"
-                                   value="" name="last_name"
-                            >
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="rg">RG</label>
-                            <input type="text" class="form-control" id="rg"
-                                   value="" name="rg" required>
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control" id="email"
-                                   value="" name="email" required>
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-row container">
                         <div class="col-md-4 mb-3">
                             <label for="title">Title</label>
@@ -67,9 +32,7 @@
                             <label for="score">score</label>
                             <input type="score" class="form-control" id="score"
                                    value="" name="score" required>
-                            <div class="invalid-tooltip">
-                                Por favor digite uma senha .
-                            </div>
+            
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="comments">Comments</label>

@@ -46,6 +46,9 @@ class FeedbacksController extends Controller
             'score' => $request->get('score'),
             ]);
             $feedbacks->save();
+
+            return redirect()->route('feedbacks.index')->with('success', 'Feedback saved!');
+
     }
 
     /**
@@ -56,7 +59,9 @@ class FeedbacksController extends Controller
      */
     public function show($id)
     {
-        //
+        $feedback = Feedbacks::findOrFail($id);
+
+        return view('layouts.crud.feedbacks.DetailFeedbacks', compact('feedback'));
     }
 
     /**

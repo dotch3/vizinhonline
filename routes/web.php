@@ -80,7 +80,7 @@ Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.c
 Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
 Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
 Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
-Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
+Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
 Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
 
 //Categories
