@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'List Users')
+@section('title', 'List Feedbacks')
 
 
 
@@ -43,8 +43,8 @@
                             <td>{{$feedbacks->title}}</td>
                             <td>{{$feedbacks->score}}</td>
                             <td>{{$feedbacks->comments}}</td>
-{{--                            <td>{{$user->created_at}}</td>--}}
-{{--                            <td>{{$user->updated_at}}</td>--}}
+{{--                            <td>{{$feedbacks->created_at}}</td>--}}
+{{--                            <td>{{$feedbacks->updated_at}}</td>--}}
                             <td>
                                 <div class="row">
 
@@ -52,21 +52,21 @@
                                     <button type="button"
                                             onclick="window.location.href='/detailsFeedbacks/{{$feedbacks->id_feedback}}'"
                                             class="btn btn-outline-primary ">Details
-                                        - {{$feedbacks->id_feedbacks}}
+                                        - {{$feedbacks->id_feedback}}
                                     </button>
                                     <button type="button"
-                                            onclick="window.location.href='{{ route('feedbacks.edit',$feedbacks->id_feedbacks)}}'"
+                                            onclick="window.location.href='{{ route('feedbacks.edit',$feedbacks->id_feedback)}}'"
                                             class="btn btn-outline-warning "> Edit
-                                        - {{$feedbacks->id_feedbacks}}
+                                        - {{$feedbacks->id_feedback}}
                                     </button>
                                     <form class="form-inline"
-                                          action="{{ route('users.destroy', $feedbacks->id_feedbacks)}}"
+                                          action="{{ route('feedbacks.destroy', $feedbacks->id_feedbacks)}}"
                                           method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                                 class="btn btn-outline-danger "> Delete
-                                            - {{feedbacks->id_feedbacks}}
+                                            - {{feedbacks->id_feedback}}
                                         </button>
 
                                     </form>
@@ -74,7 +74,7 @@
                             </td>
                         </tr>
                         @empty
-                            <p>Nao ha users</p>
+                            <p>Nao ha Feedbacks</p>
                         </tbody>
                     @endforelse
                 </table>
