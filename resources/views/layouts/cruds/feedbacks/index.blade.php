@@ -50,7 +50,7 @@
 
                                     {{-- Vamos a chamar ao controller--}}
                                     <button type="button"
-                                            onclick="window.location.href='/detailsFeedbacks/{{$feedbacks->id_feedback}}'"
+                                            onclick="window.location.href='/feedbacks/{{$feedbacks->id_feedback}}'"
                                             class="btn btn-outline-primary ">Details
                                         - {{$feedbacks->id_feedback}}
                                     </button>

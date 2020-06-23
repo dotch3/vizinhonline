@@ -61,7 +61,7 @@ class FeedbacksController extends Controller
     {
         $feedback = Feedbacks::findOrFail($id);
 
-        return view('layouts.crud.feedbacks.DetailFeedbacks', compact('feedback'));
+        return view('layouts.cruds.feedbacks.DetailFeedbacks', compact('feedback'));
     }
 
     /**
