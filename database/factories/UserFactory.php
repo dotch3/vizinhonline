@@ -24,19 +24,18 @@ $factory->define(User::class, function () use ($faker) {
 
 //$factory->define(User::class, function (Faker $faker) {
     return [
-        'rg'=>$faker->rg,
         'name' => $faker->firstName,
-        'last_name' => $faker->lastName,
-//        'username'=>$faker->unique()->userName,
-        'password' => $faker->unique()->password, // password
+        'lastname' => $faker->lastName,
         'email' => $faker->unique()->email,
         'email_verified_at' => now(),
+        'password' => $faker->unique()->password,
+        'cellphone'=>$faker->phoneNumber,
+        'rg'=>$faker->unique()->rg,
         'cpf'=>$faker->unique()->cpf,
         'age'=>$faker->numberBetween(18, 80),
         'ranking'=>$faker->numberBetween(1, 5),
-        'cellphone'=>$faker->phoneNumber,
-        'remember_token' => Str::random(10),
-        'created_at'=>now()
+        'created_at'=>now(),
+        'remember_token' => Str::random(10)
 
     ];
 });

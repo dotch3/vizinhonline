@@ -6,22 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-    //
+    // using Laravel standards
     protected $table = "favorites";
-    protected $primaryKey = "id_favorite";
-    // check if we will use this and then create migrations
-//    public $timestamps = "false";
+    protected $primaryKey = "id";
 
 
     //Creating the fillable for the factory
     protected $fillable = [
-        'name', 'favorite_code', 'favorite_status'
+        'name',
+        'description',
+        'code',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 
     //Relationships with other entities:
     public function users()
     {
-        return $this->belongsToMany('App\User', 'users_favorites', 'id_favorite', 'id_user');
+        return $this->belongsToMany(User::class);
+    }
+
+    public function posts()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function update_user_favorites($user_id, $fav_id)
@@ -33,16 +46,5 @@ class Favorite extends Model
 
 
     }
-
-    public function posts()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function items()
-    {
-        return $this->belongsTo('App\User');
-    }
-
 
 }

@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Edit User')
+@section('title', 'Editar usuario')
 
 @section('content')
     <div class="container">
@@ -7,7 +7,7 @@
             <div class=" jumbotron version_banner">
                 <div class="row">
                     <h4><span
-                            class="badge badge-pill badge-warning">Edit User</span></h4>
+                            class="badge badge-pill badge-warning">Editar Usuario</span></h4>
                 </div>
 
             </div>
@@ -15,27 +15,27 @@
         <div class="row container ">
             <div class="container col-md-12 mb-3">
                 <form class="needs-validation border border-secondary" method="POST"
-                      action="{{ route('users.update',$user->id_user)}}" autocomplete="off">
+                      action="{{ route('users.update',$user->id)}}" autocomplete="off">
                     @method('PATCH')
                     @csrf
 
                     <div class="form-row container">
-                        <div class="col-md-2 mb-3">
-                            <label for="name">ID</label>
+                        <div class="col-md-3 mb-3">
+                            <label for="id">ID</label>
                             <input type="text" class="form-control" id="id"
-                                   value="{{$user->id_user}}" name="id"
+                                   value="{{$user->id}}" name="id"
                                    required>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name"
                                    value="{{$user->name}}" name="name"
                                    required>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="last_name">LastName</label>
-                            <input type="text" class="form-control" id="last_name"
-                                   value="{{$user->last_name}}" name="last_name"
+                            <label for="lastname">LastName</label>
+                            <input type="text" class="form-control" id="lastname"
+                                   value="{{$user->lastname}}" name="lastname"
                             >
                             <div class="valid-tooltip">
                                 Looks good!
@@ -44,34 +44,26 @@
                         <div class="col-md-3 mb-3">
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" id="rg"
-                                   value="{{$user->rg}}" name="rg" >
+                                   value="{{$user->rg}}" name="rg">
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>
                         </div>
 
-                        <div class="col-md-2 mb-3">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control" id="email"
-                                   value="{{$user->email}}" name="email" >
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                        </div>
+
                     </div>
                     <div class="form-row container">
                         <div class="col-md-4 mb-3">
-                            <label for="username">Username</label>
+                            <label for="email">E-mail</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                             <span class="input-group-text"
                                                   id="validationTooltipUsernamePrepend">@</span>
                                 </div>
-                                <input type="text" class="form-control" id="username"
-                                       aria-describedby="validationTooltipUsernamePrepend"
-                                       value="same email" name="username" disabled>
-                                <div class="invalid-tooltip">
-                                    Por favor digite um unico e valido username.
+                                <input type="email" class="form-control" id="email"
+                                       value="{{$user->email}}" name="email" required>
+                                <div class="valid-tooltip">
+                                    Looks good!
                                 </div>
                             </div>
                         </div>

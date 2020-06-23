@@ -7,11 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Favorite::class, function (Faker $faker) {
     return [
-        //fake data for Favorite
-        //ToDo: Review if are needed the 3 fields? seems like not :/
-
-        'name' => $faker->randomElement(['FAVORED','DISFAVORED']),
-        'favorite_code' => $faker->randomElement(['FAV','DISFAV']),
-        'favorite_status'=>$faker->randomElement(['Active','Inactive'])
+        //fake data for testing favorite
+        'name' => $faker->randomElement(['ITEM','POST','USER']),
+        'description'=>'testing',
+        'code' => $faker->randomElement(['FAV','DISFAV']),
+        'status'=>$faker->randomElement(['Active','Inactive'])
     ];
 });

@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $table = "users";
-    protected $primaryKey = "id_user";
+    protected $primaryKey = "id";
 
 //    public $timestamps = "false";
     /**
@@ -20,7 +20,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'password', 'email', 'cpf', 'age', 'ranking', 'cellphone' . 'rg', 'remember_token', 'created_at'
+        'name',
+        'lastname',
+        'email',
+        'email_verified_at',
+        'password',
+        'cellphone',
+        'rg',
+        'cpf',
+        'age',
+        'ranking',
+        'created_at',
+        'updated_at',
+        'remember_token',
+        'image_id'
     ];
 
     /**
@@ -44,7 +57,7 @@ class User extends Authenticatable
     //Start the section for the relationships among User and other objects
     public function favorites()
     {
-        return $this->belongsToMany(Favorite::Class, 'users_favorites', 'id_user', 'id_favorite');
+        return $this->belongsToMany(Favorite::Class, 'favorite_user', 'user_id', 'favorite_id');
     }
 
 

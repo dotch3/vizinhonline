@@ -16,34 +16,32 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //Need to review the validations against the database
-//        $request->validate([
-//            'rg' => 'required|string|max:15',
-//            'name' => 'required|string|max:45',
-//            'last_name' => 'nullable|string|max:45',
-//            'username' => 'required|string|max:45',
-//            'password' => 'nullable|string|max:45',
-//            'email' => 'nullable|string|max:45',
-//            'cpf' => 'nullable|string|max:15',
-//            'age' => 'nullable|integer|max:11',
-//            'ranking' => 'nullable',
+        $request->validate([
+            'rg' => 'required|string|max:50',
+            'name' => 'required|string|max:45',
+            'lastname' => 'required|string|max:45',
+            'email' => 'required|string|max:45',
+            'email_verified_at' => 'nullable|date',
+            'password' => 'nullable|string|max:200',
+            'age' => 'nullable|integer|max:255',
+//            'cpf' => 'nullable|string|max:45',
+//            'ranking' => 'nullable|integer|max:10',
 //            'cellphone' => 'nullable|string|max:50',
 //            'image_id' => 'nullable',
-//        ]);
-//        dd($request);
+        ]);
         $user = new User([
             'name' => $request->get('name'),
-            'last_name' => $request->get('last_name'),
-            'rg' => $request->get('rg'),
-            'cpf' => $request->get('cpf'),
+            'lastname' => $request->get('lastname'),
             'email' => $request->get('email'),
             'password' => $request->get('password'),
-//            'username' => $request->get('username'),
-            'age' => $request->get('age'),
             'cellphone' => $request->get('cellphone'),
+            'rg' => $request->get('rg'),
+            'cpf' => $request->get('cpf'),
+            'age' => $request->get('age'),
             'ranking' => $request->get('ranking'),
             'image_id' => $request->get('image_id'),
         ]);
-        dd($user);
+
         $user->save();
         return redirect()->route('users.index')->with('alert-success', 'User saved!');
     }
@@ -54,10 +52,10 @@ class UsersController extends Controller
     }
 
 
-    public function detailsUser($id)
+    public function show($id)
     {
         $detailsUser = User::findOrFail($id);
-        return view('layouts.cruds.users.DetailsUser', ['detailsUser' => $detailsUser]);
+        return view('layouts.cruds.users.DetailsUser', compact('detailsUser'));
     }
 
     public function edit($id)
@@ -70,32 +68,31 @@ class UsersController extends Controller
     {
 //        Need to review the validations against the database
 //    {  dd($request);
-//        $request->validate([
-//            //validating the fields
-//            'rg' => 'required|string|max:15',
-//            'name' => 'required|string|max:45',
-//            'last_name' => 'nullable|string|max:45',
-//            'username' => 'required|string|max:45',
-//            'password' => 'nullable|string|max:45',
-//            'email' => 'nullable|string|max:45',
-//            'cpf' => 'nullable|string|max:15',
-//            'age' => 'nullable|integer|max:11',
-//            'ranking' => 'nullable',
-//            'cellphone' => 'nullable|string|max:50',
-//            'image_id' => 'nullable',
-//
-//        ]);
+        $request->validate([
+            //validating the fields
+            'rg' => 'required|string|max:50',
+            'name' => 'required|string|max:45',
+            'lastname' => 'nullable|string|max:45',
+            'email' => 'required|string|max:45',
+            'email_verified_at' => 'nullable|date',
+            'password' => 'nullable|string|max:200',
+            'age' => 'nullable|integer|max:255',
+            'cpf' => 'nullable|string|max:45',
+            'ranking' => 'nullable|integer|max:10',
+            'cellphone' => 'nullable|string|max:50',
+            'image_id' => 'nullable|integer|',
+
+        ]);
         $user = User::find($id);
-        $user->rg = $request->input('rg');
         $user->name = $request->input('name');
-        $user->last_name = $request->input('last_name');
-//        $user->username = $request->input('username');
-        $user->password = $request->input('password');
+        $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->cellphone = $request->input('cellphone');
+        $user->rg = $request->input('rg');
         $user->cpf = $request->input('cpf');
         $user->age = $request->input('age');
         $user->ranking = $request->input('ranking');
-        $user->cellphone = $request->input('cellphone');
         $user->image_id = $request->input('image_id');
         $user->updated_at = now();
 

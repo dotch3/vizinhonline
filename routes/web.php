@@ -73,10 +73,13 @@ Route::resource('users', 'UsersController');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/createUser', 'UsersController@create')->name('users.create');
+
+Route::get('/detailsUser/{id}', 'UsersController@show')->name('users.show');
+
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
-Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
+Route::patch('/EditUser/{id}', 'UsersController@update')->name('users.update');
+
 Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
-Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');

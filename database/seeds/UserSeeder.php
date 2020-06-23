@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Seeder;
@@ -13,9 +12,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // utilizanbdo a seeder para preencher informacao
-        User::truncate();
-        for ($i =0;$i <= 10;$i++){
+
+        //using the factory to fulfill test users
+        //User::truncate(); //We dont want to delete the administrator created
+        for ($i = 0; $i < 20; $i++) {
             factory(User::class)->create();
         }
     }

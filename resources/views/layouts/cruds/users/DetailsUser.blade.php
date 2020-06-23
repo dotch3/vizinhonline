@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Details User')
+@section('title', 'Detalhes do usuario')
 
 @section('content')
     <div class="container">
@@ -16,7 +16,7 @@
             <div class="container col-md-12 mb-3">
                 <form class="needs-validation border border-secondary">
                     <div class="form-row container">
-                        <div class="container-fluid col-md-2 mb-3">
+                        <div class="container-fluid col-md-4 mb-3">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name"
                                    value="{{$detailsUser->name}}" name="name"
@@ -25,7 +25,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="last_name">LastName</label>
                             <input type="text" class="form-control" id="last_name"
-                                   value="{{$detailsUser->last_name}}" name="last_name"
+                                   value="{{$detailsUser->lastname}}" name="last_name"
                             >
                             <div class="valid-tooltip">
                                 Looks good!
@@ -34,34 +34,26 @@
                         <div class="col-md-4 mb-3">
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" id="rg"
-                                   value="{{$detailsUser->rg}}" name="rg" >
+                                   value="{{$detailsUser->rg}}" name="rg">
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>
                         </div>
 
-                        <div class="col-md-2 mb-3">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control" id="email"
-                                   value="{{$detailsUser->email}}" name="email" required>
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                        </div>
+
                     </div>
                     <div class="form-row container">
                         <div class="col-md-4 mb-3">
-                            <label for="username">Username</label>
+                            <label for="email">E-mail</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                             <span class="input-group-text"
                                                   id="validationTooltipUsernamePrepend">@</span>
                                 </div>
-                                <input type="text" class="form-control" id="username"
-                                       aria-describedby="validationTooltipUsernamePrepend"
-                                       value="{{$detailsUser->username}}" name="username" disabled>
-                                <div class="invalid-tooltip">
-                                    Por favor digite um unico e valido username.
+                                <input type="email" class="form-control" id="email"
+                                       value="{{$detailsUser->email}}" name="email" required>
+                                <div class="valid-tooltip">
+                                    Looks good!
                                 </div>
                             </div>
                         </div>

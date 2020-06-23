@@ -11,9 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
-
-        //Calling to the factory of "Favorites"
+        //Let's create the administrator
+        DB::table('users')->insert([
+            'name' => 'AdministratorName',
+            'lastname' => 'AdministratorLastName',
+            'email' => 'admin@vizinhonline.com',
+            'password' => bcrypt('rootadmin'),
+        ]);
+        $this->call(UserSeeder::class);
         $this->call(FavoritesSeeder::class);
+
     }
 }

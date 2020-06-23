@@ -39,14 +39,16 @@ class FavoritesController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'favorite_code' => 'nullable',
-            'favorite_status' => 'nullable'
+            'description' => 'nullable',
+            'code' => 'nullable',
+            'status' => 'nullable'
         ]);
 
         $favorite = new Favorite([
             'name' => $request->get('name'),
-            'favorite_code' => $request->get('favorite_code'),
-            'favorite_status' => $request->get('favorite_status'),
+            'description' => $request->get('description'),
+            'code' => $request->get('code'),
+            'status' => $request->get('status'),
 
         ]);
         $favorite->save();
@@ -88,13 +90,15 @@ class FavoritesController extends Controller
     {
         $request->validate([
             'name' => 'nullable|string|max:45',
-            'favorite_code' => 'nullable|string|max:45',
-            'favorite_status' => 'nullable|string|',
+            'description' => 'nullable|string|max:100',
+            'code' => 'nullable|string|max:45',
+            'status' => 'nullable|string|max:45',
         ]);
         $favorite = Favorite::find($id);
         $favorite->name = $request->input('name');
-        $favorite->favorite_code = $request->input('favorite_code');
-        $favorite->favorite_status = $request->input('favorite_status');
+        $favorite->description = $request->input('description');
+        $favorite->code = $request->input('code');
+        $favorite->status = $request->input('status');
         $favorite->save();
 
 //        return redirect()->route('favorites.index')->with('Success', 'Contact updated!');
