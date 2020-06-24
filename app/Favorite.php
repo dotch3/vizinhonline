@@ -24,7 +24,7 @@ class Favorite extends Model
     //Relationships with other entities:
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'favorite_user', 'favorite_id', 'user_id');
     }
 
     public function posts()
