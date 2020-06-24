@@ -99,3 +99,27 @@ Route::get('/categories/{id}', 'CategoriesController@show')->name('categories.sh
 Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
 Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+
+//imagem upload
+Route::get('/image', 'UploadController@index')->name('image.upload.profile');
+Route::post('/image', 'UploadController@imageUploadProfile')->name('image.upload.profile');
+
+//image upload2
+//Route::get('principal', function(){
+  //  return view ('layouts/cruds/images/principal');
+//});
+
+Route:: get('principal', 'imagemControler@index')->name('principal');
+
+Route::get('detalhe/{id}','imagemControler@show')->name('show');
+
+Route::get('cadastro-imagem', 'imagemControler@create')->name('create');
+Route::post('cadastro-imagem', 'imagemControler@store')->name('store');
+
+Route::get('editar-imagem/{id}', 'imagemControler@edit')->name('edit');
+Route::post('editar-imagem/{id})','imagemControler@update')->name('update');
+
+
+
+
+
