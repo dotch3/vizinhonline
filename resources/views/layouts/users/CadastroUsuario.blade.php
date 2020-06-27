@@ -23,78 +23,128 @@
             </div>
         @endforeach
     @endif
-
     <div class="container cadastro">
-        <div class="row no-gutters">
-            <div class=" fundo_img">
-                <h2>Sua Foto</h2>
-            </div>
-            <div class="img_upload">
-                <input type="file" name="foto">
-            </div>
+        <form id="signin" class="needs-validation border border-secondary"
+              method="post" action="{{ route('users.store') }}">
+            @csrf
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    @if(!empty($user->id))
+                        {{--                    @elseif(Storage::disk('public')->exists($user->image->name))--}}
+                        <img src="{{asset('/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
+                             style="width: 180px;height: 170px; ">
+                    @else
+                        <div class=" fundo_img">
 
-            <div class="col-10 text-center">
-                <h2> Cadastro </h2>
-                <form id="signin" class="needs-validation border border-secondary"
-                      method="post" action="{{ route('users.store') }}">
-                    @csrf
-                    <div class="form-group">
-                        <br/>
-                        <input type="text" name="name" placeholder="Name">
-                        <input type="text" name="last_name" placeholder="Last name">
-                        <hr/>
-                        <br/>
-                        <input type="text" name="rg" id="rg" placeholder="RG">
-                        <input type="text" name="cpf" maxlength="14" placeholder="CPF"
-                               onkeydown="javascript: fMasc( this, mCPF );">
-                        <hr/>
-                        <br/>
-                    </div>
-                    <div class="form-group">
-                        <input type="e-mail" name="email" placeholder="E-mail">
-                        <input type="number" name="age" placeholder="Age">
-                    </div>
-                    <hr/>
-                    <br/>
+                            <h2>Sua Foto</h2>
+                        </div>
+                    @endif
+                </div>
+                <div class="profile-img img_upload">
+                    <input type="text" name="name" placeholder="Nome"
+                           value=" @if(!empty($user->id)){{$user->image->name}}@endif">
+                    <input type="file" multiple accept='image/*' name="foto" id="foto">
 
-                    <div class="form-group">
-                        <input type="text" name="cellphone" maxlength="17" placeholder="Cellphone"
-                               onkeydown="javascript: fMasc( this, mTel );">
-                        <input type="text" name="interfone" placeholder="Interfone">
-                        <hr/>
-                        <br/>
-                    </div>
-                    <hr/>
-                    <br/>
-                    <div>
+                </div>
+                <script
+                    src="https://code.jquery.com/jquery-3.5.1.min.js"
+                    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                    crossorigin="anonymous"></script>
+                <script>
+                    $(function () {
+                        $('#foto').change(function () {
+                            const file = $(this)[0].files[0];
+                            console.log(file);
+                            const fileReader = new FileReader();
+                            fileReader.onloadend = function () {
+                                $('#imgProfile').attr('src', fileReader.result)
+                            }
+                            fileReader.readAsDataURL(file)
+                        })
+                    })
+                </script>
+                <div class="col-md-6">
+                    <div class="profile-head col-10 text-center">
+                        <h2> Cadastro </h2>
                         <div class="form-group">
-                            <input type="text" name="build" placeholder="Build name">
-                            <input type="text" name="apt_umber" placeholder="Door number">
+                            <br/>
+                            <input type="text" name="name" placeholder="Nome"
+                                   value=" @if(!empty($user->id)){{$user->name}}@endif"
+                                   required>
+                            <input type="text" name="lastname" placeholder="Sobrenome"
+                                   value=" @if(!empty($user->id)){{$user->lastname}}@endif"
+                                   required>
                             <hr/>
                             <br/>
-                            <input type="text" name="address" placeholder="Address">
-                            <input type="text" name="branch" placeholder="Intercom branch">
+                            <input type="text" name="rg" id="rg" placeholder="RG"
+                                   value=" @if(!empty($user->id)){{$user->rg}}@endif" required>
+                            <input type="text" name="cpf" maxlength="14" placeholder="CPF"
+                                   value=" @if(!empty($user->id)){{$user->cpf}}@endif" required
+                                   onkeydown="javascript: fMasc( this, mCPF ); ">
+                            <hr/>
+                            <br/>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="E-mail"
+                                   value=" @if(!empty($user->id)){{$user->email}}@endif"
+                                   required>
+                            <input type="email_verified" name="email" placeholder="Confirmar e-mail"
+                                   value=" @if(!empty($user->id)){{$user->email}}@endif" required>
+
+
+                        </div>
+                        <hr/>
+                        <br/>
+
+                        <div class="form-group">
+                            <input type="text" name="cellphone" maxlength="17" placeholder="Celular"
+                                   value=" @if(!empty($user->id)){{$user->cellphone}}@endif"
+                                   onkeydown="javascript: fMasc( this, mTel );" required>
+                            <input type="text" name="age" placeholder="Idade"
+                                   value=" @if(!empty($user->id)){{$user->age}}@endif">
+
                             <hr/>
                             <br/>
                         </div>
                         <hr/>
                         <br/>
-                        <div class="form-group">
-                            <input type="password" name="password" placeholder="Password">
-                            <input type="rep_password" name="repeat-password" placeholder="Confirm password">
+                        <div>
+                            <div class="form-group">
+                                <input type="text" name="build" placeholder="Bloco/Edificio">
+                                <input type="text" name="apt_number" placeholder="Nro Apto" required>
+                                <hr/>
+                                <br/>
+                                <input type="text" name="address" placeholder="Endereço">
+                                <input type="text" name="branch" placeholder="Intercom branch">
+                                <hr/>
+                                <br/>
+                            </div>
                             <hr/>
                             <br/>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Senha" required>
+                                <input type="password" name="confirm_password" placeholder="Confirmar senha" required>
+                                <hr/>
+                                <br/>
+                            </div>
                         </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary"
+                                    onclick="window.location.href='{{ url('/')}}'">Cancelar
+                            </button>
+                            @if(!auth()->user())
+                                <button type="submit" class="btn btn-success">Cadastrar
+                                </button>
+                            @else
+                                <button type="submit" class="btn btn-warning">Editar
+                                </button>
+                            @endif
+                        </div>
+
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-secondary"
-                                onclick="window.location.href='{{ url('/')}}'">Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-success">Cadastrar
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
+
     </div>
 @endsection

@@ -14,7 +14,7 @@
             {{session('alert-success')}}
         </div>
     @endif
-    <div class="row">
+    <div class="content">
         @yield('content')
     </div>
 

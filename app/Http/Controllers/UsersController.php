@@ -9,13 +9,12 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(10);
         return view('layouts.cruds.users.index', compact('users'));
     }
 
     public function store(Request $request)
     {
-        //Need to review the validations against the database
         $request->validate([
             'rg' => 'required|string|max:50',
             'name' => 'required|string|max:45',
@@ -24,11 +23,12 @@ class UsersController extends Controller
             'email_verified_at' => 'nullable|date',
             'password' => 'nullable|string|max:200',
             'age' => 'nullable|integer|max:255',
-//            'cpf' => 'nullable|string|max:45',
-//            'ranking' => 'nullable|integer|max:10',
-//            'cellphone' => 'nullable|string|max:50',
-//            'image_id' => 'nullable',
+            'cpf' => 'nullable|string|max:45',
+            'ranking' => 'nullable|integer|max:10',
+            'cellphone' => 'nullable|string|max:50',
+            'image_id' => 'nullable',
         ]);
+        //Validation for password needed
         $user = new User([
             'name' => $request->get('name'),
             'lastname' => $request->get('lastname'),
@@ -66,8 +66,6 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-//        Need to review the validations against the database
-//    {  dd($request);
         $request->validate([
             //validating the fields
             'rg' => 'required|string|max:50',
@@ -108,6 +106,14 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->with('alert-success', 'User has been deleted!');
+
+    }
+
+    public function profile($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('layouts.users.CadastroUsuario', compact('user'));
 
     }
 }

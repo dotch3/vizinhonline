@@ -42,7 +42,8 @@
                     {{--                    <th class="text-center">CPF</th>--}}
                     {{--                    <th class="text-center">Age</th>--}}
                     {{--                    <th class="text-center">Ranking</th>--}}
-                    {{--                    <th class="text-center">Image Id</th>--}}
+                    <th class="text-center">Image Id</th>
+                    <th class="text-center">Image info</th>
                     <th class="text-center">Criado</th>
                     <th class="text-center">Atualizado</th>
                     <th class="text-center" scope="col">USER_FAVORITE-></th>
@@ -62,7 +63,10 @@
                             {{--                            <td>{{$user->cpf}}</td>--}}
                             {{--                            <td>{{$user->age}}</td>--}}
                             {{--                            <td>{{$user->ranking}}</td>--}}
-                            {{--                            <td>{{$user->image_id}}</td>--}}
+                            <td>{{$user->image_id}}</td>
+                            <td>@if(!empty($user->image->id))
+                                    {{$user->image->name}}
+                                @endif</td>
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
                             <td>{{$user->id}}

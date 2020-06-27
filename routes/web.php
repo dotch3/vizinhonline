@@ -13,85 +13,51 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+// vizinhoonlineRoute
+
+Route::get('/', 'PagesController@home');
+Route::get('/CadastroItem', 'PagesController@cadastroItem');
+Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
+Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
+Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 
 
-// vizinhoonline
-Route::get('/', function () {
-    return view('layouts/main/Home');
-});
+// Section favorites
+Route::resource('favorites', 'FavoritesController');
 
-Route::get('/Feed', function () {
-    return view('layouts/main/Feed');
-});
-
-Route::get('/CadastroItem', function () {
-    return view('layouts/items/CadastroItem');
-});
-
-Route::get('/PerfilUsuario', function () {
-    return view('layouts/users/PerfilUsuario');
-});
-
-
-Route::get('/PerfilVizinho', function () {
-    return view('layouts/users/PerfilVizinho');
-});
-
-
-Route::get('/CadastroUsuario', function () {
-    return view('layouts/users/CadastroUsuario');
-});
-
-
-// Provisional Routes for the CRUD operations - Backend
-
-//This will provide CRUD for favorites as example for others entities
-
-//Get  object(s)
 Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
-
-//Detail favorite:
 Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
-
 //Create
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
-
-//Update
 Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
 
 Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
-
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 
-// Creating route for the update
-Route::resource('favorites', 'FavoritesController');
+// Section for User
 Route::resource('users', 'UsersController');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/createUser', 'UsersController@create')->name('users.create');
-
 Route::get('/detailsUser/{id}', 'UsersController@show')->name('users.show');
-
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
 Route::patch('/EditUser/{id}', 'UsersController@update')->name('users.update');
-
+Route::post('/users', 'UsersController@store')->name('users.store');
 Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
-
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
 Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
 Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
 Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::delete('/feedbacks/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
-Route::get('/feedbacks/{id}', 'FeedbacksController@detailsUser');
 Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
+Route::delete('/feedbacks/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
+
 
 //Categories
 Route::resource('categories', 'CategoriesController');
@@ -103,5 +69,23 @@ Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categori
 Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
 
+
 //Items
-Route::resource('items', 'ItemsController');
+
+//imagem upload
+//Route::get('/images', 'UploadController@index')->name('image.upload.profile');
+Route::post('/images', 'UploadController@store')->name('upload.store');
+Route::get('/editarImagem/{id}', 'UploadController@edit')->name('upload.edit');
+Route::patch('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
+Route::delete('/images/{id}', 'UploadController@destroy')->name('images.destroy');
+
+
+Route:: get('/images', 'ImagemControler@index')->name('images.index');
+Route::get('/detalheImagem/{id}', 'ImagemControler@show')->name('images.show');
+
+Route::get('/cadastroImagem', 'ImagemControler@create')->name('images.create');
+Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
+
+
+//UserConfiguration
+Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profile');
