@@ -25,7 +25,7 @@
     @endif
     <div class="container cadastro">
         <form id="signin" class="needs-validation border border-secondary"
-              method="post" action="{{ route('users.store') }}">
+              method="post" action="{{ route('user.register') }}">
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-4">
@@ -43,7 +43,8 @@
                 </div>
                 <div class="profile-img img_upload">
                     <input type="text" name="name" placeholder="Nome"
-                           value=" @if(!empty($user->id)){{$user->image->name}}@endif">
+                           value="{{ !empty($user->id) ? $user->image->name : '' }}"
+                           required>
                     <input type="file" multiple accept='image/*' name="foto" id="foto">
 
                 </div>
@@ -70,27 +71,30 @@
                         <div class="form-group">
                             <br/>
                             <input type="text" name="name" placeholder="Nome"
-                                   value=" @if(!empty($user->id)){{$user->name}}@endif"
+                                   value="{{ !empty($user->id) ? $user->name : '' }}"
                                    required>
                             <input type="text" name="lastname" placeholder="Sobrenome"
-                                   value=" @if(!empty($user->id)){{$user->lastname}}@endif"
+                                   value="{{ !empty($user->id) ? $user->lastname : '' }}"
                                    required>
                             <hr/>
                             <br/>
                             <input type="text" name="rg" id="rg" placeholder="RG"
-                                   value=" @if(!empty($user->id)){{$user->rg}}@endif" required>
+                                   value="{{ !empty($user->id) ? $user->rg: '' }}"
+                                   required>
                             <input type="text" name="cpf" maxlength="14" placeholder="CPF"
-                                   value=" @if(!empty($user->id)){{$user->cpf}}@endif" required
+                                   value="{{ !empty($user->id) ? $user->cpf: '' }}"
+                                   required
                                    onkeydown="javascript: fMasc( this, mCPF ); ">
                             <hr/>
                             <br/>
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" placeholder="E-mail"
-                                   value=" @if(!empty($user->id)){{$user->email}}@endif"
+                                   value="{{ !empty($user->id) ? $user->email: '' }}"
                                    required>
-                            <input type="email_verified" name="email" placeholder="Confirmar e-mail"
-                                   value=" @if(!empty($user->id)){{$user->email}}@endif" required>
+                            <input type="email_verified" name="email" placeholder="Confirmar E-mail"
+                                   value="{{ !empty($user->id) ? $user->email: '' }}"
+                                   required>
 
 
                         </div>
@@ -99,10 +103,10 @@
 
                         <div class="form-group">
                             <input type="text" name="cellphone" maxlength="17" placeholder="Celular"
-                                   value=" @if(!empty($user->id)){{$user->cellphone}}@endif"
+                                   value="{{ !empty($user->id) ? $user->cellphone: '' }}"
                                    onkeydown="javascript: fMasc( this, mTel );" required>
                             <input type="text" name="age" placeholder="Idade"
-                                   value=" @if(!empty($user->id)){{$user->age}}@endif">
+                                   value="{{ !empty($user->id) ? $user->age: '' }}">
 
                             <hr/>
                             <br/>
@@ -111,20 +115,29 @@
                         <br/>
                         <div>
                             <div class="form-group">
-                                <input type="text" name="build" placeholder="Bloco/Edificio">
-                                <input type="text" name="apt_number" placeholder="Nro Apto" required>
+                                <input type="text" name="build" placeholder="Bloco/Edificio"
+                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}">
+                                <!-- Relation with locations come here -->
+                                <input type="text" name="apt_number" placeholder="Nro Apto"
+                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}"
+                                       required>  <!-- Relation with locations come here -->
                                 <hr/>
                                 <br/>
-                                <input type="text" name="address" placeholder="Endereço">
-                                <input type="text" name="branch" placeholder="Intercom branch">
+                                <input type="text" name="address" placeholder="Endereço"
+                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}"
+                                ><!-- Relation with locations come here -->
+                                <input type="text" name="branch" placeholder="Intercom branch"
+                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}">
                                 <hr/>
                                 <br/>
                             </div>
                             <hr/>
                             <br/>
                             <div class="form-group">
-                                <input type="password" name="password" placeholder="Senha" required>
-                                <input type="password" name="confirm_password" placeholder="Confirmar senha" required>
+                                <input type="password" name="password" placeholder="Senha" required
+                                       value="{{ !empty($user->id) ? $user->password: '' }}">
+                                <input type="password" name="confirm_password" placeholder="Confirmar senha" required
+                                       value="{{ !empty($user->id) ? $user->password: '' }}">
                                 <hr/>
                                 <br/>
                             </div>

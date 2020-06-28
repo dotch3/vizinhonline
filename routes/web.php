@@ -47,6 +47,13 @@ Route::patch('/EditUser/{id}', 'UsersController@update')->name('users.update');
 Route::post('/users', 'UsersController@store')->name('users.store');
 Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
 
+
+//User relationships
+Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profile');
+Route::post('/CadastroUsuario', 'UsersController@register')->name('user.register');
+
+
+
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
@@ -86,6 +93,3 @@ Route::get('/detalheImagem/{id}', 'ImagemControler@show')->name('images.show');
 Route::get('/cadastroImagem', 'ImagemControler@create')->name('images.create');
 Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
 
-
-//UserConfiguration
-Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profile');

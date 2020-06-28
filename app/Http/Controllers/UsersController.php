@@ -109,12 +109,39 @@ class UsersController extends Controller
 
     }
 
+    // Loads the user profile page
     public function profile($id)
     {
         $user = User::findOrFail($id);
 
         return view('layouts.users.CadastroUsuario', compact('user'));
+    }
 
+    public function register(Request $request)
+    {
+        $request->validate([
+            //validating the user fields
+            'rg' => 'required|string|max:50',
+            'name' => 'required|string|max:45',
+            'lastname' => 'nullable|string|max:45',
+            'email' => 'required|string|max:45',
+            'email_verified_at' => 'nullable|date',
+            'password' => 'nullable|string|max:200',
+            'age' => 'nullable|integer|max:255',
+            'cpf' => 'nullable|string|max:45',
+            'ranking' => 'nullable|integer|max:10',
+            'cellphone' => 'nullable|string|max:50',
+
+
+            //validating the image fields
+            'image_id' => 'nullable|integer|',
+
+
+            //Validating the location fields
+
+
+        ]);
+        return view('layouts.users.CadastroUsuario');
     }
 }
 
