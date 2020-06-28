@@ -26,7 +26,7 @@ Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 // Section favorites
 Route::resource('favorites', 'FavoritesController');
 
-Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
+Route::get('/favorites', 'FavoritesController@index')->name('favorites.index');
 Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
 //Create
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
@@ -53,7 +53,6 @@ Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profi
 Route::post('/CadastroUsuario', 'UsersController@register')->name('user.register');
 
 
-
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
@@ -78,18 +77,23 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
+Route::get('/items', 'ItemsController@index')->name('items.index');
 
-//imagem upload
+
+//Imagem upload
 //Route::get('/images', 'UploadController@index')->name('image.upload.profile');
 Route::post('/images', 'UploadController@store')->name('upload.store');
 Route::get('/editarImagem/{id}', 'UploadController@edit')->name('upload.edit');
 Route::patch('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
 Route::delete('/images/{id}', 'UploadController@destroy')->name('images.destroy');
 
-
 Route:: get('/images', 'ImagemControler@index')->name('images.index');
 Route::get('/detalheImagem/{id}', 'ImagemControler@show')->name('images.show');
 
+// Routes to review ??cintia?
 Route::get('/cadastroImagem', 'ImagemControler@create')->name('images.create');
 Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
 
+//Routes for Locations
+Route::get('/locations', 'LocationController@index')->name('locations.index');
+Route::post('/locations', 'LocationController@store')->name('location.store');

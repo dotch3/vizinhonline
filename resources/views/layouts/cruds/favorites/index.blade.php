@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Lists de Favoritos')
+@section('title', 'Lista de Favoritos')
 
 @section('content')
     @if (session('alert-success'))

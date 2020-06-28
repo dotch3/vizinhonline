@@ -42,10 +42,8 @@
                     @endif
                 </div>
                 <div class="profile-img img_upload">
-                    <input type="text" name="name" placeholder="Nome"
-                           value="{{ !empty($user->id) ? $user->image->name : '' }}"
-                           required>
-                    <input type="file" multiple accept='image/*' name="foto" id="foto">
+                    <input type="file" multiple accept='image/*' name="foto" id="foto"
+                           >
 
                 </div>
                 <script

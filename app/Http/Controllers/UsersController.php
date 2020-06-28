@@ -134,10 +134,15 @@ class UsersController extends Controller
 
 
             //validating the image fields
-            'image_id' => 'nullable|integer|',
+            'image_name' => 'required|string|max:80',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
 
             //Validating the location fields
+            'build' => 'nullable|string|max:45',
+            'address' => 'nullable|integer|max:10',
+            'build' => 'nullable|string|max:45',
+
 
 
         ]);
