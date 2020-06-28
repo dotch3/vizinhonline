@@ -29,9 +29,10 @@
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    @if(!empty($user->id))
+                    @if(!empty($user->image->id))
                         {{--                    @elseif(Storage::disk('public')->exists($user->image->name))--}}
-                        <img src="{{asset('/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
+
+                        <img src="{{asset('/storage/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
                              style="width: 180px;height: 170px; ">
                     @else
                         <div class=" fundo_img">
