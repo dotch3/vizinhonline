@@ -114,18 +114,18 @@
                         <div>
                             <div class="form-group">
                                 <input type="text" name="build" placeholder="Bloco/Edificio"
-                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}">
+                                       value="{{ !empty($user->id) ? $user->location->building: '' }}">
                                 <!-- Relation with locations come here -->
                                 <input type="text" name="apt_number" placeholder="Nro Apto"
-                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}"
+                                       value="{{ !empty($user->id) ? $user->location->apartment_number: '' }}"
                                        required>  <!-- Relation with locations come here -->
                                 <hr/>
                                 <br/>
                                 <input type="text" name="address" placeholder="Endereço"
-                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}"
+                                       value="{{ !empty($user->id) ? $user->location->address: '' }}"
                                 ><!-- Relation with locations come here -->
                                 <input type="text" name="branch" placeholder="Intercom branch"
-                                       value="{{ !empty($user->id) ? $user->cellphone: '' }}">
+                                       value="{{ !empty($user->id) ? $user->location->intercom_branch: '' }}">
                                 <hr/>
                                 <br/>
                             </div>

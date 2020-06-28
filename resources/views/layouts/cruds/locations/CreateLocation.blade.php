@@ -23,7 +23,7 @@
                             </ul>
                         </div><br/>
                     @endif
-                    <form method="post" action="{{ route('location.store') }}">
+                    <form method="post" action="#">
                         @csrf
                         <div class="form-group">
                             <label for="building"> Bloco/Edificio:</label>
@@ -53,7 +53,7 @@
                             <button type="button" onclick="window.location.href='/favorites'"
                                     class="btn btn-outline-secondary btn-lg ">Voltar
                             </button>
-                            <button type="submit" class="btn btn-outline-success btn-lg">Criar Favorito</button>
+                            <button type="submit" class="btn btn-outline-success btn-lg">Criar Endereço</button>
 
                         </div>
                         <div class="col-3">

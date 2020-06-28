@@ -96,4 +96,5 @@ Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
 
 //Routes for Locations
 Route::get('/locations', 'LocationController@index')->name('locations.index');
-Route::post('/locations', 'LocationController@store')->name('location.store');
+Route::get('/createLocation', 'LocationController@create')->name('location.create');
+Route::post('/createLocation', 'LocationController@store')->name('locations.store');
