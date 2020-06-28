@@ -39,7 +39,7 @@
                     @forelse($categories as $category)
                         <tbody>
                         <tr>
-                            <td>{{$category->id_category}}</td>
+                            <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td>{{$category->category_code}}</td>
                             <td>{{$category->description}}</td>
@@ -48,11 +48,11 @@
                             <td>
                                 <div class="row">
                                     <button type="button"
-                                            onclick="window.location.href='{{ route('categories.edit', $category->id_category)}}'"
+                                            onclick="window.location.href='{{ route('categories.edit', $category->id)}}'"
                                             class="btn btn-outline-warning "> Editar
                                     </button>
                                     <form class="form-inline"
-                                    action="{{ route('categories.destroy', $category->id_category)}}"
+                                    action="{{ route('categories.destroy', $category->id)}}"
                                     method="post">
                                         @csrf
                                         @method('DELETE')

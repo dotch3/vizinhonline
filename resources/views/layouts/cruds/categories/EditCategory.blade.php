@@ -26,7 +26,7 @@
                 </div><br/>
             @endif
             <form class="needs-validation border border-secondary" method="POST"
-                action="{{ route('categories.update',$category->id_category)}}" autocomplete="off">
+                action="{{ route('categories.update',$category->id)}}" autocomplete="off">
                 @method('PUT')
                 @csrf
                 <div class="form-row container">
@@ -38,7 +38,7 @@
                                 <span class="input-group-text" id="validationTooltipUsernamePrepend"># </span>
                             </div>
                             <input type="text" class="form-control" id="id"
-                                   value="{{ $category->id_category }}"
+                                   value="{{ $category->id }}"
                                    disabled required>
                         </div>
                     </div>

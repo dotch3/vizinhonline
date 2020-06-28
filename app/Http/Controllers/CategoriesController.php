@@ -92,7 +92,7 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'nullable|string|max:45',
-            'category_code' => 'nullable|numeric|max:45',
+            'category_code' => 'nullable|numeric',
             'description' => 'nullable'
         ]);
         $category = Category::find($id);
