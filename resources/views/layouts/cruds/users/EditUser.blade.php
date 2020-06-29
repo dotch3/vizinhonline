@@ -192,7 +192,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="building">Bloco</label>
                             <input type="text" class="form-control" id="building"
-                                   value="{{ !empty($user->image->id) ? $user->location->building: '' }} "
+                                   value="{{ !empty($user->location->id) ? $user->location->building: '' }} "
                                    placeholder="Bloco/Edificio" name="building">
                             <div class="invalid-tooltip">
                                 Por favor digite um Bloco valido
@@ -201,7 +201,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="apartment_number">Nro. Apto</label>
                             <input type="text" class="form-control" id="apartment_number"
-                                   value="{{ !empty($user->image->id) ? $user->location->apartment_number: '' }}"
+                                   value="{{ !empty($user->location->id) ? $user->location->apartment_number: '' }}"
                                    placeholder="Nro. Apartamento" name="apartment_number">
                             <div class="invalid-tooltip">
                                 Por favor digite um numero de apartamento
@@ -212,7 +212,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="address">Endereço</label>
                             <input type="text" class="form-control" id="address"
-                                   value="{{ !empty($user->image->id) ? $user->location->address: '' }}"
+                                   value="{{ !empty($user->location->id) ? $user->location->address: '' }}"
                                    placeholder="Endereço" name="address">
                             <div class="invalid-tooltip">
                                 Por favor digite um endereço.
@@ -221,7 +221,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="intercom_branch">Interfone #</label>
                             <input type="text" class="form-control" id="intercom_branch"
-                                   value="{{ !empty($user->image->id) ? $user->location->intercom_branch: '' }}"
+                                   value="{{ !empty($user->location->id) ? $user->location->intercom_branch: '' }}"
                                    placeholder="Interfone #" name="intercom_branch">
                             <div class="invalid-tooltip">
                                 Por favor digite um interfone valido

@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->belongsTo(Images::class);
+        return $this->hasOne(Images::class);
     }
 
     public function location()

@@ -239,7 +239,7 @@
                                 >Voltar
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-lg " onclick="
-                                    window.location.href='{{ route('user.profile',$detailsUser->id)}}'"
+                                    window.location.href='{{ route('users.profile',$detailsUser->id)}}'"
                                 >CadastroView
                                 </button>
                             </div>

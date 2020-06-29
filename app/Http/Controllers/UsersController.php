@@ -32,7 +32,7 @@ class UsersController extends Controller
             'cpf' => 'nullable|string|max:45',
             'ranking' => 'nullable|integer|max:10',
             'cellphone' => 'nullable|string|max:50',
-            'image_id' => 'nullable',
+//            'image_id' => 'nullable',
         ]);
         //Validation for password needed
         $user = new User([
@@ -45,7 +45,7 @@ class UsersController extends Controller
             'cpf' => $request->get('cpf'),
             'age' => $request->get('age'),
             'ranking' => $request->get('ranking'),
-            'image_id' => $request->get('image_id'),
+//            'image_id' => $request->get('image_id'),
         ]);
 
         $user->save();
@@ -84,7 +84,7 @@ class UsersController extends Controller
             'cpf' => 'nullable|string|max:45',
             'ranking' => 'nullable|integer|max:10',
             'cellphone' => 'nullable|string|max:50',
-            'image_id' => 'nullable|integer|',
+//            'image_id' => 'nullable|integer|',
 
         ]);
         $user = User::find($id);
@@ -97,7 +97,7 @@ class UsersController extends Controller
         $user->cpf = $request->input('cpf');
         $user->age = $request->input('age');
         $user->ranking = $request->input('ranking');
-        $user->image_id = $request->input('image_id');
+//        $user->image_id = $request->input('image_id');
         $user->updated_at = now();
 
 
@@ -164,20 +164,40 @@ class UsersController extends Controller
         $user->cpf = $request->input('cpf');
         $user->age = $request->input('age');
         $user->ranking = $request->input('ranking');
-        $user->image_id = $request->input('image_id');
+        $user->image->id = $request->input('image_id');
         $user->updated_at = now();
 
         // Updating Location for the user
-        $location = Locations::findOrFail($user->location->id);
-        $location->building = $request->building;
-        $location->apartment_number = $request->apartment_number;
-        $location->address = $request->address;
-        $location->intercom_branch = $request->intercom_branch;
-        $location->user_id = $request->user_id;
+
+        // If user has not location -> create
+        if ($user->location === null) {
+            $location = new  Locations([
+                'building' => $request->get('building'),
+                'apartment_number' => $request->get('apartment_number'),
+                'address' => $request->get('address'),
+                'intercom_branch' => $request->get('intercom_branch'),
+                'user_id' => $user->id,
+            ]);
+
+            $location->save();
+            $user->save();
+        } // If user has location -> update
+        else {
+            $user->location->update([
+                'building' => $request->get('building'),
+                'apartment_number' => $request->get('apartment_number'),
+                'address' => $request->get('address'),
+                'intercom_branch' => $request->get('intercom_branch'),
+            ]);
+            $user->save();
+//            dd($user->location);
+        }
 
 
         //Saving relationship declaration
         // user hasOne location
+
+//        $user->location->update();
 
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -192,16 +212,9 @@ class UsersController extends Controller
 
             //Saving reverse relationsnhip declaration
             // User belongsTo imagem -> need to change this in database later
-            dd($request);
             $user->image()->associate($imagem);
         }
-
-
-//        dd($location,$user);
-        $user->location->save();
-        $location->save();
-        $user->save();
-        return view('layouts.users.CadastroUsuario');
+        return redirect()->route('users.register', $user->id)->with('alert-success', 'Usuario atualizado corretamente!');
     }
 }
 

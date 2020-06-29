@@ -51,7 +51,7 @@ class LocationController extends Controller
         $locations->intercom_branch = $request->intercom_branch;
         $locations->user_id = $request->user_id;
         $locations->save();
-        return redirect()->route('locations.index')->with('message', 'Endereço salvo corretamente!');
+        return redirect()->route('locations.index')->with('alert-success', 'Endereço salvo corretamente!');
     }
 
     /**
@@ -100,7 +100,7 @@ class LocationController extends Controller
         $location->intercom_branch = $request->intercom_branch;
         $location->user_id = $request->user_id;
         $location->save();
-        return redirect()->route('locations.index')->with('message', 'Endereço atualizado corretamente!');
+        return redirect()->route('locations.index')->with('alert-success', 'Endereço atualizado corretamente!');
     }
 
 

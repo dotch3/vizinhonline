@@ -63,10 +63,8 @@
                             {{--                            <td>{{$user->cpf}}</td>--}}
                             {{--                            <td>{{$user->age}}</td>--}}
                             {{--                            <td>{{$user->ranking}}</td>--}}
-                            <td>{{$user->image_id}}</td>
-                            <td>@if(!empty($user->image->id))
-                                    {{$user->image->name}}
-                                @endif</td>
+                            <td>{{ !empty($user->image) ? $user->image->id: '' }}</td>
+                            <td>{{ !empty($user->image) ? $user->image->name: '' }}</td>
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
                             <td>{{$user->id}}
