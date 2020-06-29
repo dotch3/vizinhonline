@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Images;
+use App\Locations;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Storage;
+use Str;
+use Image;
+
 
 class UsersController extends Controller
 {
@@ -117,7 +123,7 @@ class UsersController extends Controller
         return view('layouts.users.CadastroUsuario', compact('user'));
     }
 
-    public function register(Request $request)
+    public function register(Request $request, $id)
     {
         $request->validate([
             //validating the user fields
@@ -131,21 +137,70 @@ class UsersController extends Controller
             'cpf' => 'nullable|string|max:45',
             'ranking' => 'nullable|integer|max:10',
             'cellphone' => 'nullable|string|max:50',
-
-
-            //validating the image fields
-            'image_name' => 'required|string|max:80',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-
             //Validating the location fields
+            'building' => 'nullable|string|max:45',
+            'apartment_number' => 'required|integer|max:10000',
+            'address' => 'nullable|string|max:10',
             'build' => 'nullable|string|max:45',
-            'address' => 'nullable|integer|max:10',
-            'build' => 'nullable|string|max:45',
-
 
 
         ]);
+
+        //validating the image fields
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $request->validate([
+                'image_name' => 'nullable|string|max:80',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+        }
+
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->cellphone = $request->input('cellphone');
+        $user->rg = $request->input('rg');
+        $user->cpf = $request->input('cpf');
+        $user->age = $request->input('age');
+        $user->ranking = $request->input('ranking');
+        $user->image_id = $request->input('image_id');
+        $user->updated_at = now();
+
+        // Updating Location for the user
+        $location = Locations::findOrFail($user->location->id);
+        $location->building = $request->building;
+        $location->apartment_number = $request->apartment_number;
+        $location->address = $request->address;
+        $location->intercom_branch = $request->intercom_branch;
+        $location->user_id = $request->user_id;
+
+
+        //Saving relationship declaration
+        // user hasOne location
+
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $imagem = Images::findOrFail($user->image->id);
+            $imagem->name = Str::slug($user->name);
+            $imagem->format_image = $request->image->clientExtension();
+            $imagem->size_image = $request->image->getSize();
+
+            $imagem->path_location = public_path('/public/avatar/');
+            $imagem->slug = Str::slug($imagem->name) . "." . ($imagem->format_image);
+
+            //Saving reverse relationsnhip declaration
+            // User belongsTo imagem -> need to change this in database later
+            dd($request);
+            $user->image()->associate($imagem);
+        }
+
+
+//        dd($location,$user);
+        $user->location->save();
+        $location->save();
+        $user->save();
         return view('layouts.users.CadastroUsuario');
     }
 }

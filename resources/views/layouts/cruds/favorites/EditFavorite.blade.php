@@ -96,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!--Section of buttons-->
                 <div class="container">
                     <div class="row">
                         <div class="col-3">

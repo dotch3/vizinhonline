@@ -25,7 +25,6 @@ class UploadController extends Controller
                 'name' => 'required|string|max:80',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-
             //Getting info from the image to upload
             $destinationPath = public_path('/public/avatar/');
             $imageName = $request->get('name');

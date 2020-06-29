@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Feedbacks extends Model
 {
     public $table = "feedbacks";
-    public $primaryKey = "id_feedback";
+    public $primaryKey = "id";
 
-    protected $fillable = [
-        'title', 'score', 'comment', 'created_at', 'update_at'
-    ];
+    protected $fillable =
+        [
+            'title',
+            'score',
+            'comment',
+        ];
 
-};
+}

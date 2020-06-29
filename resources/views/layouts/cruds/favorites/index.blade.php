@@ -7,6 +7,13 @@
             {{session('alert-success')}}
         </div>
     @endif
+    @if ($errors)
+        @foreach ($errors->all as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
     <div class="container">
         <div class=" jumbotron version_banner">
             <div class="row">
@@ -85,8 +92,12 @@
                 {{$favorites->links()}}
             </div>
         </div>
+        <!-- go back to main administrator page to define/create-->
+        <button type="button" onclick="window.location.href='/'"
+                class="btn btn-outline-secondary btn-lg ">Voltar
+        </button>
     </div>
-    </div>
+
 @endsection
 @section('footer')
     @parent

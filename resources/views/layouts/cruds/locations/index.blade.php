@@ -18,7 +18,7 @@
     <div class="container col-md-12">
         <div class="container col-md-10">
             <div class="container" style="text-align:center;">
-                <a href="#" class="btn btn-success btn-lg btn-block">
+                <a href="{{route('locations.create')}}" class="btn btn-success btn-lg btn-block">
                     Criar Endereço
                 </a>
             </div>
@@ -26,7 +26,7 @@
         <div class=" container col-md-10">
             <div class="table-responsive-lg">
                 <table class="table table-bordered table table-striped text-center">
-                    <caption>Lista de enereços</caption>
+                    <caption>Lista de endereços</caption>
                     <thead class="black white-text">
                     <th class="text-center">Id</th>
                     <th class="text-center">building</th>
@@ -42,20 +42,16 @@
                             <td>{{$location->building}}</td>
                             <td>{{$location->apartment_number}}</td>
                             <td>{{$location->address}}</td>
-{{--                            <td>{{$location->user->id}}</td>--}}
                             <td>{{ !empty($location->user) ? $location->user->id : '' }}</td>
 
                             <td>
                                 <div class=" container-fluid">
-                                    <a class="btn btn-outline-info btn-rounded my-0"
-                                       href="#">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>Ver</a>
                                     <a class="btn btn-outline-warning btn-rounded  my-0"
-                                       href="#">
+                                       href="{{route('locations.edit',$location->id)}}">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
                                     <!--Delete section-->
                                     <form method="post" id="delete-form-{{$location->id}}"
-                                          action="#"
+                                          action="{{route('locations.destroy',$location->id)}}"
                                           style="display:none;">
                                         @csrf
                                         @method('DELETE')
@@ -77,6 +73,10 @@
                         </tbody>
                     @endforelse
                 </table>
+
+                <button type="button" onclick="window.location.href='/'"
+                        class="btn btn-outline-secondary btn-lg ">Voltar
+                </button>
                 <!-- Pagination -->
                 {{$locations->links()}}
             </div>

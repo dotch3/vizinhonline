@@ -119,5 +119,9 @@
             @endforeach
             </tbody>
         </table>
+        <!-- go back to main administrator page to define/create-->
+        <button type="button" onclick="window.location.href='/'"
+                class="btn btn-outline-secondary btn-lg ">Voltar
+        </button>
     </div>
 @endsection

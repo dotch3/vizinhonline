@@ -49,20 +49,21 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 
 
 //User relationships
-Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profile');
-Route::post('/CadastroUsuario', 'UsersController@register')->name('user.register');
+Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('users.profile');
+Route::post('/CadastroUsuario', 'UsersController@register')->name('users.new');
+Route::post('/CadastroUsuario/{id}', 'UsersController@register')->name('users.register');
 
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
-Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/createFeedback', 'FeedbacksController@create')->name('feedbacks.create');
 Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
-Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
-Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
-Route::delete('/feedbacks/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/editFeedback/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/editFeedback/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::post('/createFeedback', 'FeedbacksController@store')->name('feedbacks.store');
+Route::delete('/deleteFeedback/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
 
 
 //Categories
@@ -96,5 +97,9 @@ Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
 
 //Routes for Locations
 Route::get('/locations', 'LocationController@index')->name('locations.index');
-Route::get('/createLocation', 'LocationController@create')->name('location.create');
+Route::get('/createLocation', 'LocationController@create')->name('locations.create');
 Route::post('/createLocation', 'LocationController@store')->name('locations.store');
+
+Route::get('/editarLocation/{id}', 'LocationController@edit')->name('locations.edit');
+Route::patch('/editarLocation/{id})', 'LocationController@update')->name('locations.update');
+Route::delete('/location/{id}', 'LocationController@destroy')->name('locations.destroy');

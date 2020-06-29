@@ -1,18 +1,18 @@
 @extends('layouts.main.app')
-@section('title', 'Criar Endereço')
+@section('title', 'Editar Endereço')
 @section('content')
     <div class="container">
         <div class=" jumbotron version_banner">
             <div class="row">
                 <h4><span
-                        class="badge badge-pill badge-success">Criar Endereço</span></h4>
+                        class="badge badge-pill badge-success">Editar Endereço</span></h4>
             </div>
 
         </div>
 
         <div class="container row card">
             <div class="col-sm-8 offset-sm-2">
-                <h2 class="display-4">Criar Endereço</h2>
+                <h2 class="display-4">Editar Endereço</h2>
                 <div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -23,37 +23,44 @@
                             </ul>
                         </div><br/>
                     @endif
-                    <form method="post" action="{{route('locations.store')}}">
+                    <form method="post" action="{{route('locations.update',$location->id)}}" autocomplete="off">
+                        @method('PATCH')
                         @csrf
                         <div class="form-group">
                             <label for="building"> Bloco/Edificio:</label>
-                            <input type="text" class="form-control" name="building" id="building"/>
+                            <input type="text" class="form-control" name="building" id="building"
+                                   value="{{ !empty($location->id) ? $location->building: '' }}"
+                            >
                         </div>
                         <div class="form-group">
                             <label for="apartment_number">Nro. Apto:</label>
-                            <input type="text" class="form-control" name="apartment_number" id="apartment_number"/>
+                            <input type="text" class="form-control" name="apartment_number" id="apartment_number"
+                                   value="{{ !empty($location->id) ? $location->apartment_number: '' }}">
                         </div>
 
                         <div class="form-group">
                             <label for="address">Endereço:</label>
-                            <input type="text" class="form-control" name="address" id="address"/>
+                            <input type="text" class="form-control" name="address" id="address"
+                                   value="{{ !empty($location->id) ? $location->address: '' }}">
                         </div>
 
                         <div class="form-group">
                             <label for="intercom_branch">Interfone #:</label>
-                            <input type="text" class="form-control" name="intercom_branch" id="intercom_branch"/>
+                            <input type="text" class="form-control" name="intercom_branch" id="intercom_branch"
+                                   value="{{ !empty($location->id) ? $location->intercom_branch: '' }}">
                         </div>
                         <div class="form-group">
                             <label for="user_id">User ID:</label>
-                            <input type="text" class="form-control" name="user_id" id="user_id"/>
+                            <input type="text" class="form-control" name="user_id" id="user_id"
+                                   value="{{ !empty($location->user->id) ? $location->user->id: '' }}">
                         </div>
 
 
                         <div class="col-6 btn-group btn-group-lg">
-                            <button type="button" onclick="window.location.href='/locations'"
+                            <button type="button" onclick="window.location.href='/favorites'"
                                     class="btn btn-outline-secondary btn-lg ">Voltar
                             </button>
-                            <button type="submit" class="btn btn-outline-success btn-lg">Criar Endereço</button>
+                            <button type="submit" class="btn btn-outline-success btn-lg">Editar Endereço</button>
 
                         </div>
                         <div class="col-3">

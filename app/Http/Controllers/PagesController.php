@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -24,17 +26,18 @@ class PagesController extends Controller
 
     public function perfilUsuario()
     {
-        if (auth()) {
-            return view('layouts/users/PerfilUsuario');
-        } else {
-            return view('layouts/users/PerfilVizinho');
+        $user = User::where('name', 'Fernando')->first();
 
-        }
+        if ($user->id)
+            return view('layouts/users/PerfilUsuario', compact('user'));
+
     }
 
     public function perfilVizinho()
     {
-        return view('layouts/users/PerfilVizinho');
+        $user = User::where('name', 'Marcelo')->first();
+        if ($user->id)
+            return view('layouts/users/PerfilVizinho', compact('user'));
     }
 
     public function cadastroUsuario()

@@ -16,7 +16,7 @@
             <div class="container col-md-12 mb-3">
                 <form class="needs-validation border border-secondary">
                     <div class="form-row container">
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="name">Title</label>
                             <input type="text" class="form-control" id="title"
                                    value="{{$feedback->title}}" name="title"
@@ -35,15 +35,14 @@
 
                         </div>
 
-                       
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="created_at">Created at</label>
                             <input type="text" class="form-control" id="created_at" name="created_at"
                                    value="{{$feedback->created_at}}" disabled>
                             <div class="invalid-tooltip">
                             </div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="updated_at">Updated at</label>
                             <input type="text" class="form-control" id="updated_at" name="updated_at"
                                    value="{{$feedback->updated_at}}" disabled>
@@ -70,12 +69,8 @@
 
                                 {{--                            <button class="btn btn-outline-danger btn-lg " type="submit">Delete</button>--}}
                             </div>
-                            <div class="col-3">
-                            </div>
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </div>

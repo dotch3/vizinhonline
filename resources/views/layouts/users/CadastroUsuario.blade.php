@@ -25,7 +25,9 @@
     @endif
     <div class="container cadastro">
         <form id="signin" class="needs-validation border border-secondary"
-              method="post" action="{{ route('user.register') }}">
+              enctype="multipart/form-data"
+              method="post"
+              action="{{empty($user->id) ? route('users.store') : route('users.register',$user->id) }}">
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-4">
@@ -43,7 +45,7 @@
                 </div>
                 <div class="profile-img img_upload">
                     <input type="file" multiple accept='image/*' name="foto" id="foto"
-                           >
+                    >
 
                 </div>
                 <script
@@ -113,19 +115,19 @@
                         <br/>
                         <div>
                             <div class="form-group">
-                                <input type="text" name="build" placeholder="Bloco/Edificio"
-                                       value="{{ !empty($user->id) ? $user->location->building: '' }}">
+                                <input type="text" name="building" placeholder="Bloco/Edificio"
+                                       value="{{ !empty($user->location) ? $user->location->building: '' }}">
                                 <!-- Relation with locations come here -->
-                                <input type="text" name="apt_number" placeholder="Nro Apto"
-                                       value="{{ !empty($user->id) ? $user->location->apartment_number: '' }}"
+                                <input type="text" name="apartment_number" placeholder="Nro Apto"
+                                       value="{{ !empty($user->location) ? $user->location->apartment_number: '' }}"
                                        required>  <!-- Relation with locations come here -->
                                 <hr/>
                                 <br/>
                                 <input type="text" name="address" placeholder="Endereço"
-                                       value="{{ !empty($user->id) ? $user->location->address: '' }}"
+                                       value="{{ !empty($user->location) ? $user->location->address: '' }}"
                                 ><!-- Relation with locations come here -->
-                                <input type="text" name="branch" placeholder="Intercom branch"
-                                       value="{{ !empty($user->id) ? $user->location->intercom_branch: '' }}">
+                                <input type="text" name="intercom_branch" placeholder="Intercom branch"
+                                       value="{{ !empty($user->location) ? $user->location->intercom_branch: '' }}">
                                 <hr/>
                                 <br/>
                             </div>
@@ -142,9 +144,9 @@
                         </div>
                         <div>
                             <button type="button" class="btn btn-secondary"
-                                    onclick="window.location.href='{{ url('/')}}'">Cancelar
+                                    onclick="window.history.go(-1); return false;">Cancelar
                             </button>
-                            @if(!auth()->user())
+                            @if(empty($user->id))
                                 <button type="submit" class="btn btn-success">Cadastrar
                                 </button>
                             @else
