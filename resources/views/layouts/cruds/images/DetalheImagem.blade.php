@@ -33,6 +33,12 @@
                     <tr>
                         <td>Size image: {{$imagem->size_image }}</td>
                     </tr>
+                    <tr>
+                        <td>User ID: {{!empty($imagem->user_id) ?  $imagem->user_id: ''}}</td>
+                    </tr>
+                    <tr>
+                        <td>User full name: {{!empty($imagem->user_id) ?  $imagem->user->name."_".$imagem->user->lastname: ''}}</td>
+                    </tr>
 
 
                     </tbody>
