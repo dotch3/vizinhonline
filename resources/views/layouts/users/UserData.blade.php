@@ -15,7 +15,7 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
         {{ !empty($user->id) ? $user->name: '' }}
     </h2>
     <a href="#">
-        <img src="{{asset('/storage/avatar/'.$user->image->slug)}}"
+        <img src="{{!empty($user->id) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
              onclick="redirectToProfile(this.src)" alt=" perfil" ,
              title="perfil" class="perfil"/>
     </a>
@@ -48,7 +48,7 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
     <div class="container">
         <ul class="fa-ul">
             <li><span class="fa-li"><i class="fas fa-cog" style="font-size:20px ; color: #000000"></i></span>
-                <a style="color:inherit" href="{{route('user.profile',$user->id)}}">
+                <a style="color:inherit" href="{{route('users.profile',$user->id)}}">
                     Configuração de conta</a>
             </li>
             <li><a style="color:inherit" href="/"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
