@@ -25,8 +25,8 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="last_name">LastName</label>
-                            <input type="text" class="form-control" id="last_name"
-                                   value="{{$detailsUser->lastname}}" name="last_name"
+                            <input type="text" class="form-control" id="lastname"
+                                   value="{{$detailsUser->lastname}}" name="lastname"
                             >
                             <div class="valid-tooltip">
                                 Looks good!
@@ -137,7 +137,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="image_name">Image Name</label>
                             <input type="text" class="form-control" id="image_name"
-                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->image->id: '' }}"
+                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->image->name: '' }}"
                                    name="image_name">
                             <div class="invalid-tooltip">
                                 image_name invalido
@@ -188,7 +188,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="building">Bloco</label>
                             <input type="text" class="form-control" id="building"
-                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->location->building: '' }} "
+                                   value="{{ !empty($detailsUser->location) ? $detailsUser->location->building: '' }} "
                                    placeholder="Bloco/Edificio" name="building">
                             <div class="invalid-tooltip">
                                 Por favor digite um Bloco valido
@@ -197,7 +197,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="apartment_number">Nro. Apto</label>
                             <input type="text" class="form-control" id="apartment_number"
-                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->location->apartment_number: '' }}"
+                                   value="{{ !empty($detailsUser->location->id) ? $detailsUser->location->apartment_number: '' }}"
                                    placeholder="Nro. Apartamento" name="apartment_number">
                             <div class="invalid-tooltip">
                                 Por favor digite um numero de apartamento
@@ -208,7 +208,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="address">Endereço</label>
                             <input type="text" class="form-control" id="address"
-                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->location->address: '' }}"
+                                   value="{{ !empty($detailsUser->location->id) ? $detailsUser->location->address: '' }}"
                                    placeholder="Endereço" name="address">
                             <div class="invalid-tooltip">
                                 Por favor digite um endereço.
@@ -217,7 +217,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="intercom_branch">Interfone #</label>
                             <input type="text" class="form-control" id="intercom_branch"
-                                   value="{{ !empty($detailsUser->image->id) ? $detailsUser->location->intercom_branch: '' }}"
+                                   value="{{ !empty($detailsUser->location->id) ? $detailsUser->location->intercom_branch: '' }}"
                                    placeholder="Interfone #" name="intercom_branch">
                             <div class="invalid-tooltip">
                                 Por favor digite um interfone valido

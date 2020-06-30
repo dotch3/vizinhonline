@@ -13,7 +13,8 @@ class Locations extends Model
         'building',
         'apartment_number',
         'intercom_branch',
-        'address'
+        'address',
+        'user_id'
     ];
 
     public function user()

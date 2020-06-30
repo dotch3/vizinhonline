@@ -64,7 +64,7 @@
                             {{--                            <td>{{$user->age}}</td>--}}
                             {{--                            <td>{{$user->ranking}}</td>--}}
                             <td>{{ !empty($user->image) ? $user->image->id: '' }}</td>
-                            <td>{{ !empty($user->image) ? $user->image->name: '' }}</td>
+                            <td>{{ !empty($user->image) ? $user->image->slug: '' }}</td>
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
                             <td>{{$user->id}}

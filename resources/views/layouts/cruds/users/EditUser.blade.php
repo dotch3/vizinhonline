@@ -2,6 +2,18 @@
 @section('title', 'Editar usuario')
 
 @section('content')
+    @if (session('alert-success'))
+        <div class="container alert alert-success" role="alert">
+            {{session('alert-success')}}
+        </div>
+    @endif
+    @if ($errors)
+        @foreach ($errors->all as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
     <div class="container">
         <div class="container ">
             <div class=" jumbotron version_banner">
@@ -28,9 +40,9 @@
                                    required>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="last_name">LastName</label>
-                            <input type="text" class="form-control" id="last_name"
-                                   value="{{$user->lastname}}" name="last_name"
+                            <label for="lastname">LastName</label>
+                            <input type="text" class="form-control" id="lastname"
+                                   value="{{$user->lastname}}" name="lastname"
                             >
                             <div class="valid-tooltip">
                                 Looks good!
@@ -242,7 +254,7 @@
                                     window.location.href='{{ route('users.index')}}'"
                                 >Voltar
                                 </button>
-                                <button type="submit"  class="btn btn-warning btn-lg "
+                                <button type="submit" class="btn btn-warning btn-lg "
                                 >Editar
                                 </button>
                             </div>

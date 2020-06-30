@@ -20,7 +20,8 @@
     @endif
     <div class="container cadastro">
         <form id="signin" class="needs-validation  border-secondary" enctype="multipart/form-data"
-              method="post" action="{{route('upload.store')}}">
+              method="post" action="{{route('upload.store')}}"
+              autocomplete="off">
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-4">
@@ -61,6 +62,9 @@
 
                     <input class="form-control-2" type="text" name="name" placeholder="Nome da imagem" required>
                     <br/>
+                    <br/>
+                    <input class="form-control-2" type="text" name="user_id" placeholder="User ID">
+                    <br/>
                     <br>
                     <input class="btn btn-primary" type="submit" value="Cadastrar">
                 </div>
@@ -73,13 +77,15 @@
         <table class="table">
             <thead>
             <tr class="text-center">
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">slug</th>
-                <th scope="col">Path</th>
-                <th scope="col">format_image</th>
-                <th scope="col">size_image</th>
-                <th scope="col">Ações
+                <th scope="text-center">Id</th>
+                <th scope="text-center">Nome</th>
+                <th scope="text-center">slug</th>
+                <th scope="text-center">Path</th>
+                <th scope="text-center">format_image</th>
+                <th scope="text-center">size_image</th>
+                <th scope="text-center">user_id</th>
+                <th scope="text-center">user name</th>
+                <th scope="text-center">Ações
                 <th>
             </tr>
             </thead>
@@ -92,6 +98,8 @@
                     <td>{{$imagem->path_location}}</td>
                     <td>{{$imagem->format_image}}</td>
                     <td>{{$imagem->size_image}}</td>
+                    <td>{{ !empty($imagem->user->id) ? $imagem->user->id: '' }}</td>
+                    <td>{{ !empty( $imagem->user->id) ? $imagem->user->name." - ".$imagem->user->lastname : '' }}</td>
                     <td class="text-right">
                         <a href="{{route('images.show',$imagem->id)}}">
                             <button class="btn btn-outline-info">Visualizar</button>

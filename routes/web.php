@@ -49,9 +49,9 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 
 
 //User relationships
-Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('users.profile');
-Route::post('/CadastroUsuario', 'UsersController@register')->name('users.new');
-Route::post('/CadastroUsuario/{id}', 'UsersController@register')->name('users.register');
+Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
+Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
+Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
 
 
 //Section for Feedbacks
@@ -85,7 +85,7 @@ Route::get('/items', 'ItemsController@index')->name('items.index');
 //Route::get('/images', 'UploadController@index')->name('image.upload.profile');
 Route::post('/images', 'UploadController@store')->name('upload.store');
 Route::get('/editarImagem/{id}', 'UploadController@edit')->name('upload.edit');
-Route::patch('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
+Route::post('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
 Route::delete('/images/{id}', 'UploadController@destroy')->name('images.destroy');
 
 Route:: get('/images', 'ImagemControler@index')->name('images.index');

@@ -16,7 +16,8 @@ class Images extends Model
         'slug',
         'path_location',
         'format_image',
-        'size_image'
+        'size_image',
+        'user_id'
     ];
 
     public function user()

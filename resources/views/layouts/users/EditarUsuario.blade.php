@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Cadastro - Vizinho online')
+@section('title', 'Editar Usuario - Vizinho online')
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -145,7 +145,7 @@
                         </div>
                         <div>
                             <button type="button" class="btn btn-secondary"
-                                    onclick="window.history.go(-1); return false;">Cancelar
+                                    onclick="window.history.go(-1); return false;">Voltar
                             </button>
                             @if(empty($user->id))
                                 <button type="submit" class="btn btn-success">Cadastrar
