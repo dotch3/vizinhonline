@@ -13,82 +13,58 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+// vizinhoonlineRoute
+
+Route::get('/', 'PagesController@home');
+Route::get('/CadastroItem', 'PagesController@cadastroItem');
+Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
+Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
+Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 
 
-// vizinhoonline
-Route::get('/', function () {
-    return view('layouts/main/Home');
-});
+// Section favorites
+Route::resource('favorites', 'FavoritesController');
 
-Route::get('/Feed', function () {
-    return view('layouts/main/Feed');
-});
-
-Route::get('/CadastroItem', function () {
-    return view('layouts/items/CadastroItem');
-});
-
-Route::get('/PerfilUsuario', function () {
-    return view('layouts/users/PerfilUsuario');
-});
-
-
-Route::get('/PerfilVizinho', function () {
-    return view('layouts/users/PerfilVizinho');
-});
-
-
-Route::get('/CadastroUsuario', function () {
-    return view('layouts/users/CadastroUsuario');
-});
-
-
-// Provisional Routes for the CRUD operations - Backend
-
-//This will provide CRUD for favorites as example for others entities
-
-//Get  object(s)
-Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
-
-//Detail favorite:
+Route::get('/favorites', 'FavoritesController@index')->name('favorites.index');
 Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
-
 //Create
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
-
-//Update
 Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
 
 Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
-
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 
-// Creating route for the update
-Route::resource('favorites', 'FavoritesController');
+// Section for User
 Route::resource('users', 'UsersController');
 
 Route::get('/users', 'UsersController@index')->name('users.index');
 Route::get('/createUser', 'UsersController@create')->name('users.create');
+Route::get('/detailsUser/{id}', 'UsersController@show')->name('users.show');
 Route::get('/EditUser/{id}', 'UsersController@edit')->name('users.edit');
-Route::patch('/detailsUser/{id}', 'UsersController@update')->name('users.update');
-Route::delete('/detailsUser/{id}','UsersController@destroy')->name('users.destroy');
-Route::get('/detailsUser/{id}', 'UsersController@detailsUser')->name('users.view');
+Route::patch('/EditUser/{id}', 'UsersController@update')->name('users.update');
+Route::post('/users', 'UsersController@store')->name('users.store');
+Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
+
+
+//User relationships
+Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
+Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
+Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
+
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
-
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
-Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
-Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
-Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::delete('/feedbacks/{id}','FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/createFeedback', 'FeedbacksController@create')->name('feedbacks.create');
 Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
-Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
+Route::get('/editFeedback/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/editFeedback/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::post('/createFeedback', 'FeedbacksController@store')->name('feedbacks.store');
+Route::delete('/deleteFeedback/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
+
 
 //Categories
 Route::resource('categories', 'CategoriesController');
@@ -99,3 +75,31 @@ Route::get('/categories/{id}', 'CategoriesController@show')->name('categories.sh
 Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
 Route::put('/categories/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+
+
+//Items
+Route::get('/items', 'ItemsController@index')->name('items.index');
+
+
+//Imagem upload
+//Route::get('/images', 'UploadController@index')->name('image.upload.profile');
+Route::post('/images', 'UploadController@store')->name('upload.store');
+Route::get('/editarImagem/{id}', 'UploadController@edit')->name('upload.edit');
+Route::post('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
+Route::delete('/images/{id}', 'UploadController@destroy')->name('images.destroy');
+
+Route:: get('/images', 'ImagemControler@index')->name('images.index');
+Route::get('/detalheImagem/{id}', 'ImagemControler@show')->name('images.show');
+
+// Routes to review ??cintia?
+Route::get('/cadastroImagem', 'ImagemControler@create')->name('images.create');
+Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
+
+//Routes for Locations
+Route::get('/locations', 'LocationController@index')->name('locations.index');
+Route::get('/createLocation', 'LocationController@create')->name('locations.create');
+Route::post('/createLocation', 'LocationController@store')->name('locations.store');
+
+Route::get('/editarLocation/{id}', 'LocationController@edit')->name('locations.edit');
+Route::patch('/editarLocation/{id})', 'LocationController@update')->name('locations.update');
+Route::delete('/location/{id}', 'LocationController@destroy')->name('locations.destroy');

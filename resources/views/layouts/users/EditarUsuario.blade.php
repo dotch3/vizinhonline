@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Cadastro - Vizinho online')
+@section('title', 'Editar Usuario - Vizinho online')
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -27,23 +27,27 @@
         <form id="signin" class="needs-validation border border-secondary"
               enctype="multipart/form-data"
               method="post"
-              action="{{route('users.new')}}"
+              action="{{empty($user->id) ? route('users.new') : route('users.register',$user->id) }}"
               autocomplete="off">
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="" id="imgProfile" class="profile"
-                         style="width: 180px;height: 170px; display: none">
-                    <div class="fundo_img" style="display">
+                    @if(!empty($user->image->id))
+                        {{--                    @elseif(Storage::disk('public')->exists($user->image->name))--}}
 
-                        <h2>Sua Foto</h2>
+                        <img src="{{asset('/storage/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
+                             style="width: 180px;height: 170px; ">
+                    @else
+                        <div class=" fundo_img">
 
-                    </div>
-
+                            <h2>Sua Foto</h2>
+                        </div>
+                    @endif
                 </div>
                 <div class="profile-img img_upload">
                     <input type="file" multiple accept='image/*' name="image" id="image"
                     >
+
                 </div>
                 <script
                     src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -52,8 +56,6 @@
                 <script>
                     $(function () {
                         $('#image').change(function () {
-                            $('#imgProfile').show();
-                            $('#fundo_img').css("display","none");
                             const file = $(this)[0].files[0];
                             console.log(file);
                             const fileReader = new FileReader();
@@ -70,18 +72,18 @@
                         <div class="form-group">
                             <br/>
                             <input type="text" name="name" placeholder="Nome"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->name : '' }}"
                                    required>
                             <input type="text" name="lastname" placeholder="Sobrenome"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->lastname : '' }}"
                                    required>
                             <hr/>
                             <br/>
                             <input type="text" name="rg" id="rg" placeholder="RG"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->rg: '' }}"
                                    required>
                             <input type="text" name="cpf" maxlength="14" placeholder="CPF"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->cpf: '' }}"
                                    required
                                    onkeydown="javascript: fMasc( this, mCPF ); ">
                             <hr/>
@@ -89,10 +91,10 @@
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" placeholder="E-mail"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->email: '' }}"
                                    required>
                             <input type="email_verified" name="email" placeholder="Confirmar E-mail"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->email: '' }}"
                                    required>
 
 
@@ -102,10 +104,10 @@
 
                         <div class="form-group">
                             <input type="text" name="cellphone" maxlength="17" placeholder="Celular"
-                                   value=""
+                                   value="{{ !empty($user->id) ? $user->cellphone: '' }}"
                                    onkeydown="javascript: fMasc( this, mTel );" required>
                             <input type="text" name="age" placeholder="Idade"
-                                   value="">
+                                   value="{{ !empty($user->id) ? $user->age: '' }}">
 
                             <hr/>
                             <br/>
@@ -115,18 +117,18 @@
                         <div>
                             <div class="form-group">
                                 <input type="text" name="building" placeholder="Bloco/Edificio"
-                                       value="">
+                                       value="{{ !empty($user->location) ? $user->location->building: '' }}">
                                 <!-- Relation with locations come here -->
                                 <input type="text" name="apartment_number" placeholder="Nro Apto"
-                                       value=""
+                                       value="{{ !empty($user->location) ? $user->location->apartment_number: '' }}"
                                        required>  <!-- Relation with locations come here -->
                                 <hr/>
                                 <br/>
                                 <input type="text" name="address" placeholder="Endereço"
-                                       value=""
+                                       value="{{ !empty($user->location) ? $user->location->address: '' }}"
                                 ><!-- Relation with locations come here -->
                                 <input type="text" name="intercom_branch" placeholder="Intercom branch"
-                                       value="">
+                                       value="{{ !empty($user->location) ? $user->location->intercom_branch: '' }}">
                                 <hr/>
                                 <br/>
                             </div>
@@ -134,20 +136,24 @@
                             <br/>
                             <div class="form-group">
                                 <input type="password" name="password" placeholder="Senha" required
-                                       value="">
+                                       value="{{ !empty($user->id) ? $user->password: '' }}">
                                 <input type="password" name="confirm_password" placeholder="Confirmar senha" required
-                                       value="">
+                                       value="{{ !empty($user->id) ? $user->password: '' }}">
                                 <hr/>
                                 <br/>
                             </div>
                         </div>
                         <div>
                             <button type="button" class="btn btn-secondary"
-                                    onclick="window.history.go(-1); return false;">Cancelar
+                                    onclick="window.history.go(-1); return false;">Voltar
                             </button>
-                            <button type="submit" class="btn btn-success">Cadastrar
-                            </button>
-
+                            @if(empty($user->id))
+                                <button type="submit" class="btn btn-success">Cadastrar
+                                </button>
+                            @else
+                                <button type="submit" class="btn btn-warning">Editar
+                                </button>
+                            @endif
                         </div>
 
                     </div>

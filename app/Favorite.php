@@ -6,29 +6,45 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-    //
+    // using Laravel standards
     protected $table = "favorites";
-    protected $primaryKey = "id_favorite";
-    // check if we will use this and then create migrations
-//    public $timestamps = "false";
+    protected $primaryKey = "id";
 
 
-    //Criating the fillable for the factory
+    //Creating the fillable for the factory
     protected $fillable = [
-        'name', 'favorite_code', 'favorite_status'
+        'name',
+        'description',
+        'code',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 
     //Relationships with other entities:
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany(User::class, 'favorite_user', 'favorite_id', 'user_id');
     }
+
     public function posts()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
+
     public function items()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
+
+    public function update_user_favorites($user_id, $fav_id)
+    {
+        $user = User::find($user_id);
+        $fav = Favorite::find($fav_id);
+
+        $fav->users()->attach($user->id_user);
+
+
+    }
+
 }

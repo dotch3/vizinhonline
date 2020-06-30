@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'List Favorites')
+@section('title', 'Lista de Favoritos')
 
 @section('content')
     @if (session('alert-success'))
@@ -7,11 +7,18 @@
             {{session('alert-success')}}
         </div>
     @endif
+    @if ($errors)
+        @foreach ($errors->all as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
     <div class="container">
         <div class=" jumbotron version_banner">
             <div class="row">
                 <h4><span
-                        class="badge badge-pill badge-secondary">List Favorites</span></h4>
+                        class="badge badge-pill badge-secondary">Lista de Favoritos</span></h4>
             </div>
 
         </div>
@@ -19,51 +26,55 @@
     <div class="container ">
         <div class="container-fluid" style="text-align:center;">
             <a href="{{route('favorites.create')}}" class="btn btn-success btn-lg btn-block">
-                Add Favorite
+                Criar favorito
             </a>
         </div>
         <div class=" container-fluid">
             <div class="table-responsive-lg">
                 <table class="table table-bordered table table-striped text-center">
-                    <caption>List of Favorites</caption>
+                    <caption>Lista de Favoritos</caption>
                     <thead class="thead-light">
                     <th class="text-center">Id</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">favorite_code</th>
-                    <th class="text-center">favorite_status</th>
+                    <th class="text-center">nome</th>
+                    <th class="text-center">descrição</th>
+                    <th class="text-center">code</th>
+                    <th class="text-center">status</th>
                     <th class="text-center">created at</th>
                     <th class="text-center">updated at</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-center">USUARIOS</th>
+                    <th class="text-center">Ações</th>
 
                     </thead>
                     @forelse($favorites as $favorite)
                         <tbody>
                         <tr>
-                            <td>{{$favorite->id_favorite}}</td>
+                            <td>{{$favorite->id}}</td>
                             <td>{{$favorite->name}}</td>
-                            <td>{{$favorite->favorite_code}}</td>
-                            <td>{{$favorite->favorite_status}}</td>
+                            <td>{{$favorite->description}}</td>
+                            <td>{{$favorite->code}}</td>
+                            <td>{{$favorite->status}}</td>
                             <td>{{$favorite->created_at}}</td>
                             <td>{{$favorite->updated_at}}</td>
+                            <td>{{$favorite->id}}</td>
                             <td>
                                 <div class="container-fluid ">
                                     <a class="btn btn-outline-info btn-rounded my-0"
-                                       href="{{ route('favorites.show',$favorite->id_favorite)}}">
+                                       href="{{ route('favorites.show',$favorite->id)}}">
                                         <i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     <a class="btn btn-outline-warning btn-rounded  my-0"
-                                       href="{{ route('favorites.edit',$favorite->id_favorite)}}
+                                       href="{{ route('favorites.edit',$favorite->id)}}
                                            "><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     <!--Delete section-->
-                                    <form method="post" id="delete-form-{{$favorite->id_favorite}}"
-                                          action="{{ route('favorites.destroy', $favorite->id_favorite)}}"
+                                    <form method="post" id="delete-form-{{$favorite->id}}"
+                                          action="{{ route('favorites.destroy', $favorite->id)}}"
                                           style="display:none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                     <button onclick="if (confirm('Are you sure you want delete this data?')) {
                                         event.preventDefault();
-                                        document.getElementById('delete-form-{{$favorite->id_favorite}}').submit();
+                                        document.getElementById('delete-form-{{$favorite->id}}').submit();
                                         }else{
                                         event.preventDefault();
                                         }
@@ -81,8 +92,12 @@
                 {{$favorites->links()}}
             </div>
         </div>
+        <!-- go back to main administrator page to define/create-->
+        <button type="button" onclick="window.location.href='/'"
+                class="btn btn-outline-secondary btn-lg ">Voltar
+        </button>
     </div>
-    </div>
+
 @endsection
 @section('footer')
     @parent

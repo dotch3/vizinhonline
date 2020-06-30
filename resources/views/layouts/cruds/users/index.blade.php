@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'List Users')
+@section('title', 'Lista de usuarios')
 
 @section('content')
     @if (session('alert-success'))
@@ -19,74 +19,79 @@
         <div class="container col-md-10">
             <div class="container" style="text-align:center;">
                 <a href="{{route('users.create')}}" class="btn btn-success btn-lg btn-block">
-                    Add User
+                    Criar usuario
                 </a>
                 <a href="{{url('/CadastroUsuario')}}" class="btn btn-info btn-lg btn-block">
-                    Cadastrar User
+                    Cadastrar usuario
                 </a>
             </div>
         </div>
         <div class=" container col-md-10">
             <div class="table-responsive-lg">
                 <table class="table table-bordered table table-striped text-center">
-                    <caption>List of Users</caption>
+                    <caption>Lista de usuarios</caption>
                     <thead class="black white-text">
                     <th class="text-center">Id</th>
                     <th class="text-center">RG</th>
-                    <th class="text-center">name</th>
-                    <th class="text-center">Lastname</th>
-{{--                    <th class="text-center">username</th>--}}
-                    <th class="text-center">password</th>
-                    <th class="text-center">E-mail</th>
-                    <th class="text-center">Cellphone</th>
-                    <th class="text-center">CPF</th>
-                    <th class="text-center">Age</th>
-                    <th class="text-center">Ranking</th>
+                    <th class="text-center">nome</th>
+                    {{--                    <th class="text-center">Sobrenome</th>--}}
+
+                    {{--                    <th class="text-center">password</th>--}}
+                    {{--                    <th class="text-center">E-mail</th>--}}
+                    {{--                    <th class="text-center">Cellphone</th>--}}
+                    {{--                    <th class="text-center">CPF</th>--}}
+                    {{--                    <th class="text-center">Age</th>--}}
+                    {{--                    <th class="text-center">Ranking</th>--}}
                     <th class="text-center">Image Id</th>
-                    <th class="text-center">Created at</th>
-                    <th class="text-center">Updated at</th>
+                    <th class="text-center">Image info</th>
+                    <th class="text-center">Criado</th>
+                    <th class="text-center">Atualizado</th>
+                    <th class="text-center" scope="col">USER_FAVORITE-></th>
                     <th class="text-center" scope="col">Ação</th>
                     </thead>
                     @forelse($users as $user)
                         <tbody>
                         <tr>
-                            <td>{{$user->id_user}}</td>
+                            <td>{{$user->id}}</td>
                             <td>{{$user->rg}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->last_name}}</td>
-{{--                            <td>{{$user->username}}</td>--}}
-                            <td>{{$user->password}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->cellphone}}</td>
-                            <td>{{$user->cpf}}</td>
-                            <td>{{$user->age}}</td>
-                            <td>{{$user->ranking}}</td>
-                            <td>{{$user->image_id}}</td>
+                            {{--                            <td>{{$user->lastname}}</td>--}}
+                            {{--                            <td>{{$user->username}}</td>--}}
+                            {{--                            <td>{{$user->password}}</td>--}}
+                            {{--                            <td>{{$user->email}}</td>--}}
+                            {{--                            <td>{{$user->cellphone}}</td>--}}
+                            {{--                            <td>{{$user->cpf}}</td>--}}
+                            {{--                            <td>{{$user->age}}</td>--}}
+                            {{--                            <td>{{$user->ranking}}</td>--}}
+                            <td>{{ !empty($user->image) ? $user->image->id: '' }}</td>
+                            <td>{{ !empty($user->image) ? $user->image->slug: '' }}</td>
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
+                            <td>{{$user->id}}
+                            </td>
                             <td>
                                 <div class=" container-fluid">
                                     <a class="btn btn-outline-info btn-rounded my-0"
-                                       href="{{route ('users.view',$user->id_user)}}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>View</a>
-                                    <a class="btn btn-outline-warning btn-rounded  my-0"
-                                       href="{{route ('users.edit',$user->id_user)}}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                       href="{{route ('users.show',$user->id)}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>Ver</a>
+                                    <a class="btn btn-outline-warning btn-rounded my-0"
+                                       href="{{route ('users.edit',$user->id)}}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
                                     <!--Delete section-->
-                                    <form method="post" id="delete-form-{{$user->id_user}}"
-                                          action="{{ route('users.destroy', $user->id_user)}}"
+                                    <form method="post" id="delete-form-{{$user->id}}"
+                                          action="{{ route('users.destroy', $user->id)}}"
                                           style="display:none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                     <button onclick="if (confirm('Are you sure you want delete this data?')) {
                                         event.preventDefault();
-                                        document.getElementById('delete-form-{{$user->id_user}}').submit();
+                                        document.getElementById('delete-form-{{$user->id}}').submit();
                                         }else{
                                         event.preventDefault();
                                         }
                                         " class="btn btn-outline-danger btn-rounded btn-sm my-0" href="">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>Deletar
                                     </button>
                                 </div>
                             </td>
@@ -99,8 +104,11 @@
                 <!-- Pagination -->
                 {{$users->links()}}
             </div>
+            <!-- go back to main administrator page to define/create-->
+            <button type="button" onclick="window.location.href='/'"
+                    class="btn btn-outline-secondary btn-lg ">Voltar
+            </button>
         </div>
-    </div>
     </div>
 @endsection
 @section('footer')

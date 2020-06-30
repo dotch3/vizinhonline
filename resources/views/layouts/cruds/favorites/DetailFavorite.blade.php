@@ -1,5 +1,5 @@
 @extends('layouts.main.app')
-@section('title', 'Deatils Favorite')
+@section('title', 'Detalhes Favorito')
 
 
 @section('content')
@@ -7,7 +7,7 @@
         <div class=" jumbotron version_banner">
             <div class="row">
                 <h4><span
-                        class="badge badge-info">Details Favorite</span></h4>
+                        class="badge badge-info">Detalhes Favorito</span></h4>
             </div>
 
         </div>
@@ -24,11 +24,11 @@
                                 <span class="input-group-text" id="validationTooltipUsernamePrepend"># </span>
                             </div>
                             <input type="text" class="form-control" id="validationTooltip01"
-                                   value="{{$detailFavorite->id_favorite}}"
+                                   value="{{$detailFavorite->id}}"
                                    disabled required>
                         </div>
                     </div>
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Nome</label>
                         <input type="text" class="form-control" id="validationTooltip01"
                                value="{{$detailFavorite->name}}"
@@ -37,10 +37,18 @@
                             Looks good!
                         </div>
                     </div>
-                    <div class="col-md-5 mb-3">
-                        <label for="validationTooltip02">Favorite Code</label>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip02">Descrição</label>
                         <input type="text" class="form-control" id="validationTooltip02"
-                               value="{{$detailFavorite->favorite_code}}" required>
+                               value="{{$detailFavorite->description}}" required>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip02">Code</label>
+                        <input type="text" class="form-control" id="validationTooltip02"
+                               value="{{$detailFavorite->code}}" required>
                         <div class="valid-tooltip">
                             Looks good!
                         </div>
@@ -48,9 +56,9 @@
                 </div>
                 <div class="form-row container">
                     <div class="col-md-4 mb-3">
-                        <label for="favorite_status">Favorite Status</label>
+                        <label for="favorite_status">Status</label>
                         <input type="text" class="form-control" id="favorite_status"
-                               value="{{$detailFavorite->favorite_status}}" name="favorite_status" required>
+                               value="{{$detailFavorite->status}}" name="favorite_status" required>
                         <div class="valid-tooltip">
                             Looks good!
                         </div>

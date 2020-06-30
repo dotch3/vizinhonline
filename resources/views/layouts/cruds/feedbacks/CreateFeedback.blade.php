@@ -32,19 +32,19 @@
                             <label for="score">score</label>
                             <input type="score" class="form-control" id="score"
                                    value="" name="score" required>
-            
+
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="comments">Comments</label>
-                            <input type="text" class="form-control" id="coments"
-                                   value="" name="comments"
+                            <label for="comment">Comments</label>
+                            <input type="text" class="form-control" id="comment"
+                                   value="" name="comment"
                             >
                             <div class="invalid-tooltip">
                                 Por favor digite um comentario
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="form-row container">
                         <div class="col-md-3 mb-3">
                             <label for="created_at">Created at</label>
                             <input type="text" class="form-control" id="created_at" name="created_at"
@@ -60,9 +60,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row container">
-
-                    </div>
 
                     <div class="container">
                         <div class="row">
@@ -71,7 +68,8 @@
 
                             <div class="col-6 btn-group btn-group-lg">
                                 <button type="button" class="btn btn-secondary btn-lg " onclick="
-                                    window.location.href='{{ route('feedbacks.index')}}'">Voltar</button>
+                                    window.location.href='{{ route('feedbacks.index')}}'">Voltar
+                                </button>
                                 <button class="btn btn-success btn-lg " type="submit">Create feedback</button>
                             </div>
                             <div class="col-3">

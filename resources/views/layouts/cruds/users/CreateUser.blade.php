@@ -21,21 +21,21 @@
 
                         <div class="form-row container">
                             <div class="col-md-2 mb-3">
-                                <label for="name">Name</label>
+                                <label for="name">Nome</label>
                                 <input type="text" class="form-control" id="name"
                                        value="" name="name"
                                        required>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="last_name">LastName</label>
-                                <input type="text" class="form-control" id="last_name"
-                                       value="" name="last_name"
+                            <div class="col-md-5 mb-3">
+                                <label for="lastname">Sobrenome</label>
+                                <input type="text" class="form-control" id="lastname"
+                                       value="" name="lastname"
                                 >
                                 <div class="valid-tooltip">
                                     Looks good!
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-5 mb-3">
                                 <label for="rg">RG</label>
                                 <input type="text" class="form-control" id="rg"
                                        value="" name="rg">
@@ -44,28 +44,21 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2 mb-3">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="email"
-                                       value="" name="email">
-                                <div class="valid-tooltip">
-                                    Looks good!
-                                </div>
-                            </div>
+
                         </div>
                         <div class="form-row container">
                             <div class="col-md-4 mb-3">
-                                <label for="username">Username</label>
+                                <label for="email">E-mail</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                             <span class="input-group-text"
                                                   id="validationTooltipUsernamePrepend">@</span>
                                     </div>
-                                    <input type="text" class="form-control" id="username"
+                                    <input type="email" class="form-control" id="email"
                                            aria-describedby="validationTooltipUsernamePrepend"
-                                           value="" name="username" disabled>
+                                           value="" name="email" >
                                     <div class="invalid-tooltip">
-                                        Por favor digite um unico e valido username.
+                                        Por favor digite um email valido.
                                     </div>
                                 </div>
                             </div>
