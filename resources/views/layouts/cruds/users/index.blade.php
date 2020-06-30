@@ -63,10 +63,8 @@
                             {{--                            <td>{{$user->cpf}}</td>--}}
                             {{--                            <td>{{$user->age}}</td>--}}
                             {{--                            <td>{{$user->ranking}}</td>--}}
-                            <td>{{$user->image_id}}</td>
-                            <td>@if(!empty($user->image->id))
-                                    {{$user->image->name}}
-                                @endif</td>
+                            <td>{{ !empty($user->image) ? $user->image->id: '' }}</td>
+                            <td>{{ !empty($user->image) ? $user->image->slug: '' }}</td>
                             <td>{{$user->created_at}}</td>
                             <td>{{$user->updated_at}}</td>
                             <td>{{$user->id}}
@@ -106,8 +104,11 @@
                 <!-- Pagination -->
                 {{$users->links()}}
             </div>
+            <!-- go back to main administrator page to define/create-->
+            <button type="button" onclick="window.location.href='/'"
+                    class="btn btn-outline-secondary btn-lg ">Voltar
+            </button>
         </div>
-    </div>
     </div>
 @endsection
 @section('footer')

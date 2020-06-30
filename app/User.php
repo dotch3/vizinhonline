@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Favorite;
+use App\Locations;
 
 class User extends Authenticatable
 {
@@ -33,7 +34,6 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'remember_token',
-        'image_id'
     ];
 
     /**
@@ -70,6 +70,11 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->belongsTo(Images::class);
+        return $this->hasOne(Images::class);
+    }
+
+    public function location()
+    {
+        return $this->hasOne(Locations::class);
     }
 }

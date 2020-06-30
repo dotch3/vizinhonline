@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Images;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -13,7 +14,7 @@ class UploadController extends Controller
 
     public function index()
     {
-        $images = Images::all();
+        $images = Images::orderBy('created_at', 'desc')->paginate(10);
         return view('layouts/cruds/images/image', compact('images'));
     }
 
@@ -24,10 +25,10 @@ class UploadController extends Controller
             request()->validate([
                 'name' => 'required|string|max:80',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'user_id' => 'nullable|integer|'
             ]);
-
             //Getting info from the image to upload
-            $destinationPath = public_path('/public/avatar/');
+            $destinationPath = public_path('/avatar/');
             $imageName = $request->get('name');
             $imageFormat = $request->image->clientExtension();
 
@@ -41,6 +42,7 @@ class UploadController extends Controller
                 'slug' => $slug,
                 'format_image' => $imageFormat,
                 'size_image' => $request->image->getSize(), // Get the size in Bytes
+                'user_id' => $request->get('user_id')
 
             ]);
 //            Storage::disk('local')->put($slug, $request->file('image'));
@@ -60,7 +62,7 @@ class UploadController extends Controller
             }
 
             return redirect()->route('images.index')
-                ->with('success', 'You have successfully upload image.')
+                ->with('alert-success', 'You have successfully upload image.')
                 ->with('image', $request->get('name'));
         } else {
             dd($request->get('name'));
@@ -78,30 +80,51 @@ class UploadController extends Controller
 
         request()->validate([
             'name' => 'required|string|max:80',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'user_id' => 'nullable|integer|'
         ]);
-
         $image = Images::find($id);
-        $image->name = $request->input('name');
-        // Saving the image as object into the database
-        $image = new Images([
-            'name' => $image->name,
-            'path_location' => $image->path_location,
-            'format_image' => $image->format_image,
-            'size_image' => $image->size_image
-        ]);
+        if ($image !== null) {
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
-//            dd($image);
-        $image->save();
-        return redirect()->route('images.index')
-            ->with('success', 'You have successfully updated the image.')
-            ->with('image', $request->get('name'));
+                //Deleting the old image
+                if (Storage::exists('/public/avatar/'.$image->slug)) {
+                    Storage::delete('/public/avatar/'.$image->slug);
+                }
 
+                $destinationPath = public_path('/avatar/');
+                $image->name = Str::slug($request->get('name'));
+                $imageFormat = $request->image->clientExtension();
+                $image->slug = Str::slug($image->name) . "." . ($imageFormat);
+                $image->path_location = $destinationPath . $image->slug;
+
+                $location = '/public/avatar/';
+                Storage::putFileAs($location, $request->file('image'), $image->slug);
+
+
+                $user = User::find($request->get('user_id'));
+                if ($user !== null) {
+                    $image->user_id = $user->id;
+                }
+                // Saving the image as object into the database
+                $image->save();
+
+
+                return redirect()->route('images.index')
+                    ->with('alert-success', 'You have successfully updated the image.')
+                    ->with('image', $request->get('name'));
+            }
+        } else {
+            return redirect()->route('images.index')
+                ->with('errors', 'Image was not updated.');
+        }
     }
 
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         // Location can change depending on the type of object: user, item, post
-        $location = '/public/avatar/';
+        $location = '/storage/avatar/';
         $image = Images::findOrFail($id);
         Storage::delete($location . $image->slug);
         $image->delete();

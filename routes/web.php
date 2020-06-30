@@ -26,7 +26,7 @@ Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 // Section favorites
 Route::resource('favorites', 'FavoritesController');
 
-Route::get('/favorites', 'FavoritesController@listFavorites')->name('favorites.index');
+Route::get('/favorites', 'FavoritesController@index')->name('favorites.index');
 Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
 //Create
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
@@ -49,21 +49,21 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 
 
 //User relationships
-Route::get('/CadastroUsuario/{id}', 'UsersController@profile')->name('user.profile');
-Route::post('/CadastroUsuario', 'UsersController@register')->name('user.register');
-
+Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
+Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
+Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
 
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
 
 Route::get('/feedbacks', 'FeedbacksController@index')->name('feedbacks.index');
-Route::get('/feedbacks/create', 'FeedbacksController@create')->name('feedbacks.create');
+Route::get('/createFeedback', 'FeedbacksController@create')->name('feedbacks.create');
 Route::get('/feedbacks/{id}', 'FeedbacksController@show')->name('feedbacks.show');
-Route::get('/feedbacks/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
-Route::patch('/feedbacks/{id}', 'FeedbacksController@update')->name('feedbacks.update');
-Route::post('/feedbacks', 'FeedbacksController@store')->name('feedbacks.store');
-Route::delete('/feedbacks/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
+Route::get('/editFeedback/{id}', 'FeedbacksController@edit')->name('feedbacks.edit');
+Route::patch('/editFeedback/{id}', 'FeedbacksController@update')->name('feedbacks.update');
+Route::post('/createFeedback', 'FeedbacksController@store')->name('feedbacks.store');
+Route::delete('/deleteFeedback/{id}', 'FeedbacksController@destroy')->name('feedbacks.destroy');
 
 
 //Categories
@@ -78,18 +78,28 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
+Route::get('/items', 'ItemsController@index')->name('items.index');
 
-//imagem upload
+
+//Imagem upload
 //Route::get('/images', 'UploadController@index')->name('image.upload.profile');
 Route::post('/images', 'UploadController@store')->name('upload.store');
 Route::get('/editarImagem/{id}', 'UploadController@edit')->name('upload.edit');
-Route::patch('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
+Route::post('/editarImagem/{id})', 'UploadController@update')->name('upload.update');
 Route::delete('/images/{id}', 'UploadController@destroy')->name('images.destroy');
-
 
 Route:: get('/images', 'ImagemControler@index')->name('images.index');
 Route::get('/detalheImagem/{id}', 'ImagemControler@show')->name('images.show');
 
+// Routes to review ??cintia?
 Route::get('/cadastroImagem', 'ImagemControler@create')->name('images.create');
 Route::post('/cadastroImagem', 'ImagemControler@store')->name('images.store');
 
+//Routes for Locations
+Route::get('/locations', 'LocationController@index')->name('locations.index');
+Route::get('/createLocation', 'LocationController@create')->name('locations.create');
+Route::post('/createLocation', 'LocationController@store')->name('locations.store');
+
+Route::get('/editarLocation/{id}', 'LocationController@edit')->name('locations.edit');
+Route::patch('/editarLocation/{id})', 'LocationController@update')->name('locations.update');
+Route::delete('/location/{id}', 'LocationController@destroy')->name('locations.destroy');

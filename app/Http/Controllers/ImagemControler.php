@@ -14,7 +14,7 @@ class imagemControler extends Controller
      */
     public function index()
     {
-        $imagens = Images::all();
+        $imagens = Images::orderBy('created_at', 'desc')->paginate(10);
         return view('layouts/cruds/images/Index', compact('imagens'));
     }
 
@@ -67,7 +67,7 @@ class imagemControler extends Controller
     public function show($id)
     {
         $imagem = Images::find($id);
-        return view('layouts.cruds.images.Detalhe', compact('imagem'));
+        return view('layouts.cruds.images.DetalheImagem', compact('imagem'));
     }
 
     /**

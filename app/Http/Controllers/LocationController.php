@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Locations;
 
 class LocationController extends Controller
 {
@@ -13,8 +14,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $Locations = Locations::orderBy('created_at', 'desc')->paginate(10);
-        return view('Locations.index', ['Locations' => $Locations]);
+        $locations = Locations::orderBy('created_at', 'desc')->paginate(10);
+        return view('layouts.cruds.locations.index', compact('locations'));
     }
 
     /**
@@ -24,7 +25,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('Locations.create');
+        return view('layouts.cruds.locations.CreateLocation');
     }
 
     /**
@@ -35,11 +36,22 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $Locations = new Locations;
-        $Locations->name = $request->name;
-        $Locations->description = $request->description;
-        $Locations->save();
-        return redirect()->route('Locations.index')->with('message', 'Endereço salvo corretamente!');
+        $request->validate([
+            'building' => 'required|string|max:45',
+            'apartment_number' => 'required|integer',
+            'address' => 'nullable|string|max:45',
+            'intercom_branch' => 'nullable|integer',
+            'user_id' => 'required|integer'
+        ]);
+
+        $locations = new Locations;
+        $locations->building = $request->building;
+        $locations->apartment_number = $request->apartment_number;
+        $locations->address = $request->address;
+        $locations->intercom_branch = $request->intercom_branch;
+        $locations->user_id = $request->user_id;
+        $locations->save();
+        return redirect()->route('locations.index')->with('alert-success', 'Endereço salvo corretamente!');
     }
 
     /**
@@ -61,8 +73,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $Locations = Locations::findOrFail($id);
-        return view('Locations.edit', compact('Locations'));
+        $location = Locations::findOrFail($id);
+        return view('layouts.cruds.locations.EditLocation', compact('location'));
     }
 
     /**
@@ -74,11 +86,21 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Locations = Locations::findOrFail($id);
-        $Locations->name = $request->name;
-        $Locations->description = $request->description;
-        $Locations->save();
-        return redirect()->route('Locations.index')->with('message', 'Endereço atualizado corretamente!');
+        $request->validate([
+            'building' => 'required|string|max:45',
+            'apartment_number' => 'required|integer',
+            'address' => 'nullable|string|max:45',
+            'intercom_branch' => 'nullable|integer',
+            'user_id' => 'required|integer'
+        ]);
+        $location = Locations::findOrFail($id);
+        $location->building = $request->building;
+        $location->apartment_number = $request->apartment_number;
+        $location->address = $request->address;
+        $location->intercom_branch = $request->intercom_branch;
+        $location->user_id = $request->user_id;
+        $location->save();
+        return redirect()->route('locations.index')->with('alert-success', 'Endereço atualizado corretamente!');
     }
 
 
@@ -92,6 +114,6 @@ class LocationController extends Controller
     {
         $Locations = Locations::findOrFail($id);
         $Locations->delete();
-        return redirect()->route('Locations.index')->with('alert-success', 'Endereço foi apagado!');
+        return redirect()->route('locations.index')->with('alert-success', 'Endereço foi apagado!');
     }
 }

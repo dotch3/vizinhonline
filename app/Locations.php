@@ -4,19 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Images extends Model
+class Locations extends Model
 {
-    //
-    protected $table = "images";
+    protected $table = "locations";
     protected $primaryKey = "id";
 
-    //Criating the fillable for the factory
     protected $fillable = [
-        'name',
-        'slug',
-        'path_location',
-        'format_image',
-        'size_image',
+        'building',
+        'apartment_number',
+        'intercom_branch',
+        'address',
         'user_id'
     ];
 
@@ -24,5 +21,6 @@ class Images extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 
 }
