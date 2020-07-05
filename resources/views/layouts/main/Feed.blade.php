@@ -38,7 +38,7 @@
                                 <div class="col-md-3 perfil">
                                     <a href="#">
                                         <img onclick="redirectToProfile(this.src)"
-                                             src={{asset('/img/avatar/Fernando.png')}}
+                                             src={{!empty($user->id)? route('users.profile',$user->id) :''}}
                                                  alt="perfil" title="perfil usuario logado"/>
                                     </a>
                                 </div>
