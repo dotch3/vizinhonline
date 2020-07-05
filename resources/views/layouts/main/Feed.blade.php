@@ -36,11 +36,17 @@
                             <!-- Foto e dados do usuario logado -->
                             <div class="info_usuario_publicacao container row">
                                 <div class="col-md-3 perfil">
-                                    <a href="#">
-                                        <img onclick="redirectToProfile(this.src)"
-                                             src={{!empty($user->id)? route('users.profile',$user->id) :''}}
-                                                 alt="perfil" title="perfil usuario logado"/>
-                                    </a>
+                                    @if(!empty($user->id))
+                                        <a href="#">
+                                            <img onclick="redirectToProfile(this.src)"
+                                                 src={{!empty($user->id)? route('users.profile',$user->id) :''}}
+                                                     alt="perfil" title="perfil usuario logado"/>
+                                        </a>
+                                    @else
+                                        <div class=" fundo_img">
+                                            <h2>Usuario invalido</h2>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="opcoes_usuario">
                                     <h3>Fernando</h3>

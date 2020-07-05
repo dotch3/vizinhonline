@@ -59,7 +59,6 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
         </div>
     @else
         <div class=" fundo_img">
-
             <h2>Usuario invalido</h2>
         </div>
     @endif
