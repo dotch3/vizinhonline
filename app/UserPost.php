@@ -10,16 +10,19 @@ class UserPost extends Pivot
     protected $table = "user_post";
 
 
-//    public static function boot()
-//    {
-//        parent::boot();
-//
-//        static::created(function ($item) {
-//            dd('create event', $item);
+    public static function boot()
+    {
+        parent::boot();
+
+//        static::created(function ($postItem) {
+//            dd('create event', $postItem);
 //        });
-//
-//        static::deleted(function ($item) {
-//            dd('delete event', $item);
-//        });
-//    }
+
+        static::deleted(function ($postItem) {
+            $postItem->images()->delete();
+            $postItem->post()->delete();
+            $postItem->delete();
+            dd('delete event:',$postItem);
+        });
+    }
 }

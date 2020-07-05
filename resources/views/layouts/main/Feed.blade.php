@@ -10,7 +10,20 @@
 
 @section('content')
     <body>
-
+    @if (session('alert-success'))
+        <div class="container alert alert-success" role="alert">
+            {{session('alert-success')}}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div><br/>
+    @endif
     <!-- Main -->
 
     <main class="main">
@@ -31,47 +44,85 @@
 
                 <!-- Seccao de nova publicacao -->
                 <section class="div_nova_publicacao col-md-10">
-                    <div class="card text-center">
-                        <div class="card-body col-md-12">
-                            <!-- Foto e dados do usuario logado -->
-                            <div class="info_usuario_publicacao container row">
-                                <div class="col-md-3 perfil">
-                                    @if(!empty($user->id))
-                                        <a href="#">
-                                            <img onclick="redirectToProfile(this.src)"
-                                                 src={{!empty($user->id)? route('users.profile',$user->id) :''}}
-                                                     alt="perfil" title="perfil usuario logado"/>
-                                        </a>
-                                    @else
-                                        <div class=" fundo_img">
-                                            <h2>Usuario invalido</h2>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="opcoes_usuario">
-                                    <h3>Fernando</h3>
-                                    <p>Apto 205 - Bloco A</p>
-                                </div>
-                            </div>
-                            <div class="input-group text_nova_publicacao">
-                                <textarea class="form-control"
-                                          placeholder="O que você vai compartilhar hoje?"></textarea>
-                            </div>
 
-                            <div class="acoes_nova_publicacao container row">
-                                <div class="col-md-6">
+                    <form method="post" action="{{ route('posts.store') }}"
+                          enctype="multipart/form-data"
+                          autocomplete="off">
+                        @csrf
+                        <div class="card text-center">
+                            <div class="card-body col-md-12">
+                                <!-- Foto e dados do usuario logado -->
+                                <div class="info_usuario_publicacao container row">
+                                    <div class="col-md-3 perfil">
+                                        @if(!empty(auth()))
+                                            <a href="#">
+                                                <img onclick="redirectToProfile(this.src)"
+                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+                                                     alt="perfil" title="perfil usuario logado"/>
+                                            </a>
+                                        @else
+                                            <div class=" fundo_img">
+                                                <h2>Usuario não logado</h2>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="opcoes_usuario">
+                                        <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
+                                        <p>Apto 205 - Bloco A</p>
+                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                    </div>
+                                </div>
+                                <div class="detalhe_item shadow-sm">
+                                    <!-- Detalhe do item publicado -->
                                     <a href="#">
-                                        <img src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
-                                             title="Escolha uma imagem"/>
+                                        <img src="" alt="novo post"
+                                             title="imagem novo post"
+                                             id="imgPost"/>
                                     </a>
                                 </div>
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-light">Publicar</button>
+                                <div class="input-group text_nova_publicacao">
+                                <textarea class="form-control"
+                                          placeholder="O que você vai compartilhar hoje?"
+                                          id="comment"
+                                          name="comment"
+                                          autocomplete="off"
+                                >
+                                </textarea>
                                 </div>
 
+
+                                <div class="acoes_nova_publicacao container row">
+                                    <div class="col-md-6">
+                                        <a href="#">
+                                            <img src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
+                                                 title="Escolha uma imagem"/>
+                                        </a>
+                                        <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-light">Publicar</button>
+                                    </div>
+                                    <script
+                                        src="https://code.jquery.com/jquery-3.5.1.min.js"
+                                        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                                        crossorigin="anonymous"></script>
+                                    <script>
+                                        $(function () {
+                                            $('#image').change(function () {
+                                                const image = $(this)[0].files[0];
+                                                console.log(image);
+                                                const fileReader = new FileReader();
+                                                fileReader.onloadend = function () {
+                                                    $('#imgPost').attr('src', fileReader.result)
+                                                }
+                                                fileReader.readAsDataURL(image)
+                                            })
+                                        })
+                                    </script>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </section>
                 <!-- Seccao dos Feeds -->
                 <section class="div_feed_items col-md-10">
