@@ -47,7 +47,7 @@ class imagemControler extends Controller
             $file = $request->file('foto');
             $extension = $file->getClientOriginalName();
             $filename = $extension;
-            $file->move('storage/avatar/', $filename);
+            $file->move('img/avatar/', $filename);
             $imagem->path_location = $filename;
         } else {
             return $request;
