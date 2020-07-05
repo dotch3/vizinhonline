@@ -12,22 +12,22 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
 <section class="user_data">
 
     <h2>
-        {{ !empty($user->id) ? $user->name: '' }}
+        {{ !empty($user ?? ''->id) ? $user ?? ''->name: '' }}
     </h2>
     <a href="#">
-        <img src="{{!empty($user->id) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+        <img src="{{!empty($user ?? ''->id) ? asset('/storage/avatar/'.$user ?? ''->image->slug): '' }} "
              onclick="redirectToProfile(this.src)" alt=" perfil" ,
              title="perfil" class="perfil"/>
     </a>
 
     <ul class="fa-ul">
         <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
-            </span>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</li>
+            </span>{{ !empty($user ?? ''->id) ? $user ?? ''->name." ".$user ?? ''->lastname: '' }}</li>
         <li><span class="fa-li"><i class="fas fa-envelope"
-                                   style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->email: '' }}
+                                   style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->email: '' }}
         </li>
         <li><span class="fa-li"><i class="fas fa-building"
-                                   style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->location->building." ".$user->location->apartment_number: '' }}
+                                   style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->location->building." ".$user ?? ''->location->apartment_number: '' }}
         </li>
         <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
             Mensagem
@@ -48,7 +48,7 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
     <div class="container">
         <ul class="fa-ul">
             <li><span class="fa-li"><i class="fas fa-cog" style="font-size:20px ; color: #000000"></i></span>
-                <a style="color:inherit" href="{{route('users.profile',$user->id)}}">
+                <a style="color:inherit" href="{{route('users.profile',$user ?? ''->id)}}">
                     Configuração de conta</a>
             </li>
             <li><a style="color:inherit" href="/"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
