@@ -9,39 +9,85 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
 <script src="../js/rendered-js.js"></script>
 <!-- Obtendo o nome do usuario dinamicamente segundo a pagina -->
 
-<section class="user_data">
+<section class="user_data col-12">
 
     <h2>
-        {{ !empty($user ?? ''->id) ? $user ?? ''->name: '' }}
+        {{-- {{ !empty($user ?? ''->id) ? $user ?? ''->name: '' }} --}}
+       {{$user->name ?? ' '}}
+       
     </h2>
-    <a href="#">
-        <img src="{{!empty($user ?? ''->id) ? asset('/storage/avatar/'.$user ?? ''->image->slug): '' }} "
+    {{-- <a href="#">
+        <img src="{{!empty($user ?? ''->id) ? asset('/img/avatar/'.$user ?? ''->image->slug): '' }} "
              onclick="redirectToProfile(this.src)" alt=" perfil" ,
              title="perfil" class="perfil"/>
-    </a>
+    </a> --}}
+    <div class="row">
+        <div class="col-8">
+             @if(!empty($user->image->id))
+                {{--                    @elseif(Storage::disk('public')->exists($user->image->name))--}}
 
+                {{-- <img src="{{asset('/storage/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
+                     style="width: 180px;height: 170px; "> --}}
+                     <div class="personal-image">
+                        <div class="profile-img img_upload"> 
+                          <label class="label">
+                              <input type="file" multiple accept='image/*' name="image" id="image" style="width: 200px;">
+                            <figure class="personal-figure">
+                              <img id="imgProfile"src="{{asset('/img/avatar/'.$user->image->slug)}}" id="imgProfile" class="personal-avatar" alt="avatar">
+                              <figcaption class="personal-figcaption">
+                                <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="foto">
+                              </figcaption>
+                            </figure>
+                          </label>
+                        </div>
+                      </div>
+
+            @else
+                {{-- <div class=" fundo_img">
+
+                    <h2>Sua Foto</h2>
+                </div> --}}
+                <div class="personal-image">
+                    <div class="profile-img img_upload"> 
+                      <label class="label">
+                          <input type="file" multiple accept='image/*' name="image" id="image" style="width: 200px;">
+                        <figure class="personal-figure">
+                          <img id="imgProfile" src="img/avatar/fundo.png" class="personal-avatar" alt="avatar">
+                          <figcaption class="personal-figcaption">
+                            <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="foto">
+                          </figcaption>
+                        </figure>
+                      </label>
+                    </div>
+                  </div>
+            @endif
+        </div>
+    </div>  
+    <div class="dadosUser">
+    <div class="col-12"> 
     <ul class="fa-ul">
-        <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
-            </span>{{ !empty($user ?? ''->id) ? $user ?? ''->name." ".$user ?? ''->lastname: '' }}</li>
-        <li><span class="fa-li"><i class="fas fa-envelope"
+        {{-- <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
+            </span>{{ !empty($user ?? ''->id) ? $user ?? ''->name." ".$user ?? ''->lastname: '' }}</li> --}}
+        <li> <i class="fas fa-user" style="font-size:20px, color: #000000"></i> {{$user->name ?? ' '}} {{$user->lastname ?? ' '}}</li>
+        {{-- <li><span class="fa-li"><i class="fas fa-envelope"
                                    style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->email: '' }}
-        </li>
-        <li><span class="fa-li"><i class="fas fa-building"
+        </li> --}}
+        <li> <i class="fas fa-envelope" style="font-size:20px, color: #000000"></i> {{$user->email ?? ' '}}</li>
+
+        {{-- <li><span class="fa-li"><i class="fas fa-building"
                                    style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->location->building." ".$user ?? ''->location->apartment_number: '' }}
-        </li>
-        <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
+        </li> --}}
+        <li> <i class="fas fa-building" style="font-size:20px, color: #000000"></i> {{$locations->building ?? ' '}}</li>
+        {{-- <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
             Mensagem
-        </li>
+        </li> --}}
         <!-- verificar se os itens abaixo serão necessarios, pois invite é muito complicado a programacao e contagem de emprestimo será comprometida se fizer fora da plataforma -->
         <!-- <li><span class="fa-li"><i class="fas fa-users" style="font-size:20px ; color: #000000"></i></span>3 Vizinhos -->
         <!-- </li> -->
         <!-- <li><span class="fa-li"><i class="fas fa-people-carry" style="font-size:20px ; color: #000000"></i></span>3 -->
         <!-- Emprestimos</li> -->
-        <li><span class="fa-li"><i class="fas fa-thumbs-up" style="font-size:20px ; color: #000000"></i></span>Recomendeme
-        </li>
-        <li><span class="fa-li"><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i></span>0
-            Recomendações
-        </li>
+        <li><i class="fas fa-thumbs-up" style="font-size:20px ; color: #000000"></i>Recomende-me</li>
+        <li><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i>Recomendações </li>
     </ul>
     </ul>
 
@@ -57,6 +103,6 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
 
         </ul>
     </div>
-
-
+    </div>
+</div>
 </section>
