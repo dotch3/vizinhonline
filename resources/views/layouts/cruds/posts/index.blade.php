@@ -37,7 +37,8 @@
                     <th class="text-center">Id</th>
                     <th class="text-center">Title</th>
                     <th class="text-center">Comment</th>
-                    <th class="text-center">ImageId</th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Image</th>
                     <th class="text-center">created at</th>
                     <th class="text-center">updated at</th>
                     <th class="text-center">Ações</th>
@@ -49,19 +50,20 @@
                             <td>{{$post->id}}</td>
                             <td>{{$post->title}}</td>
                             <td>{{$post->comment}}</td>
-                            <td>{{ !empty($post->image->id) ? $post->image->id : '' }}</td>
+                            <td>{{ !empty($post->user) ? "#".$post->user->id." ".$post->user->name: '' }}</td>
+                            <td>{{ !empty($post->image) ? "#".$post->image->id." ".$post->image->slug:'' }}</td>
                             <td>{{$post->created_at}}</td>
                             <td>{{$post->updated_at}}</td>
                             <td>
                                 <div class="container-fluid ">
                                     <a class="btn btn-outline-info btn-rounded my-0"
                                        href="{{ route('posts.show',$post->id)}}">
-                                        <i class="fa fa-eye" aria-hidden="true" ></i></a>
+                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     <a class="btn btn-outline-warning btn-rounded  my-0"
                                        href="{{ route('posts.edit',$post->id)}}
                                            ">
-                                        <i class="fa fa-pencil" aria-hidden="true" ></i>
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                     <!--Delete section-->
                                     <form method="post" id="delete-form-{{$post->id}}"
