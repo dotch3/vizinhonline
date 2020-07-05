@@ -50,7 +50,11 @@
                             <td>{{$post->id}}</td>
                             <td>{{$post->title}}</td>
                             <td>{{$post->comment}}</td>
-                            <td>{{ !empty($post->user) ? "#".$post->user->id." ".$post->user->name: '' }}</td>
+                            <td>@if( !empty($post->users) )
+                                    @foreach($post->users as $user)
+                                        {{"#". $user->id." ".$user->name }}
+                                    @endforeach
+                            </td>@endif
                             <td>{{ !empty($post->image) ? "#".$post->image->id." ".$post->image->slug:'' }}</td>
                             <td>{{$post->created_at}}</td>
                             <td>{{$post->updated_at}}</td>
@@ -59,7 +63,6 @@
                                     <a class="btn btn-outline-info btn-rounded my-0"
                                        href="{{ route('posts.show',$post->id)}}">
                                         <i class="fa fa-eye" aria-hidden="true"></i></a>
-
                                     <a class="btn btn-outline-warning btn-rounded  my-0"
                                        href="{{ route('posts.edit',$post->id)}}
                                            ">

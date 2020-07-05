@@ -78,24 +78,24 @@ class DatabaseSeeder extends Seeder
 //        ]);
 
 //        DB::table('images')->insert([
-//            'name' => 'fernando',
-//            'slug' => 'fernando.png',
-//            'format_image' => 'png',
-//            'user_id' => User::Where('name', 'like', '%Marcelo%'),
-//        ]);
-//        DB::table('images')->insert([
-//            'name' => 'marcelo',
-//            'slug' => 'marcelo.png',
-//            'format_image' => 'png',
-//            'user_id' => User::Where('name', 'like', '%Marcelo%'),
-//        ]);
-//
-//        DB::table('images')->insert([
-//            'name' => 'lucia',
-//            'slug' => 'lucia.png',
-//            'format_image' => 'png',
-//            'user_id' => User::Where('name', 'like', '%Lucia%'),
-//        ]);
+////            'name' => 'fernando',
+////            'slug' => 'fernando.png',
+////            'format_image' => 'png',
+////            'user_id' => User::Where('name', 'like', '%Marcelo%'),
+////        ]);
+////        DB::table('images')->insert([
+////            'name' => 'marcelo',
+////            'slug' => 'marcelo.png',
+////            'format_image' => 'png',
+////            'user_id' => User::Where('name', 'like', '%Marcelo%'),
+////        ]);
+////
+////        DB::table('images')->insert([
+////            'name' => 'lucia',
+////            'slug' => 'lucia.png',
+////            'format_image' => 'png',
+////            'user_id' => User::Where('name', 'like', '%Lucia%'),
+////        ]);
 
 
         $this->call(UserSeeder::class);

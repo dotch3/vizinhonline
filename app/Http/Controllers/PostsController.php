@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Images;
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Str;
-use Image;
+use Illuminate\Support\Str;
+use Faker\Provider\Image;
 
 class PostsController extends Controller
 {
@@ -42,7 +44,7 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:100',
+            'title' => 'nullable|string|max:100',
             'comment' => 'required|string|max:200',
             'user_id' => 'nullable|integer'
         ]);
@@ -50,13 +52,17 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->comment = $request->comment;
+
+        if (empty($request->title)) {
+            $post->title = Str::slug("post_" . now());
+        }
         $post->save();
 
         //Section for the image
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             //Getting info from the image to upload
             $destinationPath = public_path('/post/');
-            $imageName = Str::slug($post->title);
+            $imageName = Str::slug($post->id);
             $imageFormat = $request->image->clientExtension();
 
             $slug = Str::slug($imageName) . "." . ($imageFormat);
@@ -88,11 +94,20 @@ class PostsController extends Controller
                 $post->users()->attach($user->id);
             }
 
+        } elseif (Auth::id()) {
+            $post->users()->attach(Auth::id());
+        } else {
+            //HradCoded for Fernando until have auth() working
+            $user = User::where('name', 'Fernando')->first();
+            if ($user) {
+                $post->users()->attach($user->id);
+            }
         }
+
         $post->save();
 //        $post->image()->attach($image); -> belongsToMany
 //        $post->users()->attach($post->id);
-        return redirect()->route('posts.index')->with('alert-success', 'Post salvo corretamente!');
+        return Redirect::back()->with('alert-success', 'Post salvo corretamente!');
     }
 
     /**
