@@ -28,7 +28,7 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
                                        style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->email: '' }}
             </li>
             <li><span class="fa-li"><i class="fas fa-building"
-                                       style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->location->building." ".$user->location->apartment_number: '' }}
+                                       style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->location) ? $user->location->building." ".$user->location->apartment_number: 'Não Informado' }}
             </li>
             <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
                 Mensagem

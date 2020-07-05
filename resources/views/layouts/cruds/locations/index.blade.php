@@ -11,12 +11,12 @@
         <div class=" jumbotron version_banner">
             <div class="row">
                 <h4><span
-                        class="badge badge-pill badge-secondary">Lists de Endereços</span></h4>
+                        class="badge badge-pill badge-secondary">Lista de Endereçõs</span></h4>
             </div>
         </div>
     </div>
     <div class="container col-md-12">
-        <div class="container col-md-10">
+        <div class=" container col-md-10">
             <div class="container" style="text-align:center;">
                 <a href="{{route('locations.create')}}" class="btn btn-success btn-lg btn-block">
                     Criar Endereço
@@ -33,6 +33,7 @@
                     <th class="text-center">apartment_number</th>
                     <th class="text-center">address</th>
                     <th class="text-center">USER->id</th>
+                    <th class="text-center">USER->name</th>
                     <th class="text-center" scope="col">Ação</th>
                     </thead>
                     @forelse($locations as $location)
@@ -43,6 +44,7 @@
                             <td>{{$location->apartment_number}}</td>
                             <td>{{$location->address}}</td>
                             <td>{{ !empty($location->user) ? $location->user->id : '' }}</td>
+                            <td>{{ !empty($location->user) ? $location->user->name : '' }}</td>
 
                             <td>
                                 <div class=" container-fluid">

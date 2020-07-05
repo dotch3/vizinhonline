@@ -24,7 +24,9 @@ class Post extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'user_post','post_id','user_id');
+        return $this->belongsToMany(User::class, 'user_post', 'post_id', 'user_id')
+            ->using(UserPost::class)
+            ->withTimestamps();
 
         //A user can be associated to a post:
         //post->users()->attach($users);

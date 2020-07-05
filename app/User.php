@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Favorite;
 use App\Locations;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
@@ -83,7 +85,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class,'user_post','user_id','post_id');
+        return $this->belongsToMany(Post::class, 'user_post', 'user_id', 'post_id');
 
         //A user can be associated to a post:
         //$user->posts()->attach($posts);

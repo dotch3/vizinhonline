@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Images;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -43,15 +44,15 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'comment' => 'required|string|max:200',
+            'user_id' => 'nullable|integer'
         ]);
 
         $post = new Post();
         $post->title = $request->title;
         $post->comment = $request->comment;
-//        $post->user_id = $request->user_id;
+        $post->save();
 
         //Section for the image
-        $post->save();
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             //Getting info from the image to upload
             $destinationPath = public_path('/post/');
@@ -80,7 +81,17 @@ class PostsController extends Controller
 
             $post->image()->save($image);
         }
+        //Checking the User info
+        if ($request->user_id !== null) {
+            $user = User::find($request->user_id);
+            if ($user) {
+                $post->users()->attach($user->id);
+            }
+
+        }
         $post->save();
+//        $post->image()->attach($image); -> belongsToMany
+//        $post->users()->attach($post->id);
         return redirect()->route('posts.index')->with('alert-success', 'Post salvo corretamente!');
     }
 
@@ -92,15 +103,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-
-
         $post = Post::find($id);
-
-        // show image of the posts if exists
-
-//        $postImage = $post->image()->first();
-
-
         return view('layouts.cruds.posts.DetailPost', compact('post'));
         //show user owner of the post, foreach
 //        $users = $post->users()->get();
@@ -236,6 +239,9 @@ class PostsController extends Controller
     function destroy($id)
     {
         $post = Post::findOrFail($id);
+        if ($post->image) {
+            $post->image->id->delete();
+        }
         $post->delete();
         return redirect()->route('posts.index')->with('alert-success', 'Post has been deleted!');
     }
