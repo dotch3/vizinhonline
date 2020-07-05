@@ -57,7 +57,7 @@
                                         @if(!empty(auth()))
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
-                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+                                                     src="{{!empty($user->image->slug) ? asset('/img/avatar/'.$user->image->slug): '' }} "
                                                      alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else

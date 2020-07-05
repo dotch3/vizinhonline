@@ -16,7 +16,7 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
     </h2>
     @if(!empty($user->id))
         <a href="#">
-            <img src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+            <img src="{{!empty($user->image->slug) ? asset('/img/avatar/'.$user->image->slug): '' }} "
                  onclick="redirectToProfile(this.src)" alt=" perfil" ,
                  title="perfil" class="perfil"/>
         </a>
