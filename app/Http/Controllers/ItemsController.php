@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Images;
 use Illuminate\Http\Request;
 use App\Items;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ItemsController extends Controller
 {
@@ -36,7 +39,26 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $image = $request->file('image');
+        
+
+        $this->validateItemsFields($request);
+
+        $image->store('items');
+
+      
+    }
+
+    public function validateItemsFields($request)
+    {
+        return $request->validate([
+            'name' => 'required',
+            'image' => 'required|image',
+            'description' => 'required',
+            'loan_start_date' => 'required',
+            'loan_end_date' => 'required'
+        ]);
     }
 
     /**

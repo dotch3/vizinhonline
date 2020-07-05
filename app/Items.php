@@ -37,4 +37,8 @@ class Items extends Model
         $fav = Favorite::find(2);
         return $fav;
     }
+
+    public function images() {
+        return $this->belongsToMany(Images::class, 'image_item');
+    }
 }

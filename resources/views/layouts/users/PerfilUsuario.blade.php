@@ -28,7 +28,7 @@
                 <!-- Including panel esquerdo do usuario: UserData -->
                 <div class="menu-lateral">
                     <!-- Including panel esquerdo do usuario: UserData -->
-                    @include('.layouts/users/UserData')
+                    {{-- @include('.layouts/users/UserData') --}}
                 </div>
             </div>
             <!-- Panel dereito -->

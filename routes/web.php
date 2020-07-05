@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +79,8 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
+Route::resource('items', 'ItemsController');
+
 Route::get('/items', 'ItemsController@index')->name('items.index');
 
 

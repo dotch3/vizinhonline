@@ -25,4 +25,7 @@ class Images extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function items() {
+        return $this->belongsToMany(Items::class, 'image_item');
+    }
 }
