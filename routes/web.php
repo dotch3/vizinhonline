@@ -103,3 +103,14 @@ Route::post('/createLocation', 'LocationController@store')->name('locations.stor
 Route::get('/editarLocation/{id}', 'LocationController@edit')->name('locations.edit');
 Route::patch('/editarLocation/{id})', 'LocationController@update')->name('locations.update');
 Route::delete('/location/{id}', 'LocationController@destroy')->name('locations.destroy');
+
+
+//Posts
+Route::get('/posts', 'PostsController@index')->name('posts.index');
+Route::get('/createPost', 'PostsController@create')->name('posts.create');
+Route::post('/createPost', 'PostsController@store')->name('posts.store');
+
+Route::get('/detalhePost/{id}', 'PostsController@show')->name('posts.show');
+Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
+Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
+Route::delete('/post/{id}','PostsController@destroy')->name('posts.destroy');

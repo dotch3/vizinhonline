@@ -44,7 +44,6 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
                 Recomendações
             </li>
         </ul>
-        </ul>
 
         <div class="container">
             <ul class="fa-ul">
