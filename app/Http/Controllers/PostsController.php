@@ -255,7 +255,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
         if ($post->image) {
-            $post->image->id->delete();
+            $post->image()->delete();
         }
         $post->delete();
         return redirect()->route('posts.index')->with('alert-success', 'Post has been deleted!');
