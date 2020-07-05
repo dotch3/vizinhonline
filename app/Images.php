@@ -17,7 +17,9 @@ class Images extends Model
         'path_location',
         'format_image',
         'size_image',
-        'user_id'
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     public function user()
@@ -25,4 +27,8 @@ class Images extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }
