@@ -27,7 +27,7 @@
                 <div class="col-md-4">
                 @if(!auth()->user())<!--auth()->user()->image!=null-->
                     {{--                    @elseif(Storage::disk('public')->exists('/avatar/jorgito.png'))--}}
-                    <img src="{{asset('/storage/avatar/logo.png')}}" id="imgProfile" class="profile"
+                    <img src="{{asset('/storage/avatar/fundo.png')}}" id="imgProfile" class="profile"
                          style="width: 180px;height: 170px; ">
                     @else
                         <div class=" fundo_img">

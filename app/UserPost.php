@@ -14,15 +14,12 @@ class UserPost extends Pivot
     {
         parent::boot();
 
-//        static::created(function ($postItem) {
+        static::created(function ($postItem) {
 //            dd('create event', $postItem);
-//        });
+        });
 
         static::deleted(function ($postItem) {
-            $postItem->images()->delete();
-            $postItem->post()->delete();
-            $postItem->delete();
-            dd('delete event:',$postItem);
+//            dd('delete event:',$postItem);
         });
     }
 }

@@ -100,14 +100,12 @@ class PostsController extends Controller
             //HradCoded for Fernando until have auth() working
             $user = User::where('name', 'Fernando')->first();
             if ($user) {
-                $post->users()->attach($user->id);
+                $post->users()->attach($user->id); //Attaching to the pivot user_post
             }
         }
 
         $post->save();
-//        $post->image()->attach($image); -> belongsToMany
-//        $post->users()->attach($post->id);
-        return Redirect::back()->with('alert-success', 'Post salvo corretamente!');
+        return redirect()->route('home')->with('alert-success', 'Post salvo corretamente!');
     }
 
     /**
@@ -120,18 +118,6 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         return view('layouts.cruds.posts.DetailPost', compact('post'));
-        //show user owner of the post, foreach
-//        $users = $post->users()->get();
-//
-//        if ($users) {
-//            echo "<h1> Users:</h1>";
-//
-//            foreach ($users as $user) {
-//                echo "<p> #{$user->id} , {$user->name}</p>";
-//            }
-//        }
-
-
     }
 
     /**
@@ -231,11 +217,8 @@ class PostsController extends Controller
                 if ($path) {
                     $image->save();
                 }
-
                 $post->image()->save($image);
-
             }
-
             $post->save();
         }
 
@@ -250,15 +233,23 @@ class PostsController extends Controller
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        $post->users()->detach(); //Removing the record from the pivot
+
+
         if ($post->image) {
+
+            //Deleting the old image
+            if (Storage::exists('/public/post/' . $post->image->slug)) {
+                Storage::delete('/public/post/' . $post->image->slug);
+            }
             $post->image()->delete();
+
         }
         $post->delete();
-        return redirect()->route('posts.index')->with('alert-success', 'Post has been deleted!');
+        return redirect()->route('home')->with('alert-success', 'Post has been deleted!');
     }
 
 
