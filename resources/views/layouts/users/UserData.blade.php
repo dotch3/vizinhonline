@@ -68,16 +68,16 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
     <ul class="fa-ul">
         {{-- <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
             </span>{{ !empty($user ?? ''->id) ? $user ?? ''->name." ".$user ?? ''->lastname: '' }}</li> --}}
-        <li> <i class="fas fa-user" style="font-size:20px, color: #000000"></i> {{$user->name ?? ' '}} {{$user->lastname ?? ' '}}</li>
+        {{-- <li> <i class="fas fa-user" style="font-size:20px, color: #000000"></i> {{$user->name ?? ' '}} {{$user->lastname ?? ' '}}</li>
         {{-- <li><span class="fa-li"><i class="fas fa-envelope"
                                    style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->email: '' }}
         </li> --}}
-        <li> <i class="fas fa-envelope" style="font-size:20px, color: #000000"></i> {{$user->email ?? ' '}}</li>
+        {{--<li> <i class="fas fa-envelope" style="font-size:20px, color: #000000"></i> {{$user->email ?? ' '}}</li>--}}
 
         {{-- <li><span class="fa-li"><i class="fas fa-building"
                                    style="font-size:20px ; color: #000000"></i></span>{{ !empty($user ?? ''->id) ? $user ?? ''->location->building." ".$user ?? ''->location->apartment_number: '' }}
         </li> --}}
-        <li> <i class="fas fa-building" style="font-size:20px, color: #000000"></i> {{$locations->building ?? ' '}}</li>
+        {{--<li> <i class="fas fa-building" style="font-size:20px, color: #000000"></i> {{$locations->building ?? ' '}}</li>}}
         {{-- <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
             Mensagem
         </li> --}}
@@ -86,21 +86,37 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
         <!-- </li> -->
         <!-- <li><span class="fa-li"><i class="fas fa-people-carry" style="font-size:20px ; color: #000000"></i></span>3 -->
         <!-- Emprestimos</li> -->
-        <li><i class="fas fa-thumbs-up" style="font-size:20px ; color: #000000"></i>Recomende-me</li>
+        {{-- <li><i class="fas fa-thumbs-up" style="font-size:20px ; color: #000000"></i>Recomende-me</li>
         <li><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i>Recomendações </li>
     </ul>
-    </ul>
+    </ul> --}}
 
     <div class="container">
         <ul class="fa-ul">
-            <li><span class="fa-li"><i class="fas fa-cog" style="font-size:20px ; color: #000000"></i></span>
-                <a style="color:inherit" href="{{route('users.profile',$user ?? ''->id)}}">
-                    Configuração de conta</a>
+            <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
+            </span>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</li>
+            <li><span class="fa-li"><i class="fas fa-envelope"
+                                       style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->email: '' }}
             </li>
-            <li><a style="color:inherit" href="/"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
-                                                                         style="font-size:20px ; color: #000000"></i></span>
-                    Sair</a></li>
-
+            <li><span class="fa-li"><i class="fas fa-building"
+                                       style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->location) ? $user->location->building." ".$user->location->apartment_number: 'Não Informado' }}
+            </li>
+            <li><a href="{{ !empty($user->id) ? route('posts',$user->id): '#' }} " style=" color: #000000">
+                    <span class="fa-li"><i class="fas fa-check-square"
+                                           style="font-size:20px ; color: #000000"></i></span>
+                Meus posts
+                </a>
+            </li>
+            <!-- verificar se os itens abaixo serão necessarios, pois invite é muito complicado a programacao e contagem de emprestimo será comprometida se fizer fora da plataforma -->
+            <!-- <li><span class="fa-li"><i class="fas fa-users" style="font-size:20px ; color: #000000"></i></span>3 Vizinhos -->
+            <!-- </li> -->
+            <!-- <li><span class="fa-li"><i class="fas fa-people-carry" style="font-size:20px ; color: #000000"></i></span>3 -->
+            <!-- Emprestimos</li> -->
+            <li><span class="fa-li"><i class="fas fa-thumbs-up" style="font-size:20px ; color: #000000"></i></span>Recomendeme
+            </li>
+            <li><span class="fa-li"><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i></span>0
+                Recomendações
+            </li>
         </ul>
     </div>
     </div>

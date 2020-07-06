@@ -26,7 +26,6 @@
 
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/Feed">Feed</a></li>
                 <li><a href="/PerfilUsuario">Perfil Usuario</a></li>
                 <li><a href="/PerfilVizinho">Perfil Vizinho</a></li>
                 <li><a href="#">Quem Somos</a></li>

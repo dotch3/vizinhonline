@@ -27,7 +27,7 @@
                 <div class="col-md-4">
                 @if(!auth()->user())<!--auth()->user()->image!=null-->
                     {{--                    @elseif(Storage::disk('public')->exists('/avatar/jorgito.png'))--}}
-                    <img src="{{url('public/avatar/jorgito.png')}}" id="imgProfile" class="profile"
+                    <img src="{{asset('/storage/avatar/fundo.png')}}" id="imgProfile" class="profile"
                          style="width: 180px;height: 170px; ">
                     @else
                         <div class=" fundo_img">
@@ -74,7 +74,7 @@
     <br>
     <br>
     <div class="col-10 m-auto container">
-        <table class="table">
+        <table class="table table-bordered table table-striped text-center">
             <thead>
             <tr class="text-center">
                 <th scope="text-center">Id</th>
@@ -83,10 +83,9 @@
                 <th scope="text-center">Path</th>
                 <th scope="text-center">format_image</th>
                 <th scope="text-center">size_image</th>
-                <th scope="text-center">user_id</th>
-                <th scope="text-center">user name</th>
-                <th scope="text-center">Ações
-                <th>
+                <th scope="text-center">user</th>
+                <th scope="text-center">post</th>
+                <th scope="text-center">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -95,11 +94,11 @@
                     <td>{{$imagem->id}}</td>
                     <td>{{$imagem->name}}</td>
                     <td>{{$imagem->slug}}</td>
-                    <td>{{$imagem->path_location}}</td>
+                    <td>-</td>
                     <td>{{$imagem->format_image}}</td>
                     <td>{{$imagem->size_image}}</td>
-                    <td>{{ !empty($imagem->user->id) ? $imagem->user->id: '' }}</td>
-                    <td>{{ !empty( $imagem->user->id) ? $imagem->user->name." - ".$imagem->user->lastname : '' }}</td>
+                    <td>{{ !empty($imagem->user) ? "#".$imagem->user->id." ".$imagem->user->name: '' }}</td>
+                    <td>{{ !empty( $imagem->post) ? "#".$imagem->post->id." ".$imagem->post->title: '' }}</td>
                     <td class="text-right">
                         <a href="{{route('images.show',$imagem->id)}}">
                             <button class="btn btn-outline-info">Visualizar</button>

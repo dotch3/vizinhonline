@@ -14,7 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Locations::orderBy('created_at', 'desc')->paginate(10);
+        $locations = Locations::orderBy('id', 'desc')->paginate(10);
         return view('layouts.cruds.locations.index', compact('locations'));
     }
 
