@@ -12,7 +12,7 @@
 <section class="div_detalhe_items">
     <div class="container">
         <div class="col-md-10">
-            <form action="{{ route('items.store') }}" method="post" enctype=”multipart/form-data”>
+            <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="container row">
                     <div class="avatar-upload">

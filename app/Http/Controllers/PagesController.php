@@ -11,11 +11,6 @@ class PagesController extends Controller
     public function home()
     {
         // Verify if the user logged is registered or not
-        if (auth()) {
-
-            return view('layouts/main/Feed');
-
-        }
         return view('layouts/main/Home');
     }
 

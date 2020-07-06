@@ -17,7 +17,8 @@ class Items extends Model
         'internal_notes',
         'feedback_score',
         'units',
-        'replacement_cost'
+        'replacement_cost',
+        'itemstatus_id'
     ];
 
     public function status()

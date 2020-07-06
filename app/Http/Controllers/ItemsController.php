@@ -39,15 +39,28 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-
-        $image = $request->file('image');
-        
-
         $this->validateItemsFields($request);
 
-        $image->store('items');
+        $item = new Items([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'loan_start_date' => $request->get('loan_start_date'),
+            'loan_end_date' => $request->get('loan_end_date')
+        ]);
 
-      
+        $item->save();
+
+        $imagePath = '/public/items';
+        $imageFile = $request->file('image');
+        $imageName = $request->get('name').".".$imageFile->getClientOriginalExtension();
+        Storage::putFileAs($imagePath, $imageFile, $imageName);
+        $image = new Images([
+            'name' => $imageName,
+            'path_location' => $imagePath
+        ]);
+
+        $image->save();
+        $item->images()->attach($image->id);
     }
 
     public function validateItemsFields($request)
