@@ -167,6 +167,7 @@ class UploadController extends Controller
     function destroy($id, $typeObject = false)
     {
         // Location can change depending on the type of object: user, item, post
+        dd($id);
         if ($typeObject) {
             switch ($typeObject) {
                 case "avatar":

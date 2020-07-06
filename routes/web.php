@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // vizinhoonlineRoute
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
