@@ -133,7 +133,7 @@
                                 <input type="text" name="address" placeholder="Endereço" value=""><!-- Relation with locations come here -->
                             </div>
                             <div class="col-5">    
-                                <input type="text" name="intercom_branch" placeholder="Intercom branch" value="">
+                                <input type="text" name="intercom_branch" placeholder="Interfone" value="">
                             </div>
                         </div>
                         <br/>

@@ -18,7 +18,7 @@ class UploadController extends Controller
         return view('layouts/cruds/images/image', compact('images'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $typeObject = false)
     {
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -28,7 +28,31 @@ class UploadController extends Controller
                 'user_id' => 'nullable|integer|'
             ]);
             //Getting info from the image to upload
-            $destinationPath = public_path('/avatar/');
+            if ($typeObject) {
+                switch ($typeObject) {
+                    case "avatar":
+                        echo "avatar";
+                        $destinationPath = public_path('/avatar/');
+                        $location = '/public/avatar/';
+                        break;
+                    case "item":
+                        echo "item";
+                        $destinationPath = public_path('/item/');
+                        $location = '/public/item/';
+                        break;
+                    case "post":
+                        echo "post";
+                        $destinationPath = public_path('/post/');
+                        $location = '/public/post/';
+                        break;
+
+                }
+
+            } else {
+                $destinationPath = public_path('/avatar/');
+                $location = '/public/avatar/';
+            }
+
             $imageName = $request->get('name');
             $imageFormat = $request->image->clientExtension();
 
@@ -54,7 +78,7 @@ class UploadController extends Controller
 ////            Storage::put($slug, $image);
 //
 //            Storage::put('/public/avatar/',$image, $slug);
-            $location = '/public/avatar/';
+
 
             $path = Storage::putFileAs($location, $request->file('image'), $slug);
             if ($path) {
@@ -75,9 +99,8 @@ class UploadController extends Controller
         return view('layouts.cruds.images.EditarImagem', compact('imagem'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $typeObject = false)
     {
-
         request()->validate([
             'name' => 'required|string|max:80',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -88,17 +111,37 @@ class UploadController extends Controller
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
                 //Deleting the old image
-                if (Storage::exists('/public/avatar/'.$image->slug)) {
-                    Storage::delete('/public/avatar/'.$image->slug);
+                if ($typeObject) {
+                    switch ($typeObject) {
+                        case "avatar":
+                            echo "avatar";
+                            $destinationPath = public_path('/avatar/');
+                            $location = '/public/avatar/';
+                            break;
+                        case "item":
+                            echo "item";
+                            $destinationPath = public_path('/item/');
+                            $location = '/public/item/';
+                            break;
+                        case "post":
+                            echo "post";
+                            $destinationPath = public_path('/post/');
+                            $location = '/public/post/';
+                            break;
+                    }
+                } else {
+                    $destinationPath = public_path('/avatar/');
+                    $location = '/public/avatar/';
+                }
+                if (Storage::exists($location . $image->slug)) {
+                    Storage::delete($location . $image->slug);
                 }
 
-                $destinationPath = public_path('/avatar/');
                 $image->name = Str::slug($request->get('name'));
                 $imageFormat = $request->image->clientExtension();
                 $image->slug = Str::slug($image->name) . "." . ($imageFormat);
                 $image->path_location = $destinationPath . $image->slug;
 
-                $location = '/public/avatar/';
                 Storage::putFileAs($location, $request->file('image'), $image->slug);
 
 
@@ -121,10 +164,32 @@ class UploadController extends Controller
     }
 
     public
-    function destroy($id)
+    function destroy($id, $typeObject = false)
     {
         // Location can change depending on the type of object: user, item, post
-        $location = '/storage/avatar/';
+        dd($id);
+        if ($typeObject) {
+            switch ($typeObject) {
+                case "avatar":
+                    echo "avatar";
+                    $location = '/storage/avatar/';
+                    break;
+                case "item":
+                    echo "item";
+                    $location = '/storage/item/';
+                    break;
+                case "post":
+                    echo "post";
+                    $location = '/storage/post/';
+                    break;
+
+            }
+
+        } else {
+
+            $location = '/storage/avatar/';
+        }
+
         $image = Images::findOrFail($id);
         Storage::delete($location . $image->slug);
         $image->delete();

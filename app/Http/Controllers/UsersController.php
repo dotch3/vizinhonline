@@ -317,6 +317,9 @@ class UsersController extends Controller
 
         return redirect()->route('users.register', $user->id)->with('alert-success', 'Usuario atualizado corretamente!');
     }
+
+
+
 }
 
 

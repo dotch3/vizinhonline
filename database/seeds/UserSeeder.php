@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
 
         //using the factory to fulfill test users
         //User::truncate(); //We dont want to delete the administrator created
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             factory(User::class)->create();
         }
     }
