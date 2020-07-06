@@ -94,7 +94,7 @@
                                 <div class="acoes_nova_publicacao container row">
                                     <div class="col-md-6">
                                         <a href="#">
-                                            <img src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
+                                            <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
                                         <input type="file" name="image" id="image" multiple accept='image/*' size='50'>

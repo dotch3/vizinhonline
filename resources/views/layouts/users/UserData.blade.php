@@ -30,8 +30,11 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
             <li><span class="fa-li"><i class="fas fa-building"
                                        style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->location) ? $user->location->building." ".$user->location->apartment_number: 'Não Informado' }}
             </li>
-            <li><span class="fa-li"><i class="fas fa-check-square" style="font-size:20px ; color: #000000"></i></span>
-                Mensagem
+            <li><a href="{{ !empty($user->id) ? route('posts',$user->id): '#' }} " style=" color: #000000">
+                    <span class="fa-li"><i class="fas fa-check-square"
+                                           style="font-size:20px ; color: #000000"></i></span>
+                Meus posts
+                </a>
             </li>
             <!-- verificar se os itens abaixo serão necessarios, pois invite é muito complicado a programacao e contagem de emprestimo será comprometida se fizer fora da plataforma -->
             <!-- <li><span class="fa-li"><i class="fas fa-users" style="font-size:20px ; color: #000000"></i></span>3 Vizinhos -->

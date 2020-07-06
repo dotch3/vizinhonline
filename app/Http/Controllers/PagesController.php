@@ -50,4 +50,14 @@ class PagesController extends Controller
     {
         return view('layouts/users/CadastroUsuario');
     }
+
+    public function postsUsuario($id)
+    {
+        $user = User::find($id);
+//        $user = User::where('name', 'Fernando')->first();
+
+
+        return view('layouts/posts/PostsUsuario', compact('user'));
+    }
+
 }

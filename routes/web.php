@@ -21,7 +21,7 @@ Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
-
+Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
 
 // Section favorites
 Route::resource('favorites', 'FavoritesController');
@@ -52,7 +52,6 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
 Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
 Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
-
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
@@ -113,4 +112,4 @@ Route::post('/createPost', 'PostsController@store')->name('posts.store');
 Route::get('/detalhePost/{id}', 'PostsController@show')->name('posts.show');
 Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
 Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
-Route::delete('/post/{id}','PostsController@destroy')->name('posts.destroy');
+Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
