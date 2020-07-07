@@ -71,9 +71,10 @@
                                                           id="comment"
                                                           name="comment"
                                                           autocomplete="off"
-                                                          value="test"
                                                 >
-                                 </textarea>
+                                                    {{!empty($post->comment)? $post->comment:''}}
+
+                                             </textarea>
                                             </div>
                                         </div>
                                         <div class="acoes_nova_publicacao container row">
