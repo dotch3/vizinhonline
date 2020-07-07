@@ -61,6 +61,7 @@ class ItemsController extends Controller
 
         $image->save();
         $item->images()->attach($image->id);
+        return redirect()->route('perfilUsuario');
     }
 
     public function validateItemsFields($request)

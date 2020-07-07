@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
-Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
+Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 

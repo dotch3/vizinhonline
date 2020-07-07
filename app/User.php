@@ -77,4 +77,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Locations::class);
     }
+
+    public function items() {
+        return $this->belongsToMany(Items::class, 'item_user');
+    }
 }
