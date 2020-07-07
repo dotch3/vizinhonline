@@ -21,7 +21,7 @@
                 <a href="{{route('users.create')}}" class="btn btn-success btn-lg btn-block">
                     Criar usuario
                 </a>
-                <a href="{{url('/CadastroUsuario')}}" class="btn btn-info btn-lg btn-block">
+                <a href="{{url('/register')}}" class="btn btn-info btn-lg btn-block">
                     Cadastrar usuario
                 </a>
             </div>

@@ -55,6 +55,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+    public function showRegistrationForm()
+    {
+        return view('layouts.users.CadastroUsuario');
+    }
 
     /**
      * Create a new user instance after a valid registration.
