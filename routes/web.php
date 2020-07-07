@@ -113,3 +113,7 @@ Route::get('/detalhePost/{id}', 'PostsController@show')->name('posts.show');
 Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
 Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
 Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

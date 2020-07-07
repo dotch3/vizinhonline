@@ -10,12 +10,6 @@ class PagesController extends Controller
 {
     public function home()
     {
-        // Verify if the user logged is registered or not
-        if (auth()) {
-            $user = User::where('name', 'Fernando')->first();
-            return view('layouts/main/Feed', compact('user'));
-
-        }
         return view('layouts/main/Home');
     }
 
