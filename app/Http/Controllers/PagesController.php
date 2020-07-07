@@ -23,20 +23,36 @@ class PagesController extends Controller
     {
         $user = User::where('name', 'Fernando')->first();
 
-        if ($user->id)
+        if (!empty($user->id)) {
             return view('layouts/users/PerfilUsuario', compact('user'));
+        } else {
+            return view('layouts/users/PerfilUsuario', compact('user'));
+        }
 
     }
 
     public function perfilVizinho()
     {
         $user = User::where('name', 'Marcelo')->first();
-        if ($user->id)
+        if (!empty($user->id)) {
             return view('layouts/users/PerfilVizinho', compact('user'));
+        } else {
+            return view('layouts/users/PerfilVizinho', compact('user'));
+        }
     }
 
     public function cadastroUsuario()
     {
         return view('layouts/users/CadastroUsuario');
     }
+
+    public function postsUsuario($id)
+    {
+        $user = User::find($id);
+//        $user = User::where('name', 'Fernando')->first();
+
+
+        return view('layouts/posts/PostsUsuario', compact('user'));
+    }
+
 }

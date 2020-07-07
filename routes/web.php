@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 // vizinhoonlineRoute
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
-
+Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
 
 // Section favorites
 Route::resource('favorites', 'FavoritesController');
@@ -53,7 +53,6 @@ Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destr
 Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
 Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
 Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
-
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
@@ -106,3 +105,22 @@ Route::post('/createLocation', 'LocationController@store')->name('locations.stor
 Route::get('/editarLocation/{id}', 'LocationController@edit')->name('locations.edit');
 Route::patch('/editarLocation/{id})', 'LocationController@update')->name('locations.update');
 Route::delete('/location/{id}', 'LocationController@destroy')->name('locations.destroy');
+
+
+//Posts
+Route::get('/posts', 'PostsController@index')->name('posts.index');
+Route::get('/createPost', 'PostsController@create')->name('posts.create');
+Route::post('/createPost', 'PostsController@store')->name('posts.store');
+
+Route::get('/detalhePost/{id}', 'PostsController@show')->name('posts.show');
+Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
+Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
+Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
