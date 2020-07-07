@@ -35,7 +35,7 @@
                                 <div class="col-md-4">
                                 @if($post->image)<!--auth()->user()->image!=null-->
                                     {{--                    @elseif(Storage::disk('public')->exists('/avatar/jorgito.png'))--}}
-                                    <img src="{{asset('/storage/post/'.$post->image->slug)}}" id="imgPost"
+                                    <img src="{{asset('/storage/posts/'.$post->image->slug)}}" id="imgPost"
                                          class="profile"
                                          style="width: 180px;height: 170px; ">
                                     @else
@@ -83,7 +83,7 @@
                                     <div class="form-group">
                                         <label for="description">Usuario Criador:</label>
                                         <input type="text" class="form-control" name="user_id" id="user_id"
-                                               value="{{ !empty($post->users) ? $post->users->first()->id: '' }}"
+                                               value="{{ !empty($post->user) ?$post->user->id." ".$post->user->name: '' }}"
                                         />
                                     </div>
                                 </div>

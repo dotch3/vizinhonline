@@ -56,17 +56,37 @@ class PostsController extends Controller
         if (empty($request->title)) {
             $post->title = Str::slug("post_" . now());
         }
-        $post->save();
 
+        //Checking the User info
+        if ($request->user_id !== null) {
+            $user = User::find($request->user_id);
+            if ($user) {
+                $post->user()->associate($user);
+                $post->save();
+            }
+        } else {
+            //Hard for Fernando until have auth() working
+//            $user = User::find($request->user_id);
+            $user = User::where('name', 'Fernando')->first();
+            if ($user) {
+//                dd('UserID:', $user, $post);
+                $post->user()->associate($user);
+                $post->save();
+            }
+        }
+
+
+        // Image validation
         //Section for the image
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             //Getting info from the image to upload
             $destinationPath = public_path('/post/');
-            $imageName = Str::slug($post->id);
+            $imageName = Str::slug($post->title);
             $imageFormat = $request->image->clientExtension();
 
             $slug = Str::slug($imageName) . "." . ($imageFormat);
 
+//            dd('Dados', $post,$post->user());
 
             // Saving the image as object into the database
             $image = new Images([
@@ -77,31 +97,20 @@ class PostsController extends Controller
                 'size_image' => $request->image->getSize(), // Get the size in Bytes
                 'post_id' => $post->id
             ]);
-
-            $location = '/public/post/';
+//            dd('Image', $image, $post);
+            $location = '/public/posts/';
 
             $path = Storage::putFileAs($location, $request->file('image'), $slug);
             if ($path) {
-                $image->save();
+//                dd('path',$post,$image);
+                $post->image()->save($image);
             }
 
-            $post->image()->save($image);
-        }
-        //Checking the User info
-        if ($request->user_id !== null) {
-            $user = User::find($request->user_id);
-            if ($user) {
-                $post->users()->attach($user->id);
-            }
+//            $post->image()->save($image); //save one-one
 
-        } elseif (Auth::id()) {
-            $post->users()->attach(Auth::id());
+
         } else {
-            //HradCoded for Fernando until have auth() working
-            $user = User::where('name', 'Fernando')->first();
-            if ($user) {
-                $post->users()->attach($user->id); //Attaching to the pivot user_post
-            }
+            dd('Request sem image', $post, $post->user());
         }
 
         $post->save();
@@ -172,12 +181,12 @@ class PostsController extends Controller
                 $image = Images::findOrFail($post->image->id);
 
                 //Deleting the old image
-                if (Storage::exists('/public/post/' . $post->image->slug)) {
-                    Storage::delete('/public/post/' . $post->image->slug);
+                if (Storage::exists('/public/posts/' . $post->image->slug)) {
+                    Storage::delete('/public/posts/' . $post->image->slug);
                 }
 
                 //Getting info from the image to upload
-                $destinationPath = public_path('/post/');
+                $destinationPath = public_path('/posts/');
 
                 $image->name = Str::slug($post->title);
                 $imageFormat = $request->image->clientExtension();
@@ -186,7 +195,7 @@ class PostsController extends Controller
                 $image->post_id = $post->id;
 
                 // Saving the image as object into the database
-                $location = '/public/post/';
+                $location = '/public/posts/';
 
                 $path = Storage::putFileAs($location, $request->file('image'), $image->slug);
                 if ($path) {
@@ -194,7 +203,7 @@ class PostsController extends Controller
                 }
                 $post->image()->save($image);
             } else {
-                $destinationPath = public_path('/post/');
+                $destinationPath = public_path('/posts/');
                 $imageName = Str::slug($post->title);
                 $imageFormat = $request->image->clientExtension();
 
@@ -211,7 +220,7 @@ class PostsController extends Controller
                     'post_id' => $post->id
                 ]);
 
-                $location = '/public/post/';
+                $location = '/public/posts/';
 
                 $path = Storage::putFileAs($location, $request->file('image'), $image->slug);
                 if ($path) {
@@ -236,14 +245,15 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->users()->detach(); //Removing the record from the pivot
+//        $post->users()->detach(); //Removing the record from the pivot
+        $post->user()->dissociate();
 
 
         if ($post->image) {
 
             //Deleting the old image
-            if (Storage::exists('/public/post/' . $post->image->slug)) {
-                Storage::delete('/public/post/' . $post->image->slug);
+            if (Storage::exists('/public/posts/' . $post->image->slug)) {
+                Storage::delete('/public/posts/' . $post->image->slug);
             }
             $post->image()->delete();
 

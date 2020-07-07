@@ -57,7 +57,7 @@
                                         @if(!empty(auth()))
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
-                                                     src="{{!empty($user->image->slug) ? asset('/img/avatar/'.$user->image->slug): '' }} "
+                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
                                                      alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
@@ -68,17 +68,19 @@
                                     </div>
                                     <div class="opcoes_usuario">
                                         <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
-                                        <p>Apto 205 - Bloco A</p>
+                                        <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
                                         <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
                                     </div>
                                 </div>
                                 <div class="detalhe_item shadow-sm">
                                     <!-- Detalhe do item publicado -->
                                     <a href="#">
-                                        <img src="" alt="novo post"
-                                             title="imagem novo post"
-                                             id="imgPost"/>
+                                        <img src="" alt="post"
+                                             id="imgPost"
+                                             name="imgPost"
+                                        />
                                     </a>
+
                                 </div>
                                 <div class="input-group text_nova_publicacao">
                                 <textarea class="form-control"
@@ -89,7 +91,6 @@
                                 >
                                 </textarea>
                                 </div>
-
 
                                 <div class="acoes_nova_publicacao container row">
                                     <div class="col-md-6">
@@ -109,13 +110,13 @@
                                     <script>
                                         $(function () {
                                             $('#image').change(function () {
-                                                const image = $(this)[0].files[0];
-                                                console.log(image);
+                                                const file = $(this)[0].files[0];
+                                                console.log(file);
                                                 const fileReader = new FileReader();
                                                 fileReader.onloadend = function () {
                                                     $('#imgPost').attr('src', fileReader.result)
                                                 }
-                                                fileReader.readAsDataURL(image)
+                                                fileReader.readAsDataURL(file)
                                             })
                                         })
                                     </script>
@@ -138,7 +139,7 @@
                                     <div class="col-md-3 perfil">
                                         <a href="#">
                                             <img onclick="redirectToProfile(this.src)"
-                                                 src={{asset('/img/avatar/Marcelo.png')}}
+                                                 src={{asset('/storage/avatar/Marcelo.png')}}
                                                      alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                         </a>
@@ -210,7 +211,7 @@
                                 <div class="info_usuario container row">
                                     <div class="col-md-3 perfil">
                                         <a href="#">
-                                            <img src={{asset('/img/avatar/Fernando.png')}}  alt="perfil_usuario"
+                                            <img src={{asset('/storage/avatar/Fernando.png')}}  alt="perfil_usuario"
                                                  title="perfil usuario da publicacao"/>
                                         </a>
                                     </div>
@@ -278,7 +279,7 @@
                                     <div class="col-md-2">
                                         <div class="info_usuario_resposta">
                                             <a href="#">
-                                                <img src={{asset('/img/avatar/Lucia.png')}} alt="perfil_usuario"
+                                                <img src={{asset('/storage/avatar/Lucia.png')}} alt="perfil_usuario"
                                                      title="perfil usuario resposta"/>
                                             </a>
                                         </div>

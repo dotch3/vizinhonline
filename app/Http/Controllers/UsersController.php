@@ -265,28 +265,54 @@ class UsersController extends Controller
         //Updating the image
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
-            $image = Images::findOrFail($user->image->id);
+            if ($user->image) {
+                $image = Images::find($user->image->id);
+                //Deleting the old image
+                if (Storage::exists('/public/avatar/' . $user->image->slug)) {
+                    Storage::delete('/public/avatar/' . $user->image->slug);
+                }
 
-            //Deleting the old image
-            if (Storage::exists('/public/avatar/' . $user->image->slug)) {
-                Storage::delete('/public/avatar/' . $user->image->slug);
-            }
 
+                $destinationPath = public_path('/avatar/');
+                $image->name = Str::slug($request->get('name'));
+                $imageFormat = $request->image->clientExtension();
+                $image->slug = Str::slug($image->name) . "." . ($imageFormat);
+                $image->path_location = $destinationPath . $image->slug;
 
-            $destinationPath = public_path('/avatar/');
-            $image->name = Str::slug($request->get('name'));
-            $imageFormat = $request->image->clientExtension();
-            $image->slug = Str::slug($image->name) . "." . ($imageFormat);
-            $image->path_location = $destinationPath . $image->slug;
+                $location = '/public/avatar/';
+                Storage::putFileAs($location, $request->file('image'), $image->slug);
 
-            $location = '/public/avatar/';
-            Storage::putFileAs($location, $request->file('image'), $image->slug);
-
-            //Saving reverse relationsnhip declaration
-            // User belongsTo imagem -> need to change this in database later
-            $image->save();
+                //Saving reverse relationsnhip declaration
+                // User belongsTo imagem -> need to change this in database later
+                $image->save();
 
 //            dd($image, $user, $user->location);
+            } else {
+                $destinationPath = public_path('/avatar/');
+                $imageName = Str::slug($user->name . "-" . $user->lastname);
+                $imageFormat = $request->image->clientExtension();
+
+                $slug = Str::slug($imageName) . "." . ($imageFormat);
+
+                // Saving the image as object into the database
+                $image = new Images([
+                    'name' => $imageName,
+                    'path_location' => $destinationPath . $slug,
+                    'slug' => $slug,
+                    'format_image' => $imageFormat,
+                    'size_image' => $request->image->getSize(), // Get the size in Bytes
+                    'user_id' => $user->id
+                ]);
+
+                $location = '/public/avatar/';
+
+                $path = Storage::putFileAs($location, $request->file('image'), $slug);
+                if ($path) {
+                    $image->save();
+                }
+
+                $user->image()->save($image);
+            }
 
         }
 
@@ -317,7 +343,6 @@ class UsersController extends Controller
 
         return redirect()->route('users.register', $user->id)->with('alert-success', 'Usuario atualizado corretamente!');
     }
-
 
 
 }

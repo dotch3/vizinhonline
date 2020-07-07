@@ -83,12 +83,17 @@ class User extends Authenticatable
     //Relationship many-many user-> posts
     // Using the pivot user_post
 
+//    public function posts()
+//    {
+//        return $this->belongsToMany(Post::class, 'user_post', 'user_id', 'post_id');
+//
+//        //A user can be associated to a post:
+//        //$user->posts()->attach($posts);
+//    }
+
     public function posts()
     {
-        return $this->belongsToMany(Post::class, 'user_post', 'user_id', 'post_id');
-
-        //A user can be associated to a post:
-        //$user->posts()->attach($posts);
+        return $this->hasMany(Post::class);
     }
 
 }

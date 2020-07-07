@@ -29,9 +29,9 @@
                         @csrf
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                            @if(!auth()->user())<!--auth()->user()->image!=null-->
-                                {{--                    @elseif(Storage::disk('public')->exists('/avatar/jorgito.png'))--}}
-                                <img src="{{asset('/storage/avatar/logo.png')}}" id="imgPost" class="profile"
+                            @if(!auth()->user())
+                                <img src="{{asset('/storage/avatar/fundo.png')}}" id="imgPost" name="imgPost"
+                                     class="profile"
                                      style="width: 180px;height: 170px; ">
                                 @else
                                     <div class="fundo_img">

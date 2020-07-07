@@ -5,20 +5,27 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserPost extends Pivot
+class UserComment extends Pivot
 {
-    protected $table = "user_post";
+    protected $table = "user_comments";
+
+    protected $fillable =
+        [
+            'comment',
+            'user_id',
+            'post_id'
+        ];
 
 
     public static function boot()
     {
         parent::boot();
 
-        static::created(function ($postItem) {
+        static::created(function ($comment) {
 //            dd('create event', $postItem);
         });
 
-        static::deleted(function ($postItem) {
+        static::deleted(function ($comment) {
 //            dd('delete event:',$postItem);
         });
     }
