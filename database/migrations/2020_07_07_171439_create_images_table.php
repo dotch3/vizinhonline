@@ -13,16 +13,15 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('images');
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('path_location');
-            $table->string('format_image');
-            $table->float('size_image');
-            $table->integer('user_id'); //TODO: configurar relacionamento com tabela users
-            $table->integer('post_id'); //TODO: configurar relacionamento com tabela users
+            $table->string('format_image')->nullable();
+            $table->float('size_image')->nullable();
+            $table->integer('user_id')->nullable(); //TODO: configurar relacionamento com tabela users
+            $table->integer('post_id')->nullable(); //TODO: configurar relacionamento com tabela users
             $table->timestamps();
         });
     }

@@ -18,7 +18,9 @@ class Items extends Model
         'feedback_score',
         'units',
         'replacement_cost',
-        'itemstatus_id'
+        'itemstatus_id',
+        'loan_start_date',
+        'loan_end_date'
     ];
 
     public function status()

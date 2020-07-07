@@ -13,13 +13,12 @@ class CreateImageItemTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('image_item');
         Schema::create('image_item', function (Blueprint $table) {
-            $table->integer('item_id')->unsigned();
-            $table->integer('image_id')->unsigned();
-            $table->foreign('item_id')->references('id')->on('items')
+            $table->integer('items_id')->unsigned();
+            $table->integer('images_id')->unsigned();
+            $table->foreign('items_id')->references('id')->on('items')
                 ->onDelete('cascade');
-            $table->foreign('image_id')->references('id')->on('images')
+            $table->foreign('images_id')->references('id')->on('images')
                 ->onDelete('cascade');
             $table->timestamps();
         });

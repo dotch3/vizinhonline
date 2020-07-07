@@ -13,7 +13,6 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('items');
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -21,14 +20,12 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->float('tax_fee')->nullable();
             $table->string('internal_notes')->nullable();
-            $table->integer('feedback_store');
-            $table->integer('units');
+            $table->integer('feedback_store')->nullable();
+            $table->integer('units')->nullable();
             $table->date('loan_start_date');
             $table->date('loan_end_date');
-            $table->float('replacement_cost');
-            $table->integer('itemstatus_id'); //configurar relacionamento com item_status
-
-
+            $table->float('replacement_cost')->nullable();
+            $table->integer('itemstatus_id')->nullable(); //TODO: configurar relacionamento com item_status
             $table->timestamps();
         });
     }
