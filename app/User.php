@@ -96,4 +96,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function commments()
+    {
+        return $this->belongsToMany(Post::class, 'user_comments', 'user_id', 'post_id')
+            ->withPivot('comment')
+            ->withTimestamps();
+    }
+
 }

@@ -21,15 +21,15 @@ class Post extends Model
     //Relationship many-many user-> posts
     // Using the pivot user_post
 
-//    public function users()
-//    {
-//        return $this->belongsToMany(User::class, 'user_post', 'post_id', 'user_id')
-//            ->using(UserPost::class)
-//            ->withTimestamps();
-//
-//        //A user can be associated to a post:
-//        //post->users()->attach($users);
-//    }
+    public function comments()
+    {
+        return $this->belongsToMany(User::class, 'user_comments', 'post_id', 'user_id')
+            ->using(UserComment::class)
+            ->withTimestamps();
+
+        //A user can be associated to a post:
+        //post->users()->attach($users);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

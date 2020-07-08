@@ -1,12 +1,10 @@
-<!-- Esta pagina vai utilizar direito o estilo CSS "user_data" quie se encontra no CSS principal. estilo_feed_include.css
-Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
+<head>
+    <link href="{{ asset('/css/estilo_userData.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-<link href="{{ asset('/css/estilo_userData.css') }}" rel="stylesheet">
-<script src="../js/rendered-js.js"></script>
+</head>
 <!-- Obtendo o nome do usuario dinamicamente segundo a pagina -->
 
 <section class="user_data col-12">
@@ -33,7 +31,8 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
                         <label class="label">
                             <input type="file" multiple accept='image/*' name="image" id="image" style="width: 200px;">
                             <figure class="personal-figure">
-                                <img id="imgProfile" src="{{asset('/storage/avatar/'.$user->image->slug)}}" id="imgProfile"
+                                <img id="imgProfile" src="{{asset('/storage/avatar/'.$user->image->slug)}}"
+                                     id="imgProfile"
                                      class="personal-avatar" alt="avatar">
                                 <figcaption class="personal-figcaption">
                                     <img
@@ -55,7 +54,8 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
                         <label class="label">
                             <input type="file" multiple accept='image/*' name="image" id="image" style="width: 200px;">
                             <figure class="personal-figure">
-                                <img id="imgProfile" src="/storage/avatar/fundo.png" class="personal-avatar" alt="avatar">
+                                <img id="imgProfile" src="/storage/avatar/fundo.png" class="personal-avatar"
+                                     alt="avatar">
                                 <figcaption class="personal-figcaption">
                                     <img
                                         src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png"
@@ -92,9 +92,9 @@ Asi funciona como exemplo de ter todos os estilos em um solo arquivo CSS -->
                     <!-- </li> -->
                     <!-- <li><span class="fa-li"><i class="fas fa-people-carry" style="font-size:20px ; color: #000000"></i></span>3 -->
                     <!-- Emprestimos</li> -->
-{{--                    <li><span class="fa-li"><i class="fas fa-thumbs-up"--}}
-{{--                                               style="font-size:20px ; color: #000000"></i></span>Recomendeme--}}
-{{--                    </li>--}}
+                    {{--                    <li><span class="fa-li"><i class="fas fa-thumbs-up"--}}
+                    {{--                                               style="font-size:20px ; color: #000000"></i></span>Recomendeme--}}
+                    {{--                    </li>--}}
                     <li><span class="fa-li"><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i></span>0
                         Recomendações
                     </li>

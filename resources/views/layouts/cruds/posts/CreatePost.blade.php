@@ -29,18 +29,15 @@
                         @csrf
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                            @if(!auth()->user())
-                                <img src="{{asset('/storage/avatar/fundo.png')}}" id="imgPost" name="imgPost"
-                                     class="profile"
-                                     style="width: 180px;height: 170px; ">
+                                @if(!auth()->user())
+                                    <img src="{{asset('/storage/avatar/fundo.png')}}" id="imgPost" name="imgPost"
+                                         class="profile"
+                                         style="width: 180px;height: 170px; ">
                                 @else
                                     <div class="fundo_img">
-
                                         <h2>Sua Foto</h2>
                                     </div>
                                 @endif
-
-
                                 <div class="profile-img img_upload">
                                     <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
                                 </div>

@@ -5,7 +5,6 @@
     <link href="{{ asset('/css/estilo_feed.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="../js/rendered-js.js"></script>
 </head>
 
 @section('content')
@@ -72,23 +71,19 @@
                                         <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
                                     </div>
                                 </div>
-                                <div class="detalhe_item shadow-sm">
+                                <div class="col-md-8">
                                     <!-- Detalhe do item publicado -->
-                                    <a href="#">
-                                        <img src="" alt="post"
-                                             id="imgPost"
-                                             name="imgPost"
-                                        />
-                                    </a>
-
+                                    <img src=""
+                                         id="imagePost"
+                                         name="imagePost"
+                                    >
                                 </div>
                                 <div class="input-group text_nova_publicacao">
                                 <textarea class="form-control"
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
-                                          autocomplete="off"
-                                >
+                                          autocomplete="off">
                                 </textarea>
                                 </div>
 
@@ -98,7 +93,7 @@
                                             <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
-                                        <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
+                                        <input type="file" name="image" id="image" multiple accept='image/*'>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-light">Publicar</button>
@@ -110,13 +105,13 @@
                                     <script>
                                         $(function () {
                                             $('#image').change(function () {
-                                                const file = $(this)[0].files[0];
-                                                console.log(file);
+                                                const image = $(this)[0].files[0];
+                                                console.log(image);
                                                 const fileReader = new FileReader();
                                                 fileReader.onloadend = function () {
                                                     $('#imgPost').attr('src', fileReader.result)
                                                 }
-                                                fileReader.readAsDataURL(file)
+                                                fileReader.readAsDataURL(image)
                                             })
                                         })
                                     </script>

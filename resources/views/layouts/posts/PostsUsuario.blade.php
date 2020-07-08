@@ -2,25 +2,24 @@
 @section('title', 'Posts do Usuario')
 
 <head>
-    <!-- Styles -->
-    <link href="./css/estilo_feed.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- JQuery and JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+    <link href="{{asset('css/estilo_feed.css')}}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
 <!-- Main -->
 @section('content')
+    @if (session('alert-success'))
+        <div class="container alert alert-success" role="alert">
+            {{session('alert-success')}}
+        </div>
+    @endif
+    @if ($errors)
+        @foreach ($errors->all as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
     <main class="main">
         <div class="row ">
         @if(!empty($user->id))
@@ -42,40 +41,44 @@
                             <div class="card text-center">
 
                                 <div class="card-body col-md-12">
-                                    <form method="post" action=""
+                                    <form method="post" action="{{ route('posts.update',$post->id) }}"
                                           enctype="multipart/form-data"
                                           autocomplete="off">
                                         @csrf
-                                        <div class="col-md-10 container ">
-                                            <div class="input-group">
-                                                <label for="title">Titulo:</label>
-                                                <input type="text" class="form-control" name="title" id="title"
-                                                       value="{{!empty($post->title)? $post->title:''}}"
-                                                       required/>
-                                            </div>
-                                        @if($post->image)<!--auth()->user()->image!=null-->
-                                            {{--                    @elseif(Storage::disk('public')->exists('/avatar/jorgito.png'))--}}
-                                            <img src="{{asset('/storage/posts/'.$post->image->slug)}}" id="imgPost"
-                                                 class="profile"
-                                                 style="width: 180px;height: 170px; ">
+                                        <div class="container">
+                                            @if($post->title)
+                                                <div class="detalhe_item row">
+                                                    <h3>Teste</h3>
+                                                    <h3>User ID:</h3>
+                                                    <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>
+                                                </div>
+                                                <div class=" col-md-10 detalhe_item form-group row">
+
+                                                    <h4>Titulo:</h4>
+                                                    <input type="text" class="form-control-file comment_post"
+                                                           id="title"
+                                                           name="title" autocomplete="off"
+                                                           value="{{!empty($post->title)? $post->title:''}}">
+                                                </div>
+                                            @endif
+                                            @if($post->image)
+                                                <img src="{{asset('/storage/posts/'.$post->image->slug)}}"
+                                                     id="imagePost"
+                                                     class="profile"
+                                                     style="width: 400px;height: 250px; ">
                                             @else
                                                 <div class="fundo_img">
-
                                                     <h2>Post Image</h2>
                                                 </div>
                                             @endif
 
-                                            <div class="input-group text_nova_publicacao">
-                                                <label for="comment">Comentario:</label>
-                                                <textarea class="form-control col-md-10"
-                                                          id="comment"
-                                                          name="comment"
-                                                          autocomplete="off"
-                                                >
-                                                    {{!empty($post->comment)? $post->comment:''}}
-
-                                             </textarea>
+                                            <div class="row detalhe_item col-md-10 input-group">
+                                                <h4>Comentario:</h4>
+                                                <input type="text" class="form-control-file comment_post" id="comment"
+                                                       name="comment" autocomplete="off"
+                                                       value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
+
                                         </div>
                                         <div class="acoes_nova_publicacao container row">
                                             <div class="col-md-6">
@@ -87,20 +90,17 @@
                                                        size='50'>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn btn-light">Editar</button>
+                                                <button type="submit" class="btn btn-outline-warning">Editar</button>
                                             </div>
-                                            <script
-                                                src="https://code.jquery.com/jquery-3.5.1.min.js"
-                                                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-                                                crossorigin="anonymous"></script>
                                             <script>
                                                 $(function () {
                                                     $('#image').change(function () {
+                                                        console.log('test');
                                                         const image = $(this)[0].files[0];
                                                         console.log(image);
                                                         const fileReader = new FileReader();
                                                         fileReader.onloadend = function () {
-                                                            $('#imgPost').attr('src', fileReader.result)
+                                                            $('#imagePost').attr('src', fileReader.result)
                                                         }
                                                         fileReader.readAsDataURL(image)
                                                     })
@@ -108,8 +108,38 @@
                                             </script>
                                         </div>
                                     </form>
+                                    <div
+                                        class="detalhe_item col-md-10 form-group justify-content-end">
+                                        <h4>Respostas:</h4>
+                                        <div class="card">
+                                            <form action="{{route('commentPost.create',$post->id,3)}}" method="post"
+                                                  autocomplete="off">
+                                                @csrf
+                                                <textarea class="form-control" id="new_comment" name="new_comment"
+                                                          placeholder="Interessad@!" required
+                                                ></textarea>
+                                                <div class="col-md-12" style="text-align: right">
+                                                    <button type="submit" class="btn btn-secondary">Comentar
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <p>For each de respostas aqui:</p>
+                                        <div class="card">
+                                            <textarea class="form-control" placeholder="resposta!"
+                                                      id="post_answer" name="post_answer" readonly></textarea>
+                                        </div>
+
+                                        <div class="card">
+                                            <textarea class="form-control" placeholder="resposta2"
+                                                      readonly></textarea>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
+
                             <br>
                         @endforeach
 

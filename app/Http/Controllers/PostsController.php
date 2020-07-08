@@ -80,13 +80,12 @@ class PostsController extends Controller
         //Section for the image
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             //Getting info from the image to upload
-            $destinationPath = public_path('/post/');
+            $destinationPath = public_path('/posts/');
             $imageName = Str::slug($post->title);
             $imageFormat = $request->image->clientExtension();
 
             $slug = Str::slug($imageName) . "." . ($imageFormat);
 
-//            dd('Dados', $post,$post->user());
 
             // Saving the image as object into the database
             $image = new Images([
@@ -166,17 +165,14 @@ class PostsController extends Controller
         if ($post->id !== null) {
             $post->title = $request->title;
             $post->comment = $request->comment;
-            $post->save();
+//            $post->save();
         }
 
 //        $post->user_id = $request->user_id;
 
         //Section for the image
-
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-
             if ($post->image) {
-
 
                 $image = Images::findOrFail($post->image->id);
 
@@ -199,9 +195,9 @@ class PostsController extends Controller
 
                 $path = Storage::putFileAs($location, $request->file('image'), $image->slug);
                 if ($path) {
-                    $image->save();
+                    $post->image()->save($image);
                 }
-                $post->image()->save($image);
+
             } else {
                 $destinationPath = public_path('/posts/');
                 $imageName = Str::slug($post->title);

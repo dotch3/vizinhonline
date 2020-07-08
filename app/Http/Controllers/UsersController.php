@@ -344,6 +344,13 @@ class UsersController extends Controller
         return redirect()->route('users.register', $user->id)->with('alert-success', 'Usuario atualizado corretamente!');
     }
 
+    //Function to add comments on the posts
+
+    public function commentPost()
+    {
+
+    }
+
 
 }
 
