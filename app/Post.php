@@ -21,10 +21,9 @@ class Post extends Model
     //Relationship many-many user-> posts
     // Using the pivot user_post
 
-    public function comments()
+    public function user_comments()
     {
         return $this->belongsToMany(User::class, 'user_comments', 'post_id', 'user_id')
-            ->using(UserComment::class)
             ->withTimestamps();
 
         //A user can be associated to a post:

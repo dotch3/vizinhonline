@@ -99,7 +99,8 @@ class User extends Authenticatable
     public function commments()
     {
         return $this->belongsToMany(Post::class, 'user_comments', 'user_id', 'post_id')
-            ->withPivot('comment')
+//            ->withPivot('comment')
+            ->using(UserComment::class)
             ->withTimestamps();
     }
 

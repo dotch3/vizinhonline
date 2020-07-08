@@ -41,14 +41,16 @@
                             <div class="card text-center">
 
                                 <div class="card-body col-md-12">
-                                    <form method="post" action="{{ route('posts.update',$post->id) }}"
+                                    <form method="post" action="{{ route('posts.update',$post) }}"
                                           enctype="multipart/form-data"
                                           autocomplete="off">
                                         @csrf
                                         <div class="container">
                                             @if($post->title)
                                                 <div class="detalhe_item row">
-                                                    <h3>Teste</h3>
+                                                    <h4>Teste </h4>
+                                                    <h3> Post ID</h3>
+                                                    <h3>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h3>
                                                     <h3>User ID:</h3>
                                                     <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>
                                                 </div>
@@ -112,7 +114,7 @@
                                         class="detalhe_item col-md-10 form-group justify-content-end">
                                         <h4>Respostas:</h4>
                                         <div class="card">
-                                            <form action="{{route('commentPost.create',$post->id,3)}}" method="post"
+                                            <form action="{{route('commentPost.create',$post)}}" method="post"
                                                   autocomplete="off">
                                                 @csrf
                                                 <textarea class="form-control" id="new_comment" name="new_comment"
@@ -126,15 +128,20 @@
                                         </div>
 
                                         <p>For each de respostas aqui:</p>
-                                        <div class="card">
-                                            <textarea class="form-control" placeholder="resposta!"
-                                                      id="post_answer" name="post_answer" readonly></textarea>
-                                        </div>
-
-                                        <div class="card">
-                                            <textarea class="form-control" placeholder="resposta2"
-                                                      readonly></textarea>
-                                        </div>
+{{--                                        {{dd($post->user_comments()->get()->first())}}--}}
+                                        @forelse($post->user_comments()->get() as $user_comment)
+                                            <div class="card">
+                                                <input class="form-control"
+                                                       id="post_answer" name="post_answer"
+                                                       value="{{!empty($user_comment->id)?  $user_comment->comment:'Nao tem resposta'}}"
+                                                >
+                                            </div>
+                                        @empty
+                                            <div class="card">
+                                            <textarea class="form-control" placeholder="Nao tem respostas ainda!"
+                                                      id="post_answer" readonly></textarea>
+                                            </div>
+                                        @endforelse
                                     </div>
                                 </div>
 
