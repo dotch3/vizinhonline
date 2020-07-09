@@ -5,7 +5,6 @@
     <link href="{{ asset('/css/estilo_feed.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="../js/rendered-js.js"></script>
 </head>
 
 @section('content')
@@ -57,7 +56,7 @@
                                         @if(!empty(auth()))
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
-                                                     src="{{!empty($user->image->slug) ? asset('/img/avatar/'.$user->image->slug): '' }} "
+                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
                                                      alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
@@ -68,28 +67,25 @@
                                     </div>
                                     <div class="opcoes_usuario">
                                         <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
-                                        <p>Apto 205 - Bloco A</p>
+                                        <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
                                         <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
                                     </div>
                                 </div>
-                                <div class="detalhe_item shadow-sm">
+                                <div class="col-md-8">
                                     <!-- Detalhe do item publicado -->
-                                    <a href="#">
-                                        <img src="" alt="novo post"
-                                             title="imagem novo post"
-                                             id="imgPost"/>
-                                    </a>
+                                    <img src=""
+                                         id="imagePost"
+                                         name="imagePost"
+                                    >
                                 </div>
                                 <div class="input-group text_nova_publicacao">
                                 <textarea class="form-control"
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
-                                          autocomplete="off"
-                                >
+                                          autocomplete="off">
                                 </textarea>
                                 </div>
-
 
                                 <div class="acoes_nova_publicacao container row">
                                     <div class="col-md-6">
@@ -97,7 +93,7 @@
                                             <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
-                                        <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
+                                        <input type="file" name="image" id="image" multiple accept='image/*'>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-light">Publicar</button>
@@ -138,7 +134,7 @@
                                     <div class="col-md-3 perfil">
                                         <a href="#">
                                             <img onclick="redirectToProfile(this.src)"
-                                                 src={{asset('/img/avatar/Marcelo.png')}}
+                                                 src={{asset('/storage/avatar/Marcelo.png')}}
                                                      alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                         </a>
@@ -210,7 +206,7 @@
                                 <div class="info_usuario container row">
                                     <div class="col-md-3 perfil">
                                         <a href="#">
-                                            <img src={{asset('/img/avatar/Fernando.png')}}  alt="perfil_usuario"
+                                            <img src={{asset('/storage/avatar/Fernando.png')}}  alt="perfil_usuario"
                                                  title="perfil usuario da publicacao"/>
                                         </a>
                                     </div>
@@ -278,7 +274,7 @@
                                     <div class="col-md-2">
                                         <div class="info_usuario_resposta">
                                             <a href="#">
-                                                <img src={{asset('/img/avatar/Lucia.png')}} alt="perfil_usuario"
+                                                <img src={{asset('/storage/avatar/Lucia.png')}} alt="perfil_usuario"
                                                      title="perfil usuario resposta"/>
                                             </a>
                                         </div>

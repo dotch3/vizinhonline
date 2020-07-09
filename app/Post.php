@@ -11,10 +11,9 @@ class Post extends Model
 
     //Criating the fillable for the factory
     protected $fillable = [
-        'comment',
         'title',
         'comment',
-        'image_id',
+        'user_id',
         'created_at',
         'updated_at',
     ];
@@ -22,14 +21,18 @@ class Post extends Model
     //Relationship many-many user-> posts
     // Using the pivot user_post
 
-    public function users()
+    public function comments()
     {
-        return $this->belongsToMany(User::class, 'user_post', 'post_id', 'user_id')
-            ->using(UserPost::class)
+        return $this->belongsToMany(User::class, 'user_comments', 'post_id', 'user_id')
+            ->using(UserComment::class)
             ->withTimestamps();
 
         //A user can be associated to a post:
         //post->users()->attach($users);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function image()
