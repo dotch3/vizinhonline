@@ -18,7 +18,7 @@ class CreateItemUserTable extends Migration
             $table->integer('users_id')->unsigned();
             $table->foreign('items_id')->references('id')->on('items')
                 ->onDelete('cascade');
-            $table->foreign('users')->references('id')->on('users')
+            $table->foreign('users_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->integer('lenditem_id'); //TODO: relacionar com lend_item
             $table->timestamps();

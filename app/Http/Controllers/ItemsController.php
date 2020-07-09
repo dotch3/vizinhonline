@@ -21,16 +21,10 @@ class ItemsController extends Controller
         return view('layouts.cruds.items.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,7 +46,7 @@ class ItemsController extends Controller
 
         $imagePath = '/public/items';
         $imageFile = $request->file('image');
-        $imageName = $request->get('name').".".$imageFile->getClientOriginalExtension();
+        $imageName = $request->get('name') . "." . $imageFile->getClientOriginalExtension();
         Storage::putFileAs($imagePath, $imageFile, $imageName);
         $image = new Images([
             'name' => $imageName,
