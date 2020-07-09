@@ -2,16 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserComment extends Pivot
+class UserResponse extends Pivot
 {
-    protected $table = "user_comments";
+    protected $table = "user_responses";
 
     protected $fillable =
         [
-            'comment',
+            'reply',
             'user_id',
             'post_id',
             'created_at',

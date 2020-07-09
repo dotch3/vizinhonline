@@ -84,7 +84,7 @@
                     <li><a href="{{ !empty($user->id) ? route('posts',$user->id): '#' }} " style="color:inherit">
                     <span class="fa-li"><i class="fas fa-check-square"
                                            style="font-size:20px ; color: #000000"></i></span>
-                            Meus posts
+                            Meus posts {{!empty($user->posts)? count($user->posts): ''}}
                         </a>
                     </li>
                     <!-- verificar se os itens abaixo serão necessarios, pois invite é muito complicado a programacao e contagem de emprestimo será comprometida se fizer fora da plataforma -->

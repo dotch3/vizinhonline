@@ -116,11 +116,11 @@ Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
 
 //comments on posts
 
-Route::post('/PostsUsuario/{id}', 'UsersCommentsController@user_comment')->name('commentPost.create');
+Route::post('/PostsUsuario/{id}', 'UsersResponsesController@response')->name('PostResponse.create');
 
-Route::get('/user_comments','UsersCommentsController@test');
+Route::get('/responses','UsersResponsesController@test');
 
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
