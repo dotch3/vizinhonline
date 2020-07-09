@@ -165,7 +165,7 @@ class PostsController extends Controller
         if ($post->id !== null) {
             $post->title = $request->title;
             $post->comment = $request->comment;
-//            $post->save();
+            $post->save();
         }
 
 //        $post->user_id = $request->user_id;

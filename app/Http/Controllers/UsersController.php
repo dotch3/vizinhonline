@@ -346,11 +346,6 @@ class UsersController extends Controller
 
     //Function to add comments on the posts
 
-    public function commentPost()
-    {
-
-    }
-
 
 }
 

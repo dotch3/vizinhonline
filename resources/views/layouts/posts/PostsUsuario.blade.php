@@ -41,14 +41,16 @@
                             <div class="card text-center">
 
                                 <div class="card-body col-md-12">
-                                    <form method="post" action="{{ route('posts.update',$post->id) }}"
+                                    <form method="post" action="{{ route('posts.update',$post) }}"
                                           enctype="multipart/form-data"
                                           autocomplete="off">
                                         @csrf
                                         <div class="container">
                                             @if($post->title)
                                                 <div class="detalhe_item row">
-                                                    <h3>Teste</h3>
+                                                    <h4>Teste </h4>
+                                                    <h3> Post ID</h3>
+                                                    <h3>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h3>
                                                     <h3>User ID:</h3>
                                                     <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>
                                                 </div>
@@ -74,8 +76,8 @@
 
                                             <div class="row detalhe_item col-md-10 input-group">
                                                 <h4>Comentario:</h4>
-                                                <input type="text" class="form-control-file comment_post" id="comment"
-                                                       name="comment" autocomplete="off"
+                                                <input type="text" class="form-control-file comment_post" id="reply"
+                                                       name="reply" autocomplete="off"
                                                        value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
 
@@ -112,11 +114,11 @@
                                         class="detalhe_item col-md-10 form-group justify-content-end">
                                         <h4>Respostas:</h4>
                                         <div class="card">
-                                            <form action="{{route('commentPost.create',$post->id,3)}}" method="post"
+                                            <form action="{{route('PostResponse.create',$post)}}" method="post"
                                                   autocomplete="off">
                                                 @csrf
-                                                <textarea class="form-control" id="new_comment" name="new_comment"
-                                                          placeholder="Interessad@!" required
+                                                <textarea class="form-control" id="reply" name="reply"
+                                                          placeholder="Nova resposta.." required
                                                 ></textarea>
                                                 <div class="col-md-12" style="text-align: right">
                                                     <button type="submit" class="btn btn-secondary">Comentar
@@ -125,16 +127,44 @@
                                             </form>
                                         </div>
 
-                                        <p>For each de respostas aqui:</p>
-                                        <div class="card">
-                                            <textarea class="form-control" placeholder="resposta!"
-                                                      id="post_answer" name="post_answer" readonly></textarea>
-                                        </div>
+                                        @forelse($post->repliers()->get() as $replier)
 
-                                        <div class="card">
-                                            <textarea class="form-control" placeholder="resposta2"
+                                            <div class="info_usuario_publicacao container row">
+                                                <div class="col-md-3 perfil">
+                                                    @if(!empty(auth()))
+                                                        <a href="#">
+                                                            <img onclick="redirectToProfile(this.src)"
+                                                                 src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
+                                                                 alt="replier" title="replier"
+                                                                 width="190" height="130"/>
+                                                        </a>
+                                                    @else
+                                                        <div class=" fundo_img">
+                                                            <h2>replier foto</h2>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="opcoes_usuario">
+                                                    <h3>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h3>
+                                                    <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
+                                                    <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="card row">
+                                                <
+                                                <input class="form-control"
+                                                       id="reply" name="reply"
+                                                       value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
+                                                       disabled
+                                                >
+                                            </div>
+                                        @empty
+                                            <div class="card">
+                                            <textarea class="form-control" placeholder="Nao tem respostas ainda!"
                                                       readonly></textarea>
-                                        </div>
+                                            </div>
+                                        @endforelse
                                     </div>
                                 </div>
 

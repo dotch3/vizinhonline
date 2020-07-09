@@ -37,7 +37,7 @@
                                 <input type="file" multiple accept='image/*' name="image" id="image"
                                        style="width: 200px;">
                                 <figure class="personal-figure">
-                                    <img id="imgProfile" src="img/avatar/fundo.png" class="personal-avatar"
+                                    <img id="imgProfile" src="storage/avatar/fundo.png" class="personal-avatar"
                                          alt="avatar">
                                     <figcaption class="personal-figcaption">
                                         <img
