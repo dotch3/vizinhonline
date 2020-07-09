@@ -27,7 +27,7 @@
         <form id="signin" class="needs-validation"
               enctype="multipart/form-data"
               method="post"
-              action="{{route('users.new')}}"
+              action="{{route('register')}}"
               autocomplete="off">
             @csrf
             <div class="row no-gutters">
@@ -86,7 +86,7 @@
                                 <input type="text" name="name" placeholder="Nome" value="" required>
                             </div>       
                             <div class = "col-5">      
-                                <input type="text" name="lastname" placeholder="Sobrenome" value="" required>
+                                <input type="text" name="last_name" placeholder="Sobrenome" value="" required>
                             </div> 
                         </div>    
                             <br/>
@@ -139,10 +139,12 @@
                         <br/>
                         <div class="row">
                             <div class="col-5">
-                                <input type="password" name="password" placeholder="Senha" required value="">
+                            <input id="password" type="password" placeholder="Senha" name="password" required autocomplete="new-password">
                             </div>    
                             <div class="col-5">
-                                <input type="password" name="confirm_password" placeholder="Confirmar senha" required value="">
+                                <!-- <input type="password" name="password-confirm" placeholder="Confirmar senha" required value=""> -->
+                                <input id="password-confirm" type="password" placeholder="Confirmar Senha" name="password_confirmation" required autocomplete="new-password">
+
                             </div>
                         
                         </div>
