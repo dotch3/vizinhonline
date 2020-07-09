@@ -71,7 +71,20 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'rg' => $data['rg'],
+            'cpf' => $data['cpf'],
+            'cellphone' => $data['cellphone'],
+            'building' => $data['building'],
+            'apartment_number' => $data['apartment_number'],
+            'intercom' => $data['intercom'],
+            'age' => $data['age'],
             'password' => Hash::make($data['password']),
+            
         ]);
+
+        return redirect()->route('feed.index');
+
     }
+
 }

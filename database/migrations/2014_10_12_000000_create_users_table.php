@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
                 $table->string('address')->nullable();
                 $table->string('building')->nullable();
                 $table->string('apartment_number')->nullable();
-                $table->string('intercom_branch')->nullable();
+                $table->string('intercom')->nullable();
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
