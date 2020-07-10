@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        // Verify if the user logged is registered or not
-        if (auth()) {
-            $user = User::where('name', 'Fernando')->first();
-            return view('layouts/main/Feed', compact('user'));
-
+        if (Auth::check()){
+            return view('layouts/main/Feed');
         }
-        return view('layouts/main/Home');
+        else {
+            return view('layouts/main/Home');
+        }
     }
 
     public function cadastroItem()

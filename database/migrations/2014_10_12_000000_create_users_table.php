@@ -13,8 +13,26 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('users')) {
-            Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
+        if (!Schema::hasTable('users')) { // this will avoid overwrite the table created by the .sql file
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('last_name')->nullable();
+                $table->string('rg')->nullable();
+                $table->string('cpf')->nullable();
+                $table->string('cellphone')->nullable();
+                $table->string('age')->nullable();
+                $table->string('address')->nullable();
+                $table->string('building')->nullable();
+                $table->string('apartment_number')->nullable();
+                $table->string('intercom')->nullable();
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
         }
 
 

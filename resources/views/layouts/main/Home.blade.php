@@ -19,7 +19,7 @@
                     <li class="nav-item col-2 mt-1">Logo</li>
                     <li class="nav-item col-7">
 
-                    <button onclick="window.location.href='/CadastroUsuario'" class="buttonHeader" data-toggle="modal">Cadastre-se </button>
+                    <button onclick="window.location.href='/register'" class="buttonHeader" data-toggle="modal">Cadastre-se </button>
 
                 </li>
 
