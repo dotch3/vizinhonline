@@ -21,10 +21,6 @@ class ItemsController extends Controller
         return view('layouts.cruds.items.index', compact('items'));
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -52,9 +48,9 @@ class ItemsController extends Controller
             'name' => $imageName,
             'path_location' => $imagePath
         ]);
-
         $image->save();
         $item->images()->attach($image->id);
+
         return redirect()->route('perfilUsuario');
     }
 
