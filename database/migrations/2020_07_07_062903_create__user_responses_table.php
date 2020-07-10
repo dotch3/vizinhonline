@@ -13,8 +13,8 @@ class CreateResponsesTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('user_post')) {
-            Schema::dropIfExists('user_post');
+        if (Schema::hasTable('user_responses')) {
+            Schema::dropIfExists('user_responses');
         }
         Schema::create('user_responses', function (Blueprint $table) {
             $table->id();
