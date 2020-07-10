@@ -40,23 +40,20 @@
                         @foreach($user->posts as $post)
                             <div class="card text-center">
 
-                                <div class="card-body col-md-12">
+                                <div class=" col-md-12 container">
                                     <form method="post" action="{{ route('posts.update',$post) }}"
                                           enctype="multipart/form-data"
                                           autocomplete="off">
                                         @csrf
                                         <div class="container">
                                             @if($post->title)
-                                                <div class="detalhe_item row">
-                                                    <h4>Teste </h4>
-                                                    <h3> Post ID</h3>
+                                                <div class="detalhe_post row  shadow-sm">
+                                                    <h3> teste: Post ID</h3>
                                                     <h3>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h3>
                                                     <h3>User ID:</h3>
                                                     <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>
                                                 </div>
-                                                <div class=" col-md-10 detalhe_item form-group row">
-
-                                                    <h4>Titulo:</h4>
+                                                <div class=" container detalhe_post form-group row">
                                                     <input type="text" class="form-control-file comment_post"
                                                            id="title"
                                                            name="title" autocomplete="off"
@@ -64,23 +61,26 @@
                                                 </div>
                                             @endif
                                             @if($post->image)
-                                                <img src="{{asset('/storage/posts/'.$post->image->slug)}}"
-                                                     id="imagePost"
-                                                     class="profile"
-                                                     style="width: 400px;height: 250px; ">
+                                                <div class="detalhe_post col-md-12">
+                                                    <a href="">
+                                                        <img src="{{asset('/storage/posts/'.$post->image->slug)}}"
+                                                             id="imagePost"
+                                                             class="profile"
+                                                             style="width: 80%;">
+                                                    </a>
+                                                </div>
                                             @else
                                                 <div class="fundo_img">
                                                     <h2>Post Image</h2>
                                                 </div>
                                             @endif
 
-                                            <div class="row detalhe_item col-md-10 input-group">
-                                                <h4>Comentario:</h4>
+                                            <div class="row detalhe_post col-md-10 input-group">
+                                                <!--Post Comment-->
                                                 <input type="text" class="form-control-file comment_post" id="reply"
                                                        name="reply" autocomplete="off"
                                                        value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
-
                                         </div>
                                         <div class="acoes_nova_publicacao container row">
                                             <div class="col-md-6">
@@ -92,7 +92,7 @@
                                                        size='50'>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn btn-outline-warning">Editar</button>
+                                                <button type="submit" class="btn btn-light">Editar</button>
                                             </div>
                                             <script>
                                                 $(function () {
@@ -111,60 +111,62 @@
                                         </div>
                                     </form>
                                     <div
-                                        class="detalhe_item col-md-10 form-group justify-content-end">
+                                        class=" container col-md-11 justify-content-end detalhe_respostas">
                                         <h4>Respostas:</h4>
-                                        <div class="card">
-                                            <form action="{{route('PostResponse.create',$post)}}" method="post"
-                                                  autocomplete="off">
-                                                @csrf
-                                                <textarea class="form-control" id="reply" name="reply"
-                                                          placeholder="Nova resposta.." required
-                                                ></textarea>
-                                                <div class="col-md-12" style="text-align: right">
-                                                    <button type="submit" class="btn btn-secondary">Comentar
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        @forelse($post->repliers()->get() as $replier)
-
-                                            <div class="info_usuario_publicacao container row">
-                                                <div class="col-md-3 perfil">
-                                                    @if(!empty(auth()))
-                                                        <a href="#">
-                                                            <img onclick="redirectToProfile(this.src)"
-                                                                 src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
-                                                                 alt="replier" title="replier"
-                                                                 width="190" height="130"/>
-                                                        </a>
-                                                    @else
-                                                        <div class=" fundo_img">
-                                                            <h2>replier foto</h2>
+                                        <div class="container shadow-sm respostas">
+                                            @forelse($post->repliers()->get() as $replier)
+                                                <div class="row container mt-3">
+                                                    <div class="col-md-2">
+                                                        <div class="info_usuario_resposta">
+                                                            @if(!empty($replier->id))
+                                                                <a href="#">
+                                                                    <img onclick="redirectToProfile(this.src)"
+                                                                         src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
+                                                                         alt="replier" title="replier"
+                                                                         width="80 px"/>
+                                                                </a>
+                                                            @else
+                                                                <div class=" fundo_img">
+                                                                    <h2>replier foto</h2>
+                                                                </div>
+                                                            @endif
                                                         </div>
-                                                    @endif
+                                                    </div>
+                                                    <div class="col-md-5 reply">
+                                                        <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
+                                                        <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
+                                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="opcoes_usuario">
-                                                    <h3>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h3>
-                                                    <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
-                                                    <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
-                                                </div>
-                                            </div>
 
-                                            <div class="card row">
-                                                <
-                                                <input class="form-control"
-                                                       id="reply" name="reply"
-                                                       value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
-                                                       disabled
-                                                >
-                                            </div>
-                                        @empty
-                                            <div class="card">
-                                            <textarea class="form-control" placeholder="Nao tem respostas ainda!"
-                                                      readonly></textarea>
-                                            </div>
-                                        @endforelse
+                                                <div
+                                                    class="input-group resposta col-md-12 d-flex justify-content-md-center">
+                                                    <input class="form-control"
+                                                           id="reply" name="reply"
+                                                           value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
+                                                           disabled
+                                                    >
+                                                </div>
+                                            @empty
+
+                                                <textarea class="form-control" placeholder="Nao tem respostas ainda!"
+                                                          readonly></textarea>
+
+                                            @endforelse
+                                        </div>
+                                    </div>
+                                    <div class="container detalhe_post">
+                                        <form action="{{route('PostResponse.create',$post)}}" method="post"
+                                              autocomplete="off">
+                                            @csrf
+                                            <textarea class="form-control" id="reply" name="reply"
+                                                      placeholder="Nova resposta.." required
+                                            ></textarea>
+
+                                            <button type="submit" class="btn btn-outline-secondary">Comentar
+                                            </button>
+
+                                        </form>
                                     </div>
                                 </div>
 
