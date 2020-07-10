@@ -106,4 +106,9 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function items() {
+        return $this->belongsToMany(Items::class, 'item_user');
+    }
+
+
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
-Route::get('/PerfilUsuario', 'PagesController@perfilUsuario');
+Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
@@ -77,6 +78,8 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
+Route::resource('items', 'ItemsController');
+
 Route::get('/items', 'ItemsController@index')->name('items.index');
 
 

@@ -17,7 +17,10 @@ class Items extends Model
         'internal_notes',
         'feedback_score',
         'units',
-        'replacement_cost'
+        'replacement_cost',
+        'itemstatus_id',
+        'loan_start_date',
+        'loan_end_date'
     ];
 
     public function status()
@@ -36,5 +39,13 @@ class Items extends Model
     {
         $fav = Favorite::find(2);
         return $fav;
+    }
+
+    public function images() {
+        return $this->belongsToMany(Images::class, 'image_item');
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'item_user');
     }
 }
