@@ -179,11 +179,12 @@ input {
 
 .img_upload {
     font-size: 16px;
-    position: absolute;
+    position: relative;
     width: 50px;
     height: 100px;
-    top: 206px;
-    margin: 50px 50px 50px 100px;
+    top: 20px;
+    left: 35px;
+    
 }
 
 .fundo_img {
@@ -271,5 +272,9 @@ input {
     margin-top: 32.5px;
     width: 50px;
     height: 50px;
+  }
+  .dadosUser{
+      position: relative;
+      top: 140px;
   }
     

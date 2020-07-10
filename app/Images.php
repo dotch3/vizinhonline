@@ -18,6 +18,7 @@ class Images extends Model
         'format_image',
         'size_image',
         'user_id',
+        'post_id',
         'created_at',
         'updated_at'
     ];

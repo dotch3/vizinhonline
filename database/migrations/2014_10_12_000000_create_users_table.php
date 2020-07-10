@@ -34,6 +34,24 @@ class CreateUsersTable extends Migration
                 $table->timestamps();
             });
         }
+
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('cellphone')->nullable();
+            $table->string('rg')->nullable();
+            $table->string('cpf')->nullable();
+            $table->integer('age')->nullable();
+            $table->decimal('ranking',5,2)->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
+//        }
     }
 
     /**
