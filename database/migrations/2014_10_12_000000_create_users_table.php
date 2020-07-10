@@ -50,6 +50,7 @@ class CreateUsersTable extends Migration
             $table->decimal('ranking',5,2)->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 //        }
     }

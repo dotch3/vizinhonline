@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('comment');
             $table->timestamps();
+//            $table->softDeletes();
 
             $table->foreign('user_id')
                 ->references('id')

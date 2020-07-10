@@ -268,7 +268,7 @@
                                     <div class="col-md-2">
                                         <div class="info_usuario_resposta">
                                             <a href="#">
-                                                <img src={{asset('/storage/avatar/Lucia.png')}} alt="perfil_usuario"
+                                                <img src={{asset('/storage/avatar/lucia.png')}} alt="perfil_usuario"
                                                      title="perfil usuario resposta"/>
                                             </a>
                                         </div>

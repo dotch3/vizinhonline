@@ -251,11 +251,20 @@ textarea {
 .comment_post {
     text-align: left;
     padding: 10px;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #a60356;
+    margin: 15px 25px 0 25px;
 }
 
 .detalhe_item {
     text-align: left;
     padding-bottom: 3px;
+
 }
 
 .detalhe_item a img {
@@ -322,4 +331,96 @@ h2 {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
+}
+
+
+/*
+Posts
+*/
+
+.reply p {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: left ;
+}
+
+.reply h5 {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    color: #a60356;
+    padding: 10px;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.respostas{
+    margin: 10px 0 25px 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-top-width: 1px;
+    border-top-style: dotted;
+    padding-bottom: 20px;
+    border-color: #ccc;
+}
+.respostas textarea{
+    margin-top: 10px;
+}
+.respostas input{
+    margin-top: 10px;
+}
+.detalhe_post{
+    text-align: left;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.detalhe_post a img {
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+}
+
+.detalhe_post h3 {
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 10px;
+    margin: 20px;
+}
+.detalhe_post textarea{
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+    padding-top: 15px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.detalhe_respostas h4{
+    text-align: left;
+    padding: 10px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 15px 25px 0 25px;
+    text-decoration: underline;
+    color: #a60356;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:active, .btn-outline-secondary:visited {
+    background-color: rgba(166, 3, 86, 0.44) !important;
 }
