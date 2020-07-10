@@ -19,7 +19,7 @@ class UsersResponsesController extends Controller
             'reply' => 'required|string|max:300'
         ]);
         $post = Post::find($id);
-        $user = User::where('name', 'Marcelo')->first(); //using hardcode to MArcelo
+        $user = User::where('name', 'Aaron')->first(); //using hardcode to MArcelo
         if ($post && $user) {
             $response = new UserResponse();
             $response->reply = $request->reply;
