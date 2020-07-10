@@ -24,11 +24,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'lastname',
+        'last_name',
         'email',
         'email_verified_at',
         'password',
         'cellphone',
+        'address',
+        'building',
+        'apartment_number',
+        'intercom',
         'rg',
         'cpf',
         'age',
@@ -96,10 +100,9 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function commments()
+    public function responses()
     {
-        return $this->belongsToMany(Post::class, 'user_comments', 'user_id', 'post_id')
-            ->withPivot('comment')
+        return $this->belongsToMany(Post::class, 'user_responses')
             ->withTimestamps();
     }
 

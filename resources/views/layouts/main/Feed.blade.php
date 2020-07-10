@@ -3,8 +3,6 @@
 
 <head>
     <link href="{{ asset('/css/estilo_feed.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 @section('content')
@@ -73,7 +71,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <!-- Detalhe do item publicado -->
-                                    <img src=""
+                                    <img src="" class="profile"
                                          id="imagePost"
                                          name="imagePost"
                                     >
@@ -93,15 +91,11 @@
                                             <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
-                                        <input type="file" name="image" id="image" multiple accept='image/*'>
+                                        <input type="file" name="image" id="image" multiple accept="image/*">
                                     </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-light">Publicar</button>
                                     </div>
-                                    <script
-                                        src="https://code.jquery.com/jquery-3.5.1.min.js"
-                                        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-                                        crossorigin="anonymous"></script>
                                     <script>
                                         $(function () {
                                             $('#image').change(function () {

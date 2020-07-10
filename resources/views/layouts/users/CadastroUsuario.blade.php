@@ -24,7 +24,7 @@
         <form id="signin" class="needs-validation"
               enctype="multipart/form-data"
               method="post"
-              action="{{route('users.new')}}"
+              action="{{route('register')}}"
               autocomplete="off">
             @csrf
             <div class="row no-gutters">
@@ -37,7 +37,7 @@
                                 <input type="file" multiple accept='image/*' name="image" id="image"
                                        style="width: 200px;">
                                 <figure class="personal-figure">
-                                    <img id="imgProfile" src="img/avatar/fundo.png" class="personal-avatar"
+                                    <img id="imgProfile" src="storage/avatar/fundo.png" class="personal-avatar"
                                          alt="avatar">
                                     <figcaption class="personal-figcaption">
                                         <img
@@ -83,14 +83,14 @@
                         <div class="row">
                             <div class="col-5">
                                 <input type="text" name="name" placeholder="Nome" value="" required>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" name="lastname" placeholder="Sobrenome" value="" required>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-5">
+                            </div>       
+                            <div class = "col-5">      
+                                <input type="text" name="last_name" placeholder="Sobrenome" value="" required>
+                            </div> 
+                        </div>    
+                            <br/>
+                        <div class="row">  
+                            <div class = "col-5"> 
                                 <input type="text" name="rg" id="rg" placeholder="RG" value="" required>
                             </div>
                             <div class="col-5">
@@ -136,18 +136,19 @@
                                 <input type="text" name="address" placeholder="Endereço" value="">
                                 <!-- Relation with locations come here -->
                             </div>
-                            <div class="col-5">
-                                <input type="text" name="intercom_branch" placeholder="Interfone" value="">
+                            <div class="col-5">    
+                                <input type="text" name="intercom" placeholder="Interfone" value="">
                             </div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-5">
-                                <input type="password" name="password" placeholder="Senha" required value="">
-                            </div>
+                            <input id="password" type="password" placeholder="Senha" name="password" required autocomplete="new-password">
+                            </div>    
                             <div class="col-5">
-                                <input type="password" name="confirm_password" placeholder="Confirmar senha" required
-                                       value="">
+                                <!-- <input type="password" name="password-confirm" placeholder="Confirmar senha" required value=""> -->
+                                <input id="password-confirm" type="password" placeholder="Confirmar Senha" name="password_confirmation" required autocomplete="new-password">
+
                             </div>
 
                         </div>
