@@ -30,7 +30,7 @@ Route::get('/favorites', 'FavoritesController@index')->name('favorites.index');
 Route::get('/detailFavorite/{id}', 'FavoritesController@show')->name('favorites.show');
 //Create
 Route::get('/createFavorite', 'FavoritesController@create')->name('favorites.create');
-Route::get('/EditFavorite', 'FavoritesController@edit')->name('favorites.edit');
+Route::get('/EditFavorite/{id}', 'FavoritesController@edit')->name('favorites.edit');
 
 Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');

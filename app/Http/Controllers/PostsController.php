@@ -167,7 +167,7 @@ class PostsController extends Controller
             $post->comment = $request->comment;
             $post->save();
         }
-
+//        dd($post,$request);
 //        $post->user_id = $request->user_id;
 
         //Section for the image
@@ -227,8 +227,8 @@ class PostsController extends Controller
             $post->save();
         }
 
-        return redirect()->route('posts.edit', $post->id)
-            ->with('alert-success', 'You have successfully updated the post.');
+        return redirect()->route('posts', $post->user->id)
+            ->with('alert-success', 'Post atualizado com sucesso.');
 
     }
 

@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@vizinhonline.com',
             'password' => bcrypt('rootadmin'),
             'cellphone' => '900000000',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         $admin = User::where('name', 'like', '%AdministratorName%')->first();
@@ -31,7 +33,9 @@ class DatabaseSeeder extends Seeder
             'apartment_number' => '40',
             'address' => 'Rua Administrador',
             'intercom_branch' => '40010',
-            'user_id' => $admin->id
+            'user_id' => $admin->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
 
         ]);
 
@@ -43,6 +47,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'fernando@vizinhonline.com',
             'password' => bcrypt('fernando'),
             'cellphone' => '911232245',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         $fernando = User::where('name', 'like', '%Fernando%')->first();
@@ -53,7 +59,9 @@ class DatabaseSeeder extends Seeder
             'apartment_number' => '250',
             'address' => 'Rua Central',
             'intercom_branch' => '2500',
-            'user_id' => $fernando->id
+            'user_id' => $fernando->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         // Image
@@ -61,7 +69,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'fernando',
             'slug' => 'fernando.png',
             'format_image' => 'png',
-            'user_id' => $fernando->id
+            'user_id' => $fernando->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
 
         ]);
 
@@ -73,8 +83,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'marcelo@vizinhonline.com',
             'password' => bcrypt('marcelo'),
             'cellphone' => '151123225',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
-        $mauricio = User::where('name', 'like', '%Marcelo%')->first();
+        $marcelo = User::where('name', 'like', '%Marcelo%')->first();
 
         //Locations
         DB::table('locations')->insert([
@@ -82,7 +94,9 @@ class DatabaseSeeder extends Seeder
             'apartment_number' => '250',
             'address' => 'Rua Central',
             'intercom_branch' => '2500',
-            'user_id' => $mauricio->id
+            'user_id' => $marcelo->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         // Image
@@ -90,7 +104,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'marcelo',
             'slug' => 'marcelo.png',
             'format_image' => 'png',
-            'user_id' => $mauricio->id
+            'user_id' => $marcelo->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
 
         ]);
 
@@ -102,6 +118,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'lucia@vizinhonline.com',
             'password' => bcrypt('lucia'),
             'cellphone' => '922232650',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         $lucia = User::where('name', 'like', '%Lucia%')->first();
@@ -110,7 +128,9 @@ class DatabaseSeeder extends Seeder
             'apartment_number' => '22',
             'address' => 'Rua Principal',
             'intercom_branch' => '220',
-            'user_id' => $lucia->id
+            'user_id' => $lucia->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
 
         ]);
 
@@ -119,7 +139,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'lucia',
             'slug' => 'lucia.png',
             'format_image' => 'png',
-            'user_id' => $lucia->id
+            'user_id' => $lucia->id,
+            'created_at'=>now(),
+            'updated_at'=>now()
 
         ]);
 

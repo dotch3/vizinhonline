@@ -11,6 +11,8 @@ $factory->define(Favorite::class, function (Faker $faker) {
         'name' => $faker->randomElement(['ITEM','POST','USER']),
         'description'=>'testing',
         'code' => $faker->randomElement(['FAV','DISFAV']),
-        'status'=>$faker->randomElement(['Active','Inactive'])
+        'status'=>$faker->randomElement(['Active','Inactive']),
+        'created_at'=>now(),
+        'updated_at'=>now()
     ];
 });
