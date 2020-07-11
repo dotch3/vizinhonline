@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserResponsesTable extends Migration
+class CreateFavoriteUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateUserResponsesTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('user_responses')) {
-            Schema::dropIfExists('user_responses');
-        }
-        Schema::create('user_responses', function (Blueprint $table) {
-            $table->id();
-            $table->string('reply', 300);
+        Schema::create('favorite_user', function (Blueprint $table) {
+            $table->BigIncrements('id');
             $table->foreignId('user_id');
-            $table->foreignId('post_id');
+            $table->foreignId('post_id')->nullable();
+            $table->foreignId('item_id')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')
@@ -30,6 +27,11 @@ class CreateUserResponsesTable extends Migration
             $table->foreign('post_id')
                 ->references('id')
                 ->on('posts')
+                ->onDelete('cascade');
+
+            $table->foreign('item_id')
+                ->references('id')
+                ->on('items')
                 ->onDelete('cascade');
 
             $table->timestamps();
@@ -43,6 +45,6 @@ class CreateUserResponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_responses');
+        Schema::dropIfExists('favorite_user');
     }
 }

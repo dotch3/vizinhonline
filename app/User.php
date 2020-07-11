@@ -40,6 +40,7 @@ class User extends Authenticatable
         'ranking',
         'created_at',
         'updated_at',
+        'deleted_at',
         'remember_token',
     ];
 

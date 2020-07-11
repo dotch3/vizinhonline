@@ -77,8 +77,8 @@
 
                                             <div class="row detalhe_post col-md-10 input-group">
                                                 <!--Post Comment-->
-                                                <input type="text" class="form-control-file comment_post" id="reply"
-                                                       name="reply" autocomplete="off"
+                                                <input type="text" class="form-control-file comment_post" id="comment"
+                                                       name="comment" autocomplete="off"
                                                        value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
                                         </div>

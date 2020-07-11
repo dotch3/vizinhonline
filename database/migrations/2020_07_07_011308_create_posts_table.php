@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             Schema::dropIfExists('posts');
         }
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->BigIncrements('id');
+            $table->foreignId('user_id');
             $table->string('title');
             $table->string('comment');
             $table->timestamps();

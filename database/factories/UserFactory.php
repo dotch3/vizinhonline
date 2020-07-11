@@ -35,6 +35,7 @@ $factory->define(User::class, function () use ($faker) {
         'age'=>$faker->numberBetween(18, 80),
         'ranking'=>$faker->numberBetween(1, 5),
         'created_at'=>now(),
+        'updated_at'=>now(),
         'remember_token' => Str::random(10)
 
     ];
