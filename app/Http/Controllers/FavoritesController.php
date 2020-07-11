@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Favorite;
+use App\User;
+use App\Items;
+use App\Post;
 use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
@@ -16,7 +19,7 @@ class FavoritesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //

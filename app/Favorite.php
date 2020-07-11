@@ -24,7 +24,8 @@ class Favorite extends Model
     //Relationships with other entities:
     public function users()
     {
-        return $this->belongsToMany(User::class, 'favorite_user', 'favorite_id', 'user_id');
+        return $this->belongsToMany(User::class, 'favorite_user')
+            ->withTimestamps();
     }
 
     public function posts()
@@ -37,14 +38,6 @@ class Favorite extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function update_user_favorites($user_id, $fav_id)
-    {
-        $user = User::find($user_id);
-        $fav = Favorite::find($fav_id);
 
-        $fav->users()->attach($user->id_user);
-
-
-    }
 
 }

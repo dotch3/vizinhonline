@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="sobrenome" style="font-size:12px">Sobrenome</label>
-                                <input type="text" name="lastname" placeholder="Sobrenome"
+                                <input type="text" name="lastname" id="lastname" placeholder="Sobrenome"
                                        value="{{ !empty($user->id) ? $user->lastname : '' }}" required>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="CPF" style="font-size:12px">CPF</label>
-                                <input type="text" name="cpf" maxlength="14" placeholder="CPF"
+                                <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="CPF"
                                        value="{{ !empty($user->id) ? $user->cpf: '' }}" required
                                        onkeydown="javascript: fMasc( this, mCPF ); ">
                             </div>

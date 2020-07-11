@@ -19,7 +19,7 @@ class UsersResponsesController extends Controller
             'reply' => 'required|string|max:300'
         ]);
         $post = Post::find($id);
-        $user = User::where('name', 'Lucia')->first(); //using hardcode to MArcelo
+        $user = User::where('name', 'Marcelo')->first(); //using hardcode to MArcelo
         if ($post && $user) {
             $response = new UserResponse();
             $response->reply = $request->reply;
@@ -30,6 +30,7 @@ class UsersResponsesController extends Controller
             $response->save();
 
             $post->repliers()->attach($response->id); //Use IDs
+
 //
 //            $post->repliers()->detach(); //Remove ALL
 //
@@ -41,7 +42,8 @@ class UsersResponsesController extends Controller
 //            dd('test',$post->with('user_comments')->get());
 //            dd($user);
             $post->save();
-            return redirect()->route('home')->with('alert-success', 'Post salvo corretamente!');
+//            dd('post',$post);
+            return redirect()->route('home')->with('alert-success', 'Resposta enviada corretamente!');
 
         }
         return redirect()->route('home')->with('alert-error');

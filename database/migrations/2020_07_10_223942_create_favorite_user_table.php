@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateFavoriteUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('images')) {
-            Schema::dropIfExists('images');
-        }
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('favorite_user', function (Blueprint $table) {
             $table->BigIncrements('id');
-            $table->foreignId('user_id')->nullable()->unsigned();
-            $table->foreignId('post_id')->nullable()->unsigned();
-            $table->string('name')->nullable();
-            $table->string('path_location')->nullable();
-            $table->string('format_image')->nullable();
-            $table->double('size_image',15,4)->nullable();
-            $table->string('slug')->nullable();
+            $table->foreignId('favorite_id');
+            $table->foreignId('user_id');
+            $table->foreignId('post_id')->nullable();
+            $table->foreignId('item_id')->nullable();
 
-            $table->timestamps();
+            $table->foreign('favorite_id')
+                ->references('id')
+                ->on('favorites')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
@@ -38,6 +35,12 @@ class CreateImagesTable extends Migration
                 ->on('posts')
                 ->onDelete('cascade');
 
+            $table->foreign('item_id')
+                ->references('id')
+                ->on('items')
+                ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -48,6 +51,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('favorite_user');
     }
 }

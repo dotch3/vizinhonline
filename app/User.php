@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
     protected $table = "users";
     protected $primaryKey = "id";
 
@@ -24,7 +25,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'last_name',
+        'lastname',
         'email',
         'email_verified_at',
         'password',
@@ -39,6 +40,7 @@ class User extends Authenticatable
         'ranking',
         'created_at',
         'updated_at',
+        'deleted_at',
         'remember_token',
     ];
 
@@ -63,16 +65,20 @@ class User extends Authenticatable
     //Start the section for the relationships among User and other objects
     public function favorites()
     {
-        return $this->belongsToMany(Favorite::Class, 'favorite_user', 'user_id', 'favorite_id');
+        return $this->belongsToMany(Favorite::Class, 'favorite_user')
+            ->withTimestamps();
     }
 
-
-    public function favorite_user($id_user)
+    public function selected_favorites()
     {
-        $fav = Favorite::find($id_user)->favorites;
-        dd($fav);
-        return $fav;
+        return $this->hasMany(FavoriteUser::class);
     }
+//    public function favorite_user($id_user)
+//    {
+//        $fav = Favorite::find($id_user)->favorites;
+//        dd($fav);
+//        return $fav;
+//    }
 
     public function image()
     {
@@ -104,6 +110,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'user_responses')
             ->withTimestamps();
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Items::class, 'item_user');
     }
 
 }

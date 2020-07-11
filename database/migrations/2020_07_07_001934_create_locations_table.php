@@ -15,12 +15,12 @@ class CreateLocationsTable extends Migration
     {
         Schema::dropIfExists('locations');
         Schema::create('locations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->BigIncrements('id');
             $table->integer('apartment_number');
             $table->string('building')->nullable();
             $table->string('address')->nullable();
             $table->integer('intercom_branch')->nullable();
-            $table->integer('user_id')->unsigned();
+            $table->foreignId('user_id');
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')

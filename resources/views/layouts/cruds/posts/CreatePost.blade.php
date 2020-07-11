@@ -9,7 +9,11 @@
             </div>
 
         </div>
-
+        @if (session('alert-success'))
+            <div class="container alert alert-success" role="alert">
+                {{session('alert-success')}}
+            </div>
+        @endif
         <div class="container row card">
             <div class="col-sm-12 ">
                 <h2 class="display-4">Criar post</h2>

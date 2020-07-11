@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResponsesTable extends Migration
+class CreateUserResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateResponsesTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('user_post')) {
-            Schema::dropIfExists('user_post');
+        if (Schema::hasTable('user_responses')) {
+            Schema::dropIfExists('user_responses');
         }
         Schema::create('user_responses', function (Blueprint $table) {
             $table->id();
             $table->string('reply', 300);
-            $table->integer('user_id')->unsigned();
-            $table->integer('post_id')->unsigned();
+            $table->foreignId('user_id');
+            $table->foreignId('post_id');
 
             $table->foreign('user_id')
                 ->references('id')

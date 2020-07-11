@@ -14,27 +14,30 @@ class FavoritesSeeder extends Seeder
     public function run()
     {
         DB::table('favorites')->insert([
-           'name' =>'ITEM_FAVORITE',
-            'description'=>'Item favorite',
-            'code'=>'ITEM_FAV',
-            'status'=>'active'
-
+            'name' => 'ITEM_FAVORITE',
+            'description' => 'Item favorite',
+            'code' => 'ITEM_FAV',
+            'status' => 'active',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('favorites')->insert([
-            'name' =>'POST_FAVORITE',
-            'description'=>'Post favorite',
-            'code'=>'POST_FAV',
-            'status'=>'active'
-
+            'name' => 'POST_FAVORITE',
+            'description' => 'Post favorite',
+            'code' => 'POST_FAV',
+            'status' => 'active',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('favorites')->insert([
-            'name' =>'NEIGHBOR_FAVORITE',
-            'description'=>'neighbor favorite',
-            'code'=>'NEIGH_FAV',
-            'status'=>'inactive'
-
+            'name' => 'NEIGHBOR_FAVORITE',
+            'description' => 'neighbor favorite',
+            'code' => 'NEIGH_FAV',
+            'status' => 'inactive',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

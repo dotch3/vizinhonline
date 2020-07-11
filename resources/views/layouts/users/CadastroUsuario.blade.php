@@ -1,4 +1,4 @@
-@extends('layouts.main.app')
+@extends('layouts.main.templateauth')
 @section('title', 'Cadastro - Vizinho online')
 
 <head>
@@ -24,7 +24,7 @@
         <form id="signin" class="needs-validation"
               enctype="multipart/form-data"
               method="post"
-              action="{{route('register')}}"
+              action="{{route('users.new')}}"
               autocomplete="off">
             @csrf
             <div class="row no-gutters">
@@ -83,18 +83,18 @@
                         <div class="row">
                             <div class="col-5">
                                 <input type="text" name="name" placeholder="Nome" value="" required>
-                            </div>       
-                            <div class = "col-5">      
-                                <input type="text" name="last_name" placeholder="Sobrenome" value="" required>
-                            </div> 
-                        </div>    
+                            </div>
+                            <div class = "col-5">
+                                <input type="text" name="lastname"  id="lastname" placeholder="Sobrenome" value="" required>
+                            </div>
+                        </div>
                             <br/>
-                        <div class="row">  
-                            <div class = "col-5"> 
+                        <div class="row">
+                            <div class = "col-5">
                                 <input type="text" name="rg" id="rg" placeholder="RG" value="" required>
                             </div>
                             <div class="col-5">
-                                <input type="text" name="cpf" maxlength="14" placeholder="CPF" value="" required
+                                <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="CPF" value="" required
                                        onkeydown="javascript: fMasc( this, mCPF ); ">
                             </div>
 
@@ -136,15 +136,15 @@
                                 <input type="text" name="address" placeholder="Endereço" value="">
                                 <!-- Relation with locations come here -->
                             </div>
-                            <div class="col-5">    
-                                <input type="text" name="intercom" placeholder="Interfone" value="">
+                            <div class="col-5">
+                                <input type="text" name="intercom_branch" placeholder="Interfone" value="">
                             </div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-5">
                             <input id="password" type="password" placeholder="Senha" name="password" required autocomplete="new-password">
-                            </div>    
+                            </div>
                             <div class="col-5">
                                 <!-- <input type="password" name="password-confirm" placeholder="Confirmar senha" required value=""> -->
                                 <input id="password-confirm" type="password" placeholder="Confirmar Senha" name="password_confirmation" required autocomplete="new-password">

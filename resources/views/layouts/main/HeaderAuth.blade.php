@@ -27,18 +27,18 @@
 <section class="section_header">
     <div>
         <a href="#">
-            <img src={{asset('/img/icons/logo.png')}} width="90" height="80" alt="logo" title="logo" class="logo"/>
+            <img src={{asset('/img/icons/logo.png')}} width="120" height="100" alt="logo" title="logo" class="logo"/>
         </a>
+        
         <nav>
 
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/PerfilUsuario">Perfil Usuario</a></li>
-                <li><a href="/PerfilVizinho">Perfil Vizinho</a></li>
                 <li><a href="#">Quem Somos</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
+        
     </div>
 
 </section>
