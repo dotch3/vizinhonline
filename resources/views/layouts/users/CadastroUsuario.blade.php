@@ -24,7 +24,7 @@
         <form id="signin" class="needs-validation"
               enctype="multipart/form-data"
               method="post"
-              action="{{route('register')}}"
+              action="{{route('users.new')}}"
               autocomplete="off">
             @csrf
             <div class="row no-gutters">
@@ -137,7 +137,7 @@
                                 <!-- Relation with locations come here -->
                             </div>
                             <div class="col-5">
-                                <input type="text" name="intercom" placeholder="Interfone" value="">
+                                <input type="text" name="intercom_branch" placeholder="Interfone" value="">
                             </div>
                         </div>
                         <br/>
