@@ -1,0 +1,425 @@
+/* Geral Inicio*/
+
+body,
+p,
+h1,
+h2,
+input,
+textarea {
+    margin: 0;
+    font-family: Josefin Sans;
+}
+
+/* Geral Fim*/
+
+.main {
+    width: 100%;
+    /* background-color: rgba(196, 196, 196, 0.25); */
+    background: white;
+    margin: 10px 0 0 0;
+}
+
+/* Perfil  panel esquerdo*/
+.menu-lateral {
+    position: fixed;
+}
+
+/* Perfil Fim*/
+
+/* Feed Inicio */
+
+
+.div_feed_items {
+    width: calc(100% - 40px); /*ocupa o 100% do tamanho das colunas*/
+    margin: 10px 0 20px 5px;
+    background: white;
+    border-radius: 10px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.div_feed_items h2 {
+    text-align: center;
+    font-size: 36px;
+    line-height: 36px;
+    text-shadow: 1px 1px #111111;
+    font-family: "Josefin Sans", sans-serif;
+    color: #a60356;
+
+
+}
+
+.div_feed_items p {
+    text-align: center;
+    font-size: 16px;
+    line-height: 0px;
+    margin: 15px;
+}
+
+/* Seccao dos itens utilizando collapse */
+.div_feed_items .collapse_itens p {
+    margin: auto;
+}
+
+.div_feed_items .collapse_itens a {
+    font-size: 16px;
+    line-height: 36px;
+    text-shadow: 1px 1px #111111;
+    font-family: Josefin Sans;
+    color: #a60356;
+    text-decoration: underline;
+}
+
+/* seccao do usuario na publicaco - Inicio */
+.card {
+    margin-top: 20px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    background: white;
+}
+
+.card-body {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.card-body .info_usuario {
+    text-align: left;
+}
+
+.card-body .info_usuario .perfil a img {
+    height: 100px;
+    text-align: left;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+/* CSS para a seccao de nova publicacao nos feeds */
+.card-body .info_usuario_publicacao h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+}
+
+.card-body .info_usuario_publicacao p {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: left;
+}
+
+.card-body .info_usuario_publicacao a img {
+    height: 100px;
+    text-align: left;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.card-body .text_nova_publicacao {
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.card-body .text_nova_publicacao textarea {
+    margin: 10px;
+    padding-top: 10px;
+}
+
+.card-body .acoes_nova_publicacao a img {
+    width: 40px;
+    margin: 20px auto 15px auto;
+
+}
+
+/* CSS do div da resposta a uma publiccacao */
+
+.info_usuario_resposta {
+    padding-top: 15px;
+    float: right;
+    margin: 5px 0 5px 0;
+}
+
+.info_usuario_resposta img {
+    width: 60px;
+
+}
+
+.info_usuario_resposta h3 {
+    color: black;
+    margin-top: 10px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 10px;
+    text-align: left;
+}
+
+.info_usuario_resposta p {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+}
+
+.detalhe_item .resposta {
+    text-align: right;
+    float: right;
+}
+
+.detalhe_item .resposta textarea {
+    background-color: white;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+/* Opcoes para responder a uma publicacao */
+
+.opcoes_usuario {
+    text-align: left;
+    margin-left: 0px;
+}
+
+.opcoes_usuario h3 {
+    color: black;
+    margin-top: 10px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 10px;
+
+}
+
+.opcoes_usuario p {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+    margin-left: 0px;
+}
+
+.opcoes_usuario_avaliacao ul li {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.opcoes_usuario_avaliacao ul li a img {
+    height: 20px;
+}
+
+.opcoes_usuario_avaliacao ul li p {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+/* Opcoes do item publicado - Inicio */
+
+.comment_post {
+    text-align: left;
+    padding: 10px;
+    text-align: left;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #a60356;
+    margin: 15px 25px 0 25px;
+}
+
+.detalhe_item {
+    text-align: left;
+    padding-bottom: 3px;
+
+}
+
+.detalhe_item a img {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.detalhe_item h3 {
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 10px;
+    margin: 20px;
+}
+
+
+.detalhe_item h4 {
+    text-align: left;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #a60356;
+    margin: 15px 25px 0 25px
+}
+
+.detalhe_item h5 {
+    text-align: left;
+    padding: 10px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 25px;
+    margin: 15px 25px 0 25px;
+}
+
+.acoes_detalhe_item {
+    display: inline;
+    text-align: center;
+    height: 20px;
+    padding: 5px;
+
+}
+
+.acoes_detalhe_item a img {
+    width: 22px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Opcoes do item Fim */
+
+h2 {
+    display: block;
+    font-family: "Josefin Sans", sans-serif;
+    color: #a60356;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+
+/*
+Posts
+*/
+
+.reply p {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: left ;
+}
+
+.reply h5 {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-family: Josefin Sans;
+    color: #a60356;
+    padding: 10px;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.respostas{
+    margin: 10px 0 25px 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-top-width: 1px;
+    border-top-style: dotted;
+    padding-bottom: 20px;
+    border-color: #ccc;
+}
+.respostas textarea{
+    margin-top: 10px;
+}
+.respostas input{
+    margin-top: 10px;
+}
+.detalhe_post{
+    text-align: left;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.detalhe_post a img {
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+}
+
+.detalhe_post h3 {
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 10px;
+    margin: 20px;
+}
+.detalhe_post textarea{
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+    padding-top: 15px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.detalhe_respostas h4{
+    text-align: left;
+    padding: 10px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 15px 25px 0 25px;
+    text-decoration: underline;
+    color: #a60356;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:active, .btn-outline-secondary:visited {
+    background-color: rgba(166, 3, 86, 0.44) !important;
+}

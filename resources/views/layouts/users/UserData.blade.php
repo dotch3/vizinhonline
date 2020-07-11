@@ -10,9 +10,7 @@
 <section class="user_data col-12">
 
     <h2>
-        {{-- {{ !empty($user ?? ''->id) ? $user ?? ''->name: '' }} --}}
-        {{$user->name ?? ' '}}
-
+         {{ !empty($user->id)? $user->name: '' }}
     </h2>
     {{-- <a href="#">
         <img src="{{!empty($user ?? ''->id) ? asset('/img/avatar/'.$user ?? ''->image->slug): '' }} "
@@ -103,8 +101,9 @@
                         <a style="color:inherit" href="{{!empty($user->id)? route('users.profile',$user->id) :''}}">
                             Configuração de conta</a>
                     </li>
-                <li><a style="color:inherit" href="{{Auth::logout()}}"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
-                                                                                 style="font-size:20px ; color: #000000"></i></span>
+                    <li><a style="color:inherit" href="{{Auth::logout()}}"><span class="fa-li"><i
+                                    class="fas fas fa-sign-out-alt"
+                                    style="font-size:20px ; color: #000000"></i></span>
                             Sair</a></li>
                 </ul>
             </div>

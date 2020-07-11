@@ -1,8 +1,6 @@
 <?php
 
 use App\User;
-use App\Locations;
-use App\Images;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,8 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@vizinhonline.com',
             'password' => bcrypt('rootadmin'),
             'cellphone' => '900000000',
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         $admin = User::where('name', 'like', '%AdministratorName%')->first();
@@ -34,8 +32,8 @@ class DatabaseSeeder extends Seeder
             'address' => 'Rua Administrador',
             'intercom_branch' => '40010',
             'user_id' => $admin->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
 
@@ -47,8 +45,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'fernando@vizinhonline.com',
             'password' => bcrypt('fernando'),
             'cellphone' => '911232245',
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         $fernando = User::where('name', 'like', '%Fernando%')->first();
@@ -60,8 +58,8 @@ class DatabaseSeeder extends Seeder
             'address' => 'Rua Central',
             'intercom_branch' => '2500',
             'user_id' => $fernando->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         // Image
@@ -70,8 +68,8 @@ class DatabaseSeeder extends Seeder
             'slug' => 'fernando.png',
             'format_image' => 'png',
             'user_id' => $fernando->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
 
@@ -83,8 +81,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'marcelo@vizinhonline.com',
             'password' => bcrypt('marcelo'),
             'cellphone' => '151123225',
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         $marcelo = User::where('name', 'like', '%Marcelo%')->first();
 
@@ -95,8 +93,8 @@ class DatabaseSeeder extends Seeder
             'address' => 'Rua Central',
             'intercom_branch' => '2500',
             'user_id' => $marcelo->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         // Image
@@ -105,8 +103,8 @@ class DatabaseSeeder extends Seeder
             'slug' => 'marcelo.png',
             'format_image' => 'png',
             'user_id' => $marcelo->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
 
@@ -118,8 +116,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'lucia@vizinhonline.com',
             'password' => bcrypt('lucia'),
             'cellphone' => '922232650',
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         $lucia = User::where('name', 'like', '%Lucia%')->first();
@@ -129,8 +127,8 @@ class DatabaseSeeder extends Seeder
             'address' => 'Rua Principal',
             'intercom_branch' => '220',
             'user_id' => $lucia->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
 
@@ -140,14 +138,17 @@ class DatabaseSeeder extends Seeder
             'slug' => 'lucia.png',
             'format_image' => 'png',
             'user_id' => $lucia->id,
-            'created_at'=>now(),
-            'updated_at'=>now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
 
 
         $this->call(UserSeeder::class);
         $this->call(FavoritesSeeder::class);
+
+        $this->call(PostSeeder::class);
+        $this->call(ItemSeeder::class);
 
     }
 }
