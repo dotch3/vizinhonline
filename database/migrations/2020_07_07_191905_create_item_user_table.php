@@ -14,13 +14,19 @@ class CreateItemUserTable extends Migration
     public function up()
     {
         Schema::create('item_user', function (Blueprint $table) {
-            $table->integer('items_id')->unsigned();
-            $table->integer('users_id')->unsigned();
-            $table->foreign('items_id')->references('id')->on('items')
+            $table->BigIncrements('id');
+            $table->foreignId('item_id')->unsigned();
+            $table->foreignId('user_id')->unsigned();
+
+            $table->foreign('item_id')->references('id')->on('items')
                 ->onDelete('cascade');
-            $table->foreign('users_id')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->integer('lenditem_id'); //TODO: relacionar com lend_item
+
+//            $table->foreignId('lend_item_id')->nullable(); //TODO: relacionar com lend_item, chave do item_user vai para o lend_item
+////            $table->foreign('lend_item_id')->references('id')->on('lend_item');
+
+
             $table->timestamps();
         });
     }

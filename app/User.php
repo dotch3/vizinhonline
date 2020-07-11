@@ -65,9 +65,9 @@ class User extends Authenticatable
     //Start the section for the relationships among User and other objects
     public function favorites()
     {
-        return $this->belongsToMany(Favorite::Class, 'favorite_user', 'user_id', 'favorite_id');
+        return $this->belongsToMany(Favorite::Class, 'favorite_user')
+            ->withTimestamps();
     }
-
 
     public function favorite_user($id_user)
     {
@@ -108,9 +108,9 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-    public function items() {
+    public function items()
+    {
         return $this->belongsToMany(Items::class, 'item_user');
     }
-
 
 }

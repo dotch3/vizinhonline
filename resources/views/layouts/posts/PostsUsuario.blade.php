@@ -2,7 +2,7 @@
 @section('title', 'Posts do Usuario')
 
 <head>
-    <link href="{{asset('css/estilo_feed.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/estilo_posts.css')}}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
