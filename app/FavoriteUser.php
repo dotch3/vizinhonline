@@ -19,4 +19,18 @@ class FavoriteUser extends Pivot
             'deleted_at'
         ];
 
+
+    public function posts($fav_post_id)
+    {
+        $posts = Post::where('id', $fav_post_id);
+
+        return $posts;
+    }
+
+    public function users($fav_user_id)
+    {
+        $users = User::where('id', $fav_user_id);
+
+        return $users;
+    }
 }

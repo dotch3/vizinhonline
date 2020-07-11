@@ -47,11 +47,11 @@
                                         @csrf
                                         <div class="container">
                                             @if($post->title)
-                                                <div class="detalhe_post row  shadow-sm">
-                                                    <h3> teste: Post ID</h3>
-                                                    <h3>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h3>
-                                                    <h3>User ID:</h3>
-                                                    <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>
+                                                <div class="detalhe_post row  shadow-sm col-md-10">
+                                                    <p> Post ID</p>
+                                                    <h5>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h5>
+                                                    {{--                                                    <h3>User ID:</h3>--}}
+                                                    {{--                                                    <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>--}}
                                                 </div>
                                                 <div class=" container detalhe_post form-group row">
                                                     <input type="text" class="form-control-file comment_post"
@@ -92,8 +92,23 @@
                                                        size='50'>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn btn-light">Editar</button>
+                                                <button type="submit" class="btn btn-outline-secondary">Editar</button>
+                                                <!--Delete section-->
+                                                <form method="post" id="delete-form-{{$post->id}}"
+                                                      action="{{ route('posts.destroy', $post->id)}}"
+                                                      style="display:none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                                <button
+                                                    onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
+                                                        event.preventDefault();
+                                                        document.getElementById('delete-form-{{$post->id}}').submit();
+                                                        }
+                                                        " class="btn btn-outline-secondary">Eliminar
+                                                </button>
                                             </div>
+
                                             <script>
                                                 $(function () {
                                                     $('#image').change(function () {

@@ -10,7 +10,7 @@
 <section class="user_data col-12">
 
     <h2>
-         {{ !empty($user->id)? $user->name: '' }}
+        {{ !empty($user->id)? $user->name: '' }}
     </h2>
     {{-- <a href="#">
         <img src="{{!empty($user ?? ''->id) ? asset('/img/avatar/'.$user ?? ''->image->slug): '' }} "
@@ -93,8 +93,11 @@
                     {{--                    <li><span class="fa-li"><i class="fas fa-thumbs-up"--}}
                     {{--                                               style="font-size:20px ; color: #000000"></i></span>Recomendeme--}}
                     {{--                    </li>--}}
-                    <li><span class="fa-li"><i class="fas fa-heart" style="font-size:20px ; color: #000000"></i></span>0
-                        Recomendações
+                    <li><a href="{{!empty($user->id)? route('favorites',$user->id): '#'}}" style="color:inherit">
+                            <span class="fa-li"><i class="fas fa-heart"
+                                                   style="font-size:20px ; color: #000000"></i></span>
+                            Favoritos {{!empty($user->favorites)? count($user->favorites): ''}}
+                        </a>
                     </li>
                     <li><span class="fa-li"><i class="fas fa-cog"
                                                style="font-size:20px ; color: #000000"></i></span>

@@ -38,14 +38,6 @@ class Favorite extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function update_user_favorites($user_id, $fav_id)
-    {
-        $user = User::find($user_id);
-        $fav = Favorite::find($fav_id);
 
-        $fav->users()->attach($user->id_user);
-
-
-    }
 
 }
