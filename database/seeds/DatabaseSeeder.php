@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'fernando@vizinhonline.com',
             'password' => bcrypt('fernando'),
             'cellphone' => '911232245',
+            'cpf'=>'201.958.864-22',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -81,6 +82,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'marcelo@vizinhonline.com',
             'password' => bcrypt('marcelo'),
             'cellphone' => '151123225',
+            'cpf'=>'321.221.12-44',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -116,6 +118,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'lucia@vizinhonline.com',
             'password' => bcrypt('lucia'),
             'cellphone' => '922232650',
+            'cpf'=>'110.221.12-77',
             'created_at' => now(),
             'updated_at' => now()
         ]);

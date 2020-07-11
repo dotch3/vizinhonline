@@ -23,6 +23,8 @@ Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuar
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
+Route::get('/FavoritosUsuario/{id}', 'PagesController@favoritesUsuario')->name('favorites');
+
 
 // Section favorites
 Route::resource('favorites', 'FavoritesController');
@@ -41,6 +43,8 @@ Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->nam
 Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
 Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
 Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');
+
+Route::post('/FavoritesUsuario/{id}', 'FavoriteUserController@response')->name('favoritesUser.create');
 
 Route::get('/DestroyUserFavorite','FavoriteUserController@destroyPost')->name('favoriteUser.destroyPost'); //TODO: Analizar se precisa de um destroy
 

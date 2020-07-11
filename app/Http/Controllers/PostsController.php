@@ -255,7 +255,7 @@ class PostsController extends Controller
 
         }
         $post->delete();
-        return redirect()->route('home')->with('alert-success', 'Post has been deleted!');
+        return redirect()->route('posts',$post->user_id)->with('alert-success', 'Post foi eliminado com sucesso!');
     }
 
 

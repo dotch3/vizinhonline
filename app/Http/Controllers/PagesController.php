@@ -60,4 +60,10 @@ class PagesController extends Controller
         return view('layouts/posts/PostsUsuario', compact('user'));
     }
 
+
+    public function favoritesUsuario($id)
+    {
+        $user = User::find($id);
+        return view('layouts/favorites/FavoritesUsuario', compact('user'));
+    }
 }

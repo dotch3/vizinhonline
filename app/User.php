@@ -69,6 +69,10 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function selected_favorites()
+    {
+        return $this->hasMany(FavoriteUser::class);
+    }
 //    public function favorite_user($id_user)
 //    {
 //        $fav = Favorite::find($id_user)->favorites;
