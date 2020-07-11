@@ -2,10 +2,11 @@
 
 .estilo_footer {
   background: rgba(196, 196, 196, 0.25);
+  width:100%;
   color: black;
   padding: 5px;
   position: relative;
-  top: 285px;
+  bottom: 0;
   padding-top: 10px;
   text-align: center;
   box-sizing: border-box;

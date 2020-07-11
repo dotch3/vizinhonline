@@ -1,4 +1,4 @@
-@extends('layouts.main.app')
+@extends('layouts.main.templateauth')
 @section('title', 'Cadastro - Vizinho online')
 
 <head>
