@@ -105,6 +105,9 @@
                                                         event.preventDefault();
                                                         document.getElementById('delete-form-{{$post->id}}').submit();
                                                         }
+                                                        else{
+                                                        event.preventDefault();
+                                                        }
                                                         " class="btn btn-outline-secondary">Eliminar
                                                 </button>
                                             </div>
