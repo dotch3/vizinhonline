@@ -56,12 +56,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegistrationForm()
-    {
-        return view('layouts.users.CadastroUsuario');
-    }
-
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -72,22 +66,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'address' => $data['address'],
-            'rg' => $data['rg'],
-            'cpf' => $data['cpf'],
-            'cellphone' => $data['cellphone'],
-            'building' => $data['building'],
-            'apartment_number' => $data['apartment_number'],
-            'intercom' => $data['intercom'],
-            'age' => $data['age'],
             'password' => Hash::make($data['password']),
-            
         ]);
-
-        return redirect()->route('feed.index');
-
     }
-
 }

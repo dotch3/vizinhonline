@@ -123,3 +123,7 @@ Route::post('/PostsUsuario/{id}', 'UsersResponsesController@response')->name('Po
 
 Route::get('/responses','UsersResponsesController@test');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

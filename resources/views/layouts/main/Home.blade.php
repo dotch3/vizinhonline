@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('/css/estilo.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/estilo_header.css') }}" rel="stylesheet">
     <title>Home - Vizinho online</title>
 </head>
 
@@ -16,16 +17,18 @@
         <header class="header">
             <nav>
                 <ul class="nav">
-                    <li class="nav-item col-2 mt-1">Logo</li>
-                    <li class="nav-item col-7">
+                    <li class="nav-item col-2 mt-1"><img src="{{asset('/img/icons/logo.png')}}" width="90" height="80" alt="logo" title="logo" class="logo"></li>
+                    <li class="nav-item col-7 mt-4">
 
                     <button onclick="window.location.href='/register'" class="buttonHeader" data-toggle="modal">Cadastre-se </button>
 
                 </li>
 
-                    <li class="nav-item col-3">
-                        <button class="buttonHeader" data-toggle="modal"
-                                data-target="#login">Entrar
+                    <li class="nav-item col-3 mt-4">
+                        <button onclick="window.location.href='/login'" class="buttonHeader" data-toggle="modal">login </button>
+
+                        {{-- <button class="buttonHeader" data-toggle="modal" --}}
+                                {{-- data-target="#login">Entrar --}}
                         </button>
                     </li>
                 </ul>
