@@ -15,9 +15,15 @@ class CreateFavoriteUserTable extends Migration
     {
         Schema::create('favorite_user', function (Blueprint $table) {
             $table->BigIncrements('id');
+            $table->foreignId('favorite_id');
             $table->foreignId('user_id');
             $table->foreignId('post_id')->nullable();
             $table->foreignId('item_id')->nullable();
+
+            $table->foreign('favorite_id')
+                ->references('id')
+                ->on('favorites')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
