@@ -20,16 +20,13 @@
                     <li class="nav-item col-2 mt-1"><img src="{{asset('/img/icons/logo.png')}}" width="90" height="80" alt="logo" title="logo" class="logo"></li>
                     <li class="nav-item col-7 mt-4">
 
-                    <button onclick="window.location.href='/register'" class="buttonHeader" data-toggle="modal">Cadastre-se </button>
+                    <button class="buttonHeader" onclick="window.location.href='{{route('users.new')}}'">Cadastre-se</button>
 
                 </li>
 
                     <li class="nav-item col-3 mt-4">
-                        <button onclick="window.location.href='/login'" class="buttonHeader" data-toggle="modal">login </button>
-
-                        {{-- <button class="buttonHeader" data-toggle="modal" --}}
-                                {{-- data-target="#login">Entrar --}}
-                        </button>
+                        <button onclick="window.location.href='/login'" class="buttonHeader">login </button>
+                        
                     </li>
                 </ul>
             </nav>
@@ -55,7 +52,7 @@
                     <br><br>Colabore você também! Compartilhe seus objetos com os vizinhos!
                 </p>
             </div>
-            <button class="buttonPage">Quero compartilhar</button>
+            <button onclick="window.location.href='/login'" class="buttonPage">Quero compartilhar</button>
         </div>
 
     </div>
@@ -128,94 +125,11 @@
                 </nav>
             </div>
         </div>
-        <!-- Modal Login -->
 
-        <div class="modal fade" id="login" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-light">
-                        <h5 class="modal-title">Login</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                        </span>
-                    </div>
+    @include('.layouts/main/Footer')
 
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <div class=col-10>
-                                    <label for="usuario">Usuário</label><br>
-                                    <input type="text" class=" form-control form-control-lg" name="usuario"
-                                           id="usuario" value="test">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class=col-10>
-                                    <label for="senha">Senha</label>
-                                    <input type="password" class="form-control form-control-lg" name="senha"
-                                           id="senha" value="test">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block"
-                                            onclick="window.location.href='/Feed'">Entrar
-                                    </button>
-                                </div>
-                                <div class="col-5">
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block"
-                                            onclick="window.location.href='/CadastroUsuario'">Cadastrar
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-link" data-dismiss="modal"
-                                            data-toggle="modal" data-target="#recuperar-senha">Esqueceu sua
-                                        senha?
-                                    </button>
-                                </div>
-                            </div>
+        
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal recuperar senha -->
-        <div class="modal fade" id="recuperar-senha" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-light">
-                        <h5 class="modal-title">Recuperar Senha</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                        </span>
-                    </div>
-
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <div class=col-10>
-                                    <label for="usuario">Digite seu e-mail</label><br>
-                                    <input type="email" class=" form-control form-control-lg" name="email"
-                                           id="email" value="">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Enviar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 </main>
 <!-- Including the footer -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -228,5 +142,6 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 </body>
+
 
 </html>
