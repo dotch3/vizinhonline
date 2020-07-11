@@ -127,53 +127,5 @@ class FavoritesController extends Controller
         return redirect()->route('favorites.index')->with('alert-success', 'Favorite has been deleted!');
     }
 
-    public function createPostFavorite($user_id = null) //user_id can be null
-    {
-        $users = null;
-        $user = User::where('name', 'Fernando')->first();
-        if (!$user_id) {
-            $users = User::all();
-        } else {
-            $user = User::find($user_id);
-        }
 
-        $items = Items::all();
-        $posts = Post::all();
-        return view('layouts.cruds.favorites.CreateUserFavorite',
-            [
-                'user' => $user, 'users' => $users,
-                'items' => $items,
-                'posts' => $posts
-            ]);
-    }
-
-    public function storePostFavorite(Request $request)
-    {
-//        dd('test',$request);
-
-
-        $post = Post::find($request->post_id);
-
-//        $user_id=Auth::user()->id;
-        $user=User::find($request->user_id);
-
-        $user->favorites()->attach($post->id);
-//        $item->images()->attach($image->id);
-        return redirect()->route('posts', $user->id)->with('alert-success', 'Favorito salvo exitosamente!');
-    }
-
-    public function editUserFavorite($id)
-    {
-        return view('layouts.cruds.favorites.CreateUserFavorite');
-    }
-
-    public function updateUserFavorite($id)
-    {
-        return view('layouts.cruds.favorites.CreateUserFavorite');
-    }
-
-    public function destroyUserFavorite($id)
-    {
-        return view('layouts.cruds.favorites.CreateUserFavorite');
-    }
 }

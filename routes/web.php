@@ -37,12 +37,12 @@ Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.u
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
 // Resources that user favorites
-Route::get('/createPostFavorite/{id?}','FavoritesController@createPostFavorite')->name('favoritesPost.create'); //TODO working on this
-Route::post('/createPostFavorite','FavoritesController@storePostFavorite')->name('favoritesPost.store');
-Route::get('/editPostFavorite/{id}','FavoritesController@editPostFavorite')->name('favoritesPost.edit');
-Route::patch('/editPostFavorite/{id}','FavoritesController@updatePostFavorite')->name('favoritesPost.update');
+Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->name('favoriteUser.createPost'); //TODO working on this
+Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
+Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
+Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');
 
-Route::get('/destroyUserFavorite','FavoritesController@destroyUserFavorite')->name('favoritesUser.destroy'); //TODO: Analizar se precisa de um destroy
+Route::get('/DestroyUserFavorite','FavoriteUserController@destroyPost')->name('favoriteUser.destroyPost'); //TODO: Analizar se precisa de um destroy
 
 // Section for User
 Route::resource('users', 'UsersController');

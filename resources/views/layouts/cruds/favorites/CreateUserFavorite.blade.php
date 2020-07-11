@@ -27,7 +27,7 @@
                             </ul>
                         </div><br/>
                     @endif
-                    <form method="post" action="{{ route('favoritesPost.store') }}">
+                    <form method="post" action="{{ route('favoriteUser.storePost') }}">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
