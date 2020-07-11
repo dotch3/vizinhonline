@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.main.app')
+@section('title', 'Cadastro - Vizinho online')
 
 @section('content')
 <div class="container">

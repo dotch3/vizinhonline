@@ -1,4 +1,11 @@
-@extends('layouts.app')
+
+@extends('layouts.main.app')
+@section('title', 'Cadastro - Vizinho online')
+
+<head>
+    <link href="{{ asset('/css/estilo.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/cpf_tel_formater.js') }}"></script>
+</head>
 
 @section('content')
 <div class="container">

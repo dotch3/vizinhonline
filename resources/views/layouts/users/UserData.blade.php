@@ -103,7 +103,7 @@
                         <a style="color:inherit" href="{{!empty($user->id)? route('users.profile',$user->id) :''}}">
                             Configuração de conta</a>
                     </li>
-                    <li><a style="color:inherit" href="/"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
+                <li><a style="color:inherit" href="{{Auth::logout()}}"><span class="fa-li"><i class="fas fas fa-sign-out-alt"
                                                                                  style="font-size:20px ; color: #000000"></i></span>
                             Sair</a></li>
                 </ul>
