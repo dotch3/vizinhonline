@@ -108,8 +108,6 @@ class PostsController extends Controller
 //            $post->image()->save($image); //save one-one
 
 
-        } else {
-            dd('Request sem image', $post, $post->user());
         }
 
         $post->save();
@@ -242,8 +240,8 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 //        $post->users()->detach(); //Removing the record from the pivot
+        $user_id = $post->user_id;
         $post->user()->dissociate();
-
 
         if ($post->image) {
 
@@ -255,7 +253,8 @@ class PostsController extends Controller
 
         }
         $post->delete();
-        return redirect()->route('posts',$post->user_id)->with('alert-success', 'Post foi eliminado com sucesso!');
+        return redirect()->route('postsUser.destroy', $user_id)
+            ->with('alert-success', 'Post foi eliminado com sucesso!');
     }
 
 

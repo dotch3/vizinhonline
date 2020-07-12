@@ -81,7 +81,8 @@ class FavoriteUserController extends Controller
 
 
 //        $item->images()->attach($image->id);
-        return redirect()->route('posts', $user->id)->with('alert-success', 'Favorito salvo exitosamente!');
+        return redirect()->route('posts', $user->id)
+            ->with('alert-success', 'Favorito salvo exitosamente!');
     }
 
     /**
