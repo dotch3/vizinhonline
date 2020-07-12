@@ -447,9 +447,12 @@ Posts
 
   .post-figure {
       position: relative;
-      width: 200px;
+      width: 500px;
       height: 195px;
     }
+  .pos-figure img#imgPost{
+    width: 500px;
+  }
 
 .post-figcaption {
   cursor: pointer;
@@ -477,6 +480,8 @@ Posts
     width:550px;
     height:195px;
 }
+
+
 #title {
     border-color: white;
 }
@@ -513,4 +518,16 @@ Posts
     position: relative;
     left: 20px;
 
+}
+#btn-trash{
+    position:relative;
+    left:300;
+}
+#btn-salvar{
+    position:relative;
+    left:330;
+}
+#btn-Comentar{
+    position:relative;
+    left:200;
 }
