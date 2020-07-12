@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Favorite;
 use App\FavoriteUser;
-use App\Items;
+use App\Item;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -39,7 +39,7 @@ class FavoriteUserController extends Controller
             $user = User::find($user_id);
         }
 
-        $items = Items::all();
+        $items = Item::all();
         $posts = Post::all();
         return view('layouts.cruds.favorites.CreateUserFavorite',
             [
