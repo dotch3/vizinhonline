@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,10 +12,13 @@ class PagesController extends Controller
 {
     public function home()
     {
-        if (Auth::check()){
-            return view('layouts/main/Feed');
-        }
-        else {
+        if (!Auth::check()) { //TODO: trabalhar a parte de auth
+            $posts = Post::orderBy('created_at', 'desc')->get();
+//            if($posts){
+//                dd(count($posts));
+//            }
+            return view('layouts/main/Feed', compact('posts'));
+        } else {
             return view('layouts/main/Home');
         }
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Images;
 use App\Post;
 use App\User;
+use App\UserResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -256,6 +257,7 @@ class PostsController extends Controller
         return redirect()->route('postsUser.destroy', $user_id)
             ->with('alert-success', 'Post foi eliminado com sucesso!');
     }
+
 
 
 }
