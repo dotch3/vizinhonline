@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Item::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->randomElement(['furadeira', 'guardasol', 'mala', 'mergulho', 'muffin', 'pesca']),
-        'description' => 'item de teste',
+        'description' => 'item de testegit status',
         'code' => $faker->md5(),
         'tax_fee' => 0,
         'internal_notes' => $faker->randomElement(['Active', 'Inactive']),
