@@ -151,6 +151,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FavoritesSeeder::class);
 
         $this->call(PostSeeder::class);
+
+        $this->Call(ItemStatusSeeder::class);
         $this->call(ItemSeeder::class);
 
     }
