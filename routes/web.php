@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,9 +111,9 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
-Route::resource('items', 'ItemsController');
+Route::resource('items', 'ItemController');
 
-Route::get('/items', 'ItemsController@index')->name('items.index');
+Route::get('/items', 'ItemController@index')->name('items.index');
 
 
 //Imagem upload

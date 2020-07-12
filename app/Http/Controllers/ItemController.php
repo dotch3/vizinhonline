@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Images;
+use App\Item;
 use Illuminate\Http\Request;
-use App\Items;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ItemsController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Items::paginate(5);
+        $items = Item::paginate(5);
         return view('layouts.cruds.items.index', compact('items'));
     }
 

@@ -62,16 +62,15 @@
                                             </div>
                                             @if(!empty($favorite->post_id))
                                                 <div class=" container detalhe_post form-group row">
-                                                    <p>RelationShip Posts:</p>
-                                                    <h5> {{ $post = $favorite->posts($favorite->post_id)->get()->first()}}</h5>
+{{--                                                    <h5> {{ $post = $favorite->posts($favorite->post_id)->get()->first()}}</h5>--}}
                                                 </div>
 
                                                 <div class=" container col-md-12 detalhe_post form-group row">
-                                                    @if($post->image)
+                                                    @if( $favorite->posts($favorite->post_id)->get()->first()->image)
                                                         <div class="detalhe_post  col-md-6 container text-center">
                                                             <a href="">
                                                                 <img
-                                                                    src="{{asset('/storage/posts/'.$post->image->slug)}}"
+                                                                    src="{{asset('/storage/posts/'. $favorite->posts($favorite->post_id)->get()->first()->image->slug)}}"
                                                                     id="imagePost"
                                                                     class="profile"
                                                                     style="width: 80%;">
@@ -86,7 +85,7 @@
 
                                                 <div class="acoes_nova_publicacao container row">
                                                     <div class="col-md-6">
-                                                        <a href="{{route('posts.show',$post->id)}}"
+                                                        <a href="{{route('posts.show', $favorite->posts($favorite->post_id)->get()->first()->id)}}"
                                                            class="btn btn-light">
                                                             Ver</a>
                                                     </div>
