@@ -174,8 +174,7 @@ form {
 input {
     outline: 0;
     border-width: 0 0 1px;
-    border-color: #c4c4c4;
-    ;
+    border-color: #c4c4c4;;
 }
 
 .img_upload {
@@ -185,18 +184,35 @@ input {
     height: 100px;
     top: 20px;
     left: 35px;
-    
+
 }
 
 .fundo_img {
 
-    width: 222px;
-    margin: 50px;
-    height: 174px;
+    width: 120px;
+    margin: 10px;
+    height: 100px;
     top: 25px;
     background: #C4C4C4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 180px;
+}
+
+.fundo_img h5, h4, h3, h2 {
+    color: #a60356;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 14px;
+    justify-content: center;
+    padding-top: 25px;
+
+}
+.fundo_img a{
+    text-decoration:none;
+    font-family: "Josefin Sans", sans-serif;
+    padding-top: 25px;
+    font-size: 14px;
+    color: #a60356;
+    justify-content: center;
 }
 
 .profile {
@@ -232,16 +248,19 @@ input {
 
 .personal-image {
     text-align: center;
-  }
+}
+
 .personal-image input[type="file"] {
     display: none;
-  }
+}
+
 .personal-figure {
     position: relative;
     width: 200px;
     height: 200px;
-  }
-  .personal-avatar {
+}
+
+.personal-avatar {
     cursor: pointer;
     width: inherit;
     height: inherit;
@@ -250,11 +269,13 @@ input {
     border: 2px solid transparent;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     transition: all ease-in-out .3s;
-  }
-  .personal-avatar:hover {
+}
+
+.personal-avatar:hover {
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-  }
-  .personal-figcaption {
+}
+
+.personal-figcaption {
     cursor: pointer;
     position: absolute;
     top: 0px;
@@ -264,18 +285,20 @@ input {
     opacity: 0;
     background-color: rgba(0, 0, 0, 0);
     transition: all ease-in-out .3s;
-  }
-  .personal-figcaption:hover {
+}
+
+.personal-figcaption:hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, .5);
-  }
-  .personal-figcaption > img {
+}
+
+.personal-figcaption > img {
     margin-top: 32.5px;
     width: 50px;
     height: 50px;
-  }
-  .dadosUser{
-      position: relative;
-      top: 140px;
-  }
-    
+}
+
+.dadosUser {
+    position: relative;
+    top: 140px;
+}
