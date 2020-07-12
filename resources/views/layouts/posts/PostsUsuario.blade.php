@@ -93,128 +93,132 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <button type="submit" class="btn btn-outline-secondary">Editar</button>
-                                                <!--Delete section-->
-                                                <form method="post" id="delete-form-{{$post->id}}"
-                                                      action="{{ route('posts.destroy', $post->id)}}"
-                                                      style="display:none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                                <button
-                                                    onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
-                                                        event.preventDefault();
-                                                        document.getElementById('delete-form-{{$post->id}}').submit();
-                                                        }
-                                                        else{
-                                                        event.preventDefault();
-                                                        }
-                                                        " class="btn btn-outline-secondary">Eliminar
-                                                </button>
-                                            </div>
 
-                                            <script>
-                                                $(function () {
-                                                    $('#image').change(function () {
-                                                        console.log('test');
-                                                        const image = $(this)[0].files[0];
-                                                        console.log(image);
-                                                        const fileReader = new FileReader();
-                                                        fileReader.onloadend = function () {
-                                                            $('#imagePost').attr('src', fileReader.result)
-                                                        }
-                                                        fileReader.readAsDataURL(image)
-                                                    })
-                                                })
-                                            </script>
+                                            </div>
                                         </div>
                                     </form>
-                                    <div
-                                        class=" container col-md-11 justify-content-end detalhe_respostas">
-                                        <h4>Respostas:</h4>
-                                        <div class="container shadow-sm respostas">
-                                            @forelse($post->repliers()->get() as $replier)
-                                                <div class="row container mt-3">
-                                                    <div class="col-md-2">
-                                                        <div class="info_usuario_resposta">
-                                                            @if(!empty($replier->id))
-                                                                <a href="#">
-                                                                    <img onclick="redirectToProfile(this.src)"
-                                                                         src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
-                                                                         alt="replier" title="replier"
-                                                                         width="80 px"/>
-                                                                </a>
-                                                            @else
-                                                                <div class=" fundo_img">
-                                                                    <h2>replier foto</h2>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5 reply">
-                                                        <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
-                                                        <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
-                                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
-                                                    </div>
-                                                </div>
 
-                                                <div
-                                                    class="input-group resposta col-md-12 d-flex justify-content-md-center">
-                                                    <input class="form-control"
-                                                           id="reply" name="reply"
-                                                           value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
-                                                           disabled
-                                                    >
-                                                </div>
-                                            @empty
-
-                                                <textarea class="form-control" placeholder="Nao tem respostas ainda!"
-                                                          readonly></textarea>
-
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                    <div class="container detalhe_post">
-                                        <form action="{{route('PostResponse.create',$post)}}" method="post"
-                                              autocomplete="off">
-                                            @csrf
-                                            <textarea class="form-control" id="reply" name="reply"
-                                                      placeholder="Nova resposta.." required
-                                            ></textarea>
-
-                                            <button type="submit" class="btn btn-outline-secondary">Comentar
-                                            </button>
-
-                                        </form>
-                                    </div>
                                 </div>
 
+                                <script>
+                                    $(function () {
+                                        $('#image').change(function () {
+                                            console.log('test');
+                                            const image = $(this)[0].files[0];
+                                            console.log(image);
+                                            const fileReader = new FileReader();
+                                            fileReader.onloadend = function () {
+                                                $('#imagePost').attr('src', fileReader.result)
+                                            }
+                                            fileReader.readAsDataURL(image)
+                                        })
+                                    })
+                                </script>
+
+                                <div
+                                    class=" container col-md-11 justify-content-end detalhe_respostas">
+                                    <h4>Respostas:</h4>
+                                    <div class="container shadow-sm respostas">
+                                        @forelse($post->repliers()->get() as $replier)
+                                            <div class="row container mt-3">
+                                                <div class="col-md-2">
+                                                    <div class="info_usuario_resposta">
+                                                        @if(!empty($replier->id))
+                                                            <a href="#">
+                                                                <img onclick="redirectToProfile(this.src)"
+                                                                     src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
+                                                                     alt="replier" title="replier"
+                                                                     width="80 px"/>
+                                                            </a>
+                                                        @else
+                                                            <div class=" fundo_img">
+                                                                <h2>replier foto</h2>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 reply">
+                                                    <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
+                                                    <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
+                                                    <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="input-group resposta col-md-12 d-flex justify-content-md-center">
+                                                <input class="form-control"
+                                                       id="reply" name="reply"
+                                                       value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
+                                                       disabled
+                                                >
+                                            </div>
+                                        @empty
+
+                                            <textarea class="form-control" placeholder="Nao tem respostas ainda!"
+                                                      readonly></textarea>
+
+                                        @endforelse
+                                    </div>
+                                </div>
+                                <div class="container detalhe_post">
+                                    <form action="{{route('PostResponse.create',$post)}}" method="post"
+                                          autocomplete="off">
+                                        @csrf
+                                        <textarea class="form-control" id="reply" name="reply"
+                                                  placeholder="Nova resposta.." required
+                                        ></textarea>
+
+                                        <button type="submit" class="btn btn-outline-secondary">Comentar
+                                        </button>
+
+                                    </form>
+                                </div>
+                                <div class="container">
+                                    <!--Delete section-->
+                                    <form method="post" id="delete-form-{{$post->id}}"
+                                          action="{{ route('posts', $post->id)}}"
+                                          style="display:none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button
+                                        onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{$post->id}}').submit();
+                                            }
+                                            else{
+                                            event.preventDefault();
+                                            }
+                                            " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
+                                    </button>
+                                </div>
                             </div>
-
-                            <br>
                         @endforeach
-
                     </section>
 
-                    @else
                 </div>
+        </div>
 
-                <div class="container col-md-12">
-                    <p>Nao ha informaçao do user</p>
+        @else
+
+
+            <div class="container col-md-12">
+                <p>Nao ha informaçao do user</p>
+            </div>
+            <div class="row col-md-12>">
+                <div class="col-md-3">
                 </div>
-                <div class="row col-md-12>">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-6 btn-group btn-group-lg">
-                        <button type="button" onclick="window.location.href='/'"
-                                class="btn btn-secondary btn-lg ">Voltar
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
+                <div class="col-md-6 btn-group btn-group-lg">
+                    <button type="button" onclick="window.location.href='/'"
+                            class="btn btn-secondary btn-lg ">Voltar
+                    </button>
                 </div>
+                <div class="col-md-3">
+                </div>
+            </div>
 
             @endif
-        </div>
+            </div>
     </main>
     <!-- Including the footer -->
 </body>

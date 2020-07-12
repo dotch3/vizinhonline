@@ -23,6 +23,9 @@ Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuar
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
 Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
+Route::delete('/PostsUsuario/{id}','PostsController@destroy')->name('postsUser.destroy');//TODO Review
+
+
 Route::get('/FavoritosUsuario/{id}', 'PagesController@favoritesUsuario')->name('favorites');
 
 
@@ -126,7 +129,7 @@ Route::post('/createPost', 'PostsController@store')->name('posts.store');
 Route::get('/detalhePost/{id}', 'PostsController@show')->name('posts.show');
 Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
 Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
-Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
+Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy'); //TODO Review
 
 Auth::routes();
 
