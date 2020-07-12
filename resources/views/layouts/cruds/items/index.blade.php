@@ -59,7 +59,8 @@
                             <td>{{$item->loan_start_date}}</td>
                             <td>{{$item->loan_end_date}}</td>
                             <td>{{$item->replacement_cost}}</td>
-                            <td>{{$item->users->first()}}</td>
+                            <td>{{$item->users}}</td>
+                            {{dd($item->user)}}
                             <td>{{"#".$item->item_status_id." ".$item->status->name}}</td>
                             <td>{{$item->id}}</td>
 
