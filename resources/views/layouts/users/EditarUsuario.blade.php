@@ -8,7 +8,7 @@
 
 @section('content')
     @if (session('alert-success'))
-        <div class="container alert alert-success" role="alert">
+        <div class=" alert alert-success" role="alert">
             {{session('alert-success')}}
         </div>
     @endif
@@ -193,7 +193,7 @@
                         <br/>
                         <div>
                             <button type="button" class="btn btn-secondary"
-                                    onclick="window.history.go(-1); return false;">Voltar
+                                    onclick="window.location.href='/'">Voltar
                             </button>
                             @if(empty($user->id))
 
