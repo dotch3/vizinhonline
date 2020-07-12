@@ -33,4 +33,5 @@ class FavoriteUser extends Pivot
 
         return $users;
     }
+
 }

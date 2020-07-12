@@ -122,7 +122,8 @@ class FeedbacksController extends Controller
         $feedbacks = Feedbacks::findOrFail($id);
         $feedbacks->delete();
 
-        return redirect()->route('feedbacks.index')->with('alert-success', 'Feedback has been deleted!');
+        return redirect()->route('feedbacks.index')
+            ->with('alert-success', 'Feedback has been deleted!');
 
     }
 }

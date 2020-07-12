@@ -9,20 +9,26 @@
 <!-- Main -->
 @section('content')
     @if (session('alert-success'))
-        <div class="container alert alert-success" role="alert">
+        <div class=" alert alert-success" role="alert">
             {{session('alert-success')}}
         </div>
     @endif
-    @if ($errors)
-        @foreach ($errors->all as $error)
+    @if (session('alert-error'))
+        <div class="alert alert-danger" role="alert">
+            {{session('alert-error')}}
+            {{$errors}}
+        </div>
+    @endif
+    @if($errors->any())
+        @foreach($errors->all() as $error)
             <div class="alert alert-danger" role="alert">
                 {{$error}}
             </div>
         @endforeach
     @endif
     <main class="main">
-        <div class="row ">
         @if(!empty($user->id))
+        <div class="row ">
             <!-- Panel esquerdo -->
                 <div class="col-md-4">
                     <!-- Including panel esquerdo do usuario: UserData -->
@@ -37,7 +43,7 @@
                     <section class="div_feed_items col-md-10">
                         <h2> Meus Posts </h2>
                         {{--                    @foreach()--}}
-                        @foreach($user->posts as $post)
+                        @forelse($user->posts as $post)
                             <div class="card text-center">
 
                                 <div class=" col-md-12 container">
@@ -50,8 +56,6 @@
                                                 <div class="detalhe_post row  shadow-sm col-md-10">
                                                     <p> Post ID</p>
                                                     <h5>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h5>
-                                                    {{--                                                    <h3>User ID:</h3>--}}
-                                                    {{--                                                    <h3>{{!empty($post->user->id)? $post->user->id:'Nao User ID'}}</h3>--}}
                                                 </div>
                                                 <div class=" container detalhe_post form-group row">
                                                     <input type="text" class="form-control-file comment_post"
@@ -77,7 +81,8 @@
 
                                             <div class="row detalhe_post col-md-10 input-group">
                                                 <!--Post Comment-->
-                                                <input type="text" class="form-control-file comment_post" id="comment"
+                                                <input type="text" class="form-control-file comment_post"
+                                                       id="comment"
                                                        name="comment" autocomplete="off"
                                                        value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
@@ -85,14 +90,16 @@
                                         <div class="acoes_nova_publicacao container row">
                                             <div class="col-md-6">
                                                 <a href="#">
-                                                    <img src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
-                                                         title="Escolha uma imagem"/>
+                                                    <img
+                                                        src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
+                                                        title="Escolha uma imagem"/>
                                                 </a>
                                                 <input type="file" name="image" id="image" multiple accept='image/*'
                                                        size='50'>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn btn-outline-secondary">Editar</button>
+                                                <button type="submit" class="btn btn-outline-secondary">Editar
+                                                </button>
 
                                             </div>
                                         </div>
@@ -193,17 +200,27 @@
                                     </button>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <p>Não tem posts</p>
+                            <div class="row col-md-12>">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6 btn-group btn-group-lg">
+                                    <button type="button" onclick="window.location.href='/'"
+                                            class="btn btn-secondary btn-lg ">Voltar
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            <br>
+                        @endforelse
                     </section>
-
                 </div>
         </div>
-
         @else
-
-
             <div class="container col-md-12">
-                <p>Nao ha informaçao do user</p>
+                <p>Não ha informação do user</p>
             </div>
             <div class="row col-md-12>">
                 <div class="col-md-3">
@@ -216,9 +233,7 @@
                 <div class="col-md-3">
                 </div>
             </div>
-
-            @endif
-            </div>
+        @endif
     </main>
     <!-- Including the footer -->
 </body>
