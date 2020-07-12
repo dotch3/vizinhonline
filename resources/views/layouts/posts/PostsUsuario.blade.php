@@ -53,7 +53,7 @@
                                         @csrf
                                         <div class="container">
                                             @if($post->title)
-                                                <div class="detalhe_post row  shadow-sm col-md-10">
+                                                <div id="idpost" class="detalhe_post row  shadow-sm col-md-10">
                                                     <p> Post ID</p>
                                                     <h5>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h5>
                                                 </div>
@@ -74,9 +74,39 @@
                                                     </a>
                                                 </div>
                                             @else
-                                                <div class="fundo_img">
+                                                                                          <!-- nova div imagem-->
+
+                    
+	
+                                                <div class="post-image">	
+                                                    <div class="img_upload">
+	
+                                                        <label class="label">
+	
+                                                            <input type="file" name="imagePost" id="imagePost" multiple accept='image/*' size='50'>
+	
+                                                            <figure class="post-figure">
+	
+                                                                <img id="imgPost" src={{asset('/storage/avatar/fundo.png')}} alt="Escolha_uma_imagem"
+
+                                                                 title="Escolha uma imagem"/>
+	
+                                                                <figcaption class="post-figcaption">
+
+                                                                    <img src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
+	
+                                                                 title="Escolha uma imagem"/>	
+                                                                </figcaption>
+                                                                	
+	
+                                                            </figure>
+                                                        </label>
+	
+                                                    </div>
+
+                                                {{-- <div class="fundo_img">
                                                     <h2>Post Image</h2>
-                                                </div>
+                                                </div> --}}
                                             @endif
 
                                             <div class="row detalhe_post col-md-10 input-group">
@@ -87,7 +117,7 @@
                                                        value="{{!empty($post->comment)? $post->comment:''}}">
                                             </div>
                                         </div>
-                                        <div class="acoes_nova_publicacao container row">
+                                        {{-- <div class="acoes_nova_publicacao container row">
                                             <div class="col-md-6">
                                                 <a href="#">
                                                     <img
@@ -96,32 +126,57 @@
                                                 </a>
                                                 <input type="file" name="image" id="image" multiple accept='image/*'
                                                        size='50'>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6">
                                                 <button type="submit" class="btn btn-outline-secondary">Editar
                                                 </button>
 
                                             </div>
-                                        </div>
+                                        {{-- </div> --}}
                                     </form>
 
                                 </div>
 
-                                <script>
-                                    $(function () {
-                                        $('#image').change(function () {
-                                            console.log('test');
-                                            const image = $(this)[0].files[0];
-                                            console.log(image);
-                                            const fileReader = new FileReader();
-                                            fileReader.onloadend = function () {
-                                                $('#imagePost').attr('src', fileReader.result)
-                                            }
-                                            fileReader.readAsDataURL(image)
-                                        })
-                                    })
-                                </script>
-
+                                <script
+                             
+                                                                                    src="https://code.jquery.com/jquery-3.5.1.min.js"
+                              
+                                                                                    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                         
+                                                                                    crossorigin="anonymous">
+                               
+                                                                            </script>
+                       
+                                                                             <script>
+                             	
+                                                                                 $(function () {
+                             
+                                                                                 $('#imagePost').change(function () {
+                              
+                                                                                    $('#imgPost').show();
+                             
+                                                                                    const image = $(this)[0].files[0];
+                             
+                                                                                    console.log(image);
+                               
+                                                                                    const fileReader = new FileReader();
+                           
+                                                                                    fileReader.onloadend = function () {
+                              
+                                                                                 $('#imgPost').attr('src', fileReader.result)
+                                	
+                                                                                        }
+                            	
+                                                                                    fileReader.readAsDataURL(image)
+                            	
+                                                                                    })
+                                
+                                                                                 })
+                                
+                                                                            </script>
+                                
+                                                                        </div>
+                                
                                 <div
                                     class=" container col-md-11 justify-content-end detalhe_respostas">
                                     <h4>Respostas:</h4>
