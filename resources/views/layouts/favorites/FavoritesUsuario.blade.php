@@ -44,30 +44,28 @@
                         <h2> Meus Favoritos </h2>
                         {{--                    @foreach()--}}
                         @forelse($user->selected_favorites as $favorite)
-                            <div class="card text-center">
+                            <div class="col-8 card text-center">
 
-                                <div class=" col-md-12 container">
+                                
 
-                                    <div class="container">
+                                    <div>
                                         @if($favorite->id)
-                                            <div class="detalhe_post row  shadow-sm col-md-10">
+                                            <div class="detalhe_post row  shadow-sm">
                                                 <p> Favorite Id:</p>
                                                 <h5>{{!empty($favorite->id)? $favorite->id:'Nao tem favorite'}}</h5>
                                                 <p>User Id:</p>
                                                 <h5>{{!empty($favorite->user_id)? $favorite->user_id:'Nao User ID'}}</h5>
                                                 <p>Post Id:</p>
                                                 <h5>{{!empty( $favorite->post_id)? $favorite->post_id:'Nao tem Post'}}</h5>
-
+                                
                                                 {{--                                                    {{dd($favorite->posts($favorite->id))}}÷--}}
                                             </div>
                                             @if(!empty($favorite->post_id))
-                                                <div class=" container detalhe_post form-group row">
-{{--                                                    <h5> {{ $post = $favorite->posts($favorite->post_id)->get()->first()}}</h5>--}}
-                                                </div>
+                                               
 
-                                                <div class=" container col-md-12 detalhe_post form-group row">
+                                                <div>
                                                     @if( $favorite->posts($favorite->post_id)->get()->first()->image)
-                                                        <div class="detalhe_post  col-md-6 container text-center">
+                                                        <div class="imagem-favoritos">
                                                             <a href="">
                                                                 <img
                                                                     src="{{asset('/storage/posts/'. $favorite->posts($favorite->post_id)->get()->first()->image->slug)}}"
@@ -77,17 +75,21 @@
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div class="fundo_img">
-                                                            <h2>Post Image</h2>
+                                                    <br>
+                                                        <div class="imagem-favoritos">
+
+                                                        <img src="{{asset('storage/posts/fundo.png')}}">
                                                         </div>
+                                                       
                                                     @endif
+                                                    
                                                 </div>
 
                                                 <div class="acoes_nova_publicacao container row">
                                                     <div class="col-md-6">
                                                         <a href="{{route('posts.show', $favorite->posts($favorite->post_id)->get()->first()->id)}}"
                                                            class="btn btn-light">
-                                                            Ver</a>
+                                                            <i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     </div>
 
                                                     <div class="col-md-6">
@@ -105,7 +107,7 @@
                                                                 else{
                                                                 event.preventDefault();
                                                                 }
-                                                                " class="btn btn-light">Eliminar
+                                                                " class="btn btn-light"><i class="fa fa-trash" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
 
@@ -122,7 +124,7 @@
 
                                         @endif
                                     </div>
-                                </div>
+                                
 
                             </div>
                         @empty
