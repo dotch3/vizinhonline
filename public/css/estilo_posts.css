@@ -141,7 +141,7 @@ textarea {
 
 .card-body .acoes_nova_publicacao a img {
     width: 40px;
-    margin: 20px auto 15px auto;
+    margin: 20px 40px 15px auto;
 
 }
 
@@ -257,7 +257,7 @@ textarea {
     font-size: 18px;
     line-height: 25px;
     color: #a60356;
-    margin: 15px 25px 0 25px;
+    margin: 65px 25px 0 25px;
 }
 
 .detalhe_item {
@@ -422,4 +422,75 @@ Posts
 
 .btn-outline-secondary:hover, .btn-outline-secondary:active, .btn-outline-secondary:visited {
     background-color: rgba(166, 3, 86, 0.44) !important;
+}
+
+#idpost{
+    display:none;
+}
+
+.post-image {
+    text-align: center;
+    }
+
+.img_upload {
+      font-size: 16px;
+      position: relative;
+      width: 50px;
+      height: 100px;
+      top: 20px;
+      left: 35px;
+      }
+
+.post-image input[type="file"] {
+      display: none;
+    }
+
+  .post-figure {
+      position: relative;
+      width: 200px;
+      height: 195px;
+    }
+
+.post-figcaption {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  width: 550px;
+  height: 195px;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all ease-in-out .3s;
+}
+.post-figcaption:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+
+.post-figcaption > img {
+  margin-top: 32.5px;
+  width: 50px;
+  height: 50px;
+}
+
+#imgPost{
+    width:550px;
+    height:195px;
+}
+#title {
+    border-color: white;
+}
+
+.card-post{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 10px;
 }

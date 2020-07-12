@@ -174,7 +174,8 @@ form {
 input {
     outline: 0;
     border-width: 0 0 1px;
-    border-color: #000000;
+    border-color: #c4c4c4;
+    ;
 }
 
 .img_upload {
