@@ -92,8 +92,8 @@ textarea {
 }
 
 .card-body .info_usuario .perfil a img {
-    height: 100px;
-    text-align: left;
+    height: 120px;
+    text-align: center;
     border-radius: 50%;
     margin-bottom: 10px;
     margin-left: 10px;
@@ -155,7 +155,7 @@ textarea {
 }
 
 .info_usuario_resposta img {
-    width: 60px;
+    width: 80px;
 
 }
 
@@ -423,4 +423,82 @@ Posts
 
 .btn-outline-secondary:hover, .btn-outline-secondary:active, .btn-outline-secondary:visited {
     background-color: rgba(166, 3, 86, 0.44) !important;
+}
+
+/*
+Posts Feed
+*/
+
+.detalhe_post_feed{
+    text-align: left;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.detalhe_post_feed a img {
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+}
+
+.detalhe_post_feed h3 {
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 10px;
+    color: black;!important;
+}
+.detalhe_post_feed textarea{
+    width: calc(100% - 80px);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 250px;
+    border-radius: .25rem;
+    padding-top: 15px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.detalhe_post_feed h4{
+    text-align: left;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #a60356;
+}
+.detalhe_post_feed p{
+    font-family: Josefin Sans;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.fundo_img {
+
+    width: 120px;
+    margin: 10px;
+    height: 100px;
+    top: 25px;
+    background: #C4C4C4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 180px;
+}
+
+.fundo_img h5, h4, h3, h2 {
+    color: #a60356;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 14px;
+    justify-content: center;
+    padding-top: 25px;
+
+}
+.fundo_img a{
+    text-decoration:none;
+    font-family: "Josefin Sans", sans-serif;
+    padding-top: 25px;
+    font-size: 14px;
+    color: #a60356;
+    justify-content: center;
 }

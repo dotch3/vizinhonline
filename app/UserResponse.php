@@ -30,4 +30,10 @@ class UserResponse extends Pivot
 //            dd('delete event:',$postItem);
         });
     }
+
+    public function posts()
+    {
+        $posts=Post::where('post_id',$this->post_id);
+        return $posts;
+    }
 }

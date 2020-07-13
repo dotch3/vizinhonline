@@ -31,6 +31,17 @@ class Post extends Model
         //post->users()->attach($users);
     }
 
+    public function latestResponse($id)
+    {
+        $post = Post::find($id);
+//        $latestResponse= UserResponse::with('posts')->where('post_id',$post->id)->orderBy('created_at','DESC')->first();
+        $latestResponse = UserResponse::where('post_id', $post->id)->orderBy('created_at', 'DESC')->first();
+
+        //        dd('LatestResponse:',$latestResponse);
+        return $latestResponse;
+
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class)
