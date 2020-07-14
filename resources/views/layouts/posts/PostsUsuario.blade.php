@@ -29,45 +29,11 @@
     <main class="main">
         @if(!empty($user->id))
         <div class="row">
-            <!-- Panel esquerdo -->
-            <div class="col-md-4">
-                <!-- Including panel esquerdo do usuario: UserData -->
                  <div class="menu-lateral">
                     <!-- Including panel esquerdo do usuario: UserData -->
-                    @include('.layouts/users/UserData')
-                </div>
-            </div>
-             <!-- Panel dereito -->
-            <div class="col-md-8 container">
-                <section class="div_feed_items col-md-10">
-                <h2> Meus Posts </h2>
-                    @forelse($user->posts as $post)
-                        <div class="card text-center">
-                            <div class=" col-md-12 container">
-                                <form method="post" action="{{ route('posts.update',$post) }}" enctype="multipart/form-data" autocomplete="off">
-                                    @csrf
-                                    <div class="container">
-                                        @if($post->title)
-                                            <div id="idpost" class="detalhe_post row  shadow-sm col-md-10">
-                                                <p> Post ID</p>
-                                                <h5>{{!empty($post->id)? $post->id:'Nao tem post ID'}}</h5>
-                                            </div>
-                                            <div class=" container detalhe_post form-group row">
-                                                <input type="text" class="form-control-file comment_post" id="title" name="title" autocomplete="off" value="{{!empty($post->title)? $post->title:''}}">
-                                            </div>
-                                        @endif
-                                        @if($post->image)
-                                            <div class="post-image">
-                                                <div class="img_upload">
-                                                    <label class="label">
-                                                        <input type="file" multiple accept='image/*' name="image" id="image">
-                                                            <figure class="post-figure">
-                                                                <img id="imgPost" src="{{asset('/storage/posts/'.$post->image->slug)}}" alt="imagem post">
-                                                                    <figcaption class="post-figcaption">
-                                                                        <img src="{{asset('/img/icons/camera.png')}}" alt="image">
-                                                                    </figcaption>
-                                                            </figure>
+                 
                                                     </label>
+
                                                 </div>
                                             </div>
                                             @else
@@ -75,6 +41,7 @@
                                                 <div class="img_upload">
                                                     <label class="label">
                                                         <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
+
                                                             <figure class="post-figure">
                                                                 <img id="imgPost" src={{asset('/storage/avatar/fundo.png')}} alt="Escolha_uma_imagem" title="Escolha uma imagem"/>
                                                                     <figcaption class="post-figcaption">
