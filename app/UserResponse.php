@@ -31,9 +31,5 @@ class UserResponse extends Pivot
         });
     }
 
-    public function posts()
-    {
-        $posts=Post::where('post_id',$this->post_id);
-        return $posts;
-    }
+
 }

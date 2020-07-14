@@ -8,6 +8,7 @@ use App\Item;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavoriteUserController extends Controller
 {
@@ -58,7 +59,6 @@ class FavoriteUserController extends Controller
     public function storePost(Request $request)
     {
         $post = Post::find($request->post_id);
-
 //        $user_id=Auth::user()->id;
         $user = User::find($request->user_id);
 
@@ -99,6 +99,56 @@ class FavoriteUserController extends Controller
 
 //        $item->images()->attach($image->id);
         return redirect()->route('posts', $user->id)
+            ->with('alert-success', 'Favorito salvo exitosamente!');
+    }
+
+    public function savePostFavorite(Request $request)
+    {
+        $post = Post::find($request->post_id);
+//        dd($request);
+//        $user_id=Auth::user()->id;
+        if (!empty(Auth::user()->id)) {
+            $user = User::find($request->user_id);
+            dd('Auth?',$user);
+        }
+        else{
+            $user = User::find(4); //TODO: Work with Auth()
+//            dd('HardCode',$user);
+        }
+
+        $favorite = Favorite::Where('name', 'POST_FAVORITE')->first(); //TODO: Add logic for resources {ITEM, USER}
+
+//        dd($request);
+        if ($post && $user && $favorite) {
+            //all elements of a post favorite exists
+            $matchQuery = [
+                'post_id' => $post->id,
+                'favorite_id' => $favorite->id,
+                'user_id' => $user->id,
+            ];
+
+            $exist = FavoriteUser::where($matchQuery)->get();
+            if (count($exist) > 0) {
+
+                return redirect()->route('posts', $user->id)
+                    ->with('alert-error', '[Favorito ja existe!]');
+
+            } else {
+
+                $favoriteUser = new FavoriteUser();
+
+                $favoriteUser->favorite_id = $favorite->id;
+                $favoriteUser->user_id = $user->id;
+                $favoriteUser->post_id = $post->id;
+
+                $favoriteUser->save();
+                $user->favorites()->attach($favoriteUser->id);
+                $user->save();
+            }
+        }
+
+
+        return redirect()->route('favorites', $user->id)
             ->with('alert-success', 'Favorito salvo exitosamente!');
     }
 

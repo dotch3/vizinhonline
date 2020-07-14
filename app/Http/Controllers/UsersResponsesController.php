@@ -50,12 +50,13 @@ class UsersResponsesController extends Controller
     }
 
     public function test()
-    {   echo "Test";
+    {
+        echo "Test";
         $post = Post::where('id', 15)->first();
         echo "<p>Post {{$post->id}}</p>";
 
         $replier = $post->repliers()->get();
-        foreach ($replier as $pu){
+        foreach ($replier as $pu) {
             echo " <p>Replier $pu->name </p>";
         }
 
@@ -63,9 +64,17 @@ class UsersResponsesController extends Controller
         echo "$reply->created_at";
         echo "$reply->udpated_at";
 
-        dd('ReplierPivot:',$reply);
+        dd('ReplierPivot:', $reply);
 
 
+    }
+
+    public function responseOwner($id)
+    {
+        $response = UserResponse::find($id);
+        $user = User::where('id', $response->user_id)->first();
+
+        return $user;
     }
 
 }

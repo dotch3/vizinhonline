@@ -12,9 +12,10 @@ class PagesController extends Controller
 {
     public function home()
     {
-        if (!Auth::check()) { //TODO: trabalhar a parte de auth
+        if (Auth::check()) { //TODO: trabalhar a parte de auth
             $posts = Post::orderBy('created_at', 'desc')->get();
-//            if($posts){
+           dd($posts);
+
 //                dd(count($posts));
 //            }
             return view('layouts/main/Feed', compact('posts'));

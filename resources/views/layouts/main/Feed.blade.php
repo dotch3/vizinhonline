@@ -3,6 +3,7 @@
 
 <head>
     <link href="{{ asset('/css/estilo_feed.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/likePosts.js') }}"></script>
 </head>
 
 @section('content')
@@ -121,121 +122,145 @@
                     <!-- Publicacoes feitas sao listadas a partir daqui -->
 
                     @forelse($posts as $post)
-                        <article>
+                        <article class="post">
                             <div class="card text-center">
                                 <div class="card-body col-md-12">
-                                {{--                                {{dd($post->user->image->slug)}}--}}
-                                <!-- Foto e dados do usuario -->
-                                    <div class="info_usuario container row">
-                                        <div class="col-md-3 perfil">
-                                            @if(!empty($post->user->image->id))
-                                                <a href="#">
-                                                    <img onclick="redirectToProfile(this.src)"
-                                                         src={{asset('/storage/avatar/'.$post->user->image->slug)}}
-                                                             alt="perfil" title="perfil usuario da
-                                        publicacao"/>
-                                                </a>
-                                            @else
-                                                <div class="fundo_img">
+                                    <form action="{{route('favoriteUser.savePostFavorite',$post->user->id)}}"
+                                          method="post"
+                                          id="favoriteForm">
+                                        @csrf
+                                        <div class="info_usuario container row">
+                                            <div class="col-md-3 perfil">
+                                                @if(!empty($post->user->image->id))
                                                     <a href="#">
                                                         <img onclick="redirectToProfile(this.src)"
-                                                        /> Sem imagem
+                                                             src={{asset('/storage/avatar/'.$post->user->image->slug)}}
+                                                                 alt="perfil" title="perfil usuario da
+                                        publicacao"/>
+                                                    </a>
+                                                @else
+                                                    <div class="fundo_img">
+                                                        <a href="#">
+                                                            <img onclick="return redirectToProfile(this.src)"
+                                                            /> Sem imagem
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class=" detalhe_post_feed">
+                                                <h4>{{$post->user->name." ".$post->user->lastname}}</h4>
+                                                <h3>{{(!empty($post->user->location) ?" Apto ".$post->user->location->apartment_number.", ".$post->user->location->building : 'Apto: N/A, Bloco: N/A')}}</h3>
+
+                                            </div>
+                                        </div>
+                                        <div class="detalhe_item shadow-sm">
+                                            <!-- Detalhe do item publicado -->
+                                            <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
+                                            <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()}}"> <!--TODO: Work with Auth()-->
+                                            @if(!empty($post->image->id))
+                                                <a href="#">
+                                                    <img
+                                                        src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
+                                                        title="{{$post->title}}"/>
+                                                </a>
+                                            @else
+                                                <a href="#">
+                                                    <img
+                                                        src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
+                                                        title="imagem item publicado"/>
+                                                </a>
+                                            @endif
+                                            <h5>{{$post->comment}}</h5>
+                                        </div>
+                                        <div class="row container mt-3">
+                                            <div class="col-md-6">
+                                                <div class="acoes_detalhe_item interaction">
+                                                    <button type="submit"
+                                                            class="like btn btn-link"
+                                                    >
+                                                        @if((!empty($post->isFavorite($post->id,Auth::user())->created_at)))
+                                                            <img
+                                                                src={{asset('/img/icons/favoriteSelected.png')}} alt="favorito"
+                                                                title="favorito"
+                                                                name="favoritePost"
+                                                                id="favoritePost"
+                                                            >
+                                                        @else
+                                                            <img
+                                                                src={{asset('/img/icons/favorite3.png')}} alt="favorito"
+                                                                title="favorito"
+                                                                name="favoritePost"
+                                                                id="favoritePost"
+                                                            >
+                                                        @endif
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="acoes_detalhe_item">
+                                                    <a href="#">
+                                                        <img src={{asset('/img/icons/messagem.png')}} alt="message"
+                                                             title="message"/>
                                                     </a>
                                                 </div>
-                                            @endif
-                                        </div>
-                                        <div class=" detalhe_post_feed">
-                                            <h4>{{$post->user->name." ".$post->user->lastname}}</h4>
-                                            <h3>{{(!empty($post->user->location) ?" Apto ".$post->user->location->apartment_number.", ".$post->user->location->building : 'Apto: N/A, Bloco: N/A')}}</h3>
-
-                                        </div>
-                                    </div>
-                                    <div class="detalhe_item shadow-sm">
-                                        <!-- Detalhe do item publicado -->
-                                        @if(!empty($post->image->id))
-                                            <a href="#">
-                                                <img
-                                                    src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
-                                                    title="{{$post->title}}"/>
-                                            </a>
-                                        @else
-                                            <a href="#">
-                                                <img src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
-                                                     title="imagem item publicado"/>
-                                            </a>
-                                        @endif
-                                        <h5>{{$post->comment}}</h5>
-                                    </div>
-                                    <div class="row container mt-3">
-                                        <div class="col-md-6">
-                                            <div class="acoes_detalhe_item">
-{{--                                                <form method="post" action="{{ route('favoriteUser.storePost') }}">--}}
-{{--                                                    @csrf--}}
-                                                <a href="{{route('favoriteUser.storePost')}}">
-                                                    <img src={{asset('/img/icons/favorite3.png')}} alt="favorito"
-                                                         title="favorito"/>
-                                                </a>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="acoes_detalhe_item">
-                                                <a href="{{route('posts.show',$post->id)}}">
-                                                    <img src={{asset('/img/icons/messagem.png')}} alt="message"
-                                                         title="message"/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    </form>
+                                    <!--FORM-->
                                 </div>
+
                                 <!-- Section for the responses-->
                                 <div
                                     class=" container col-md-11 justify-content-end detalhe_respostas">
 
-{{--                                    <h4>Ultima resposta:</h4>--}}
+                                    {{--                                    <h4>Ultima resposta:</h4>--}}
                                     <div class="container shadow-sm respostas">
 
-                                        {{-- {{dd('TESTE LAST:',$response)}}--}}
-{{--                                        @if($response)--}}
-                                        {{--                                            {{$response=$post->repliers()->where('post_id',$post->id)->orderBy('id','desc')->first()}}--}}
-{{--                                        {{"Latest Response:".$post->latestResponse($post->id)}}--}}
-                                    @forelse($post->repliers()->get() as $replier)
-{{--                                        <hr>--}}
-{{--                                        <br>--}}
-{{--                                        {{dd($replier)}}--}}
-{{--                                        {{$replier->pivot}}--}}
-                                            <div class="row container mt-3">
-                                                <div class="col-md-2">
-                                                    <div class="info_usuario_resposta">
-                                                        @if(!empty($replier->image))
-                                                            <a href="#">
-                                                                <img onclick="redirectToProfile(this.src)"
-                                                                     src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
-                                                                     alt="replier" title="replier"
-                                                                     width="80 px"/>
-                                                            </a>
-                                                        @else
-                                                            <div class="fundo_img">
-                                                                <h5>Sem imagem</h5>
-                                                            </div>
-                                                        @endif
+                                        {{--                                        {{$response=$post->repliers()->where('post_id',$post->id)->orderBy('id','desc')->first()}}--}}
+
+                                        @forelse($post->repliers()->get() as $replier)
+                                            @if($replier->pivot->created_at == $post->lastResponse($replier)->created_at)
+                                                <div class="container">
+                                                    <p>última resposta <span class="badge badge-light">({{$replier->created_at}})</span>
+                                                    </p>
+                                                </div>
+
+                                                <div class="row container mt-3">
+                                                    <div class="col-md-2">
+                                                        <div class="info_usuario_resposta">
+                                                            @if(!empty($replier->image))
+                                                                <a href="#">
+                                                                    <img onclick="redirectToProfile(this.src)"
+                                                                         src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
+                                                                         alt="replier" title="replier"
+                                                                         width="80 px"/>
+                                                                </a>
+                                                            @else
+                                                                <div class="fundo_img">
+                                                                    <h5>Sem imagem</h5>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 reply">
+                                                        <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
+                                                        <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
+                                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 reply">
-                                                    <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
-                                                    <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
-                                                    <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
-                                                </div>
-                                            </div>
 
-                                            <div
-                                                class="input-group resposta col-md-12 d-flex justify-content-md-center">
-                                                <input class="form-control"
-                                                       id="reply" name="reply"
-                                                       value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
-                                                       disabled
-                                                >
-                                            </div>
+                                                <div
+                                                    class="input-group resposta col-md-12 d-flex justify-content-md-center">
+                                                    <input class="form-control"
+                                                           id="reply" name="reply"
+                                                           value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
+                                                           disabled
+                                                    >
+                                                </div>
+
+                                            @endif
+
                                         @empty
                                             <p>Nao tem respostas ainda!</p>
                                         @endforelse
@@ -251,8 +276,21 @@
             </div>
         </div>
     </main>
-    <!-- Including the footer -->
 
+    <!--Section for the JS code for the favorite -->
+    {{--    <script>--}}
+    {{--        --}}{{--var token = '{{Session::token}}';--}}
+    {{--        var urlLike = '{{route('favoriteUser.savePostFavorite')}}';--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $()--}}
+    {{--        });--}}
+
+    $('.like').on('click', function (event) {
+    event.preventDefault();
+    console.log('like event', event);
+
+    });
+    {{--    </script>--}}
     </body>
 @endsection
 
