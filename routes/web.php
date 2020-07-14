@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 // VIZINHONLINE MAIN ROUTES
 
-Route::get('/', 'PagesController@home')->name('home');
+//Route::get('/', 'PagesController@home')->name('home');
+Route::get('/', 'PagesController@home'); //TODO : verificar funcionalidade e conflitos com o HomeController
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
@@ -31,6 +32,7 @@ Route::delete('/PostsUsuario/{id}','PostsController@destroy')->name('postsUser.d
 
 //Favorites
 Route::get('/FavoritosUsuario/{id}', 'PagesController@favoritesUsuario')->name('favorites');
+Route::post('/FavoritosUsuario/{id}', 'PagesController@favoritesUsuario')->name('favorites');
 Route::delete('/FavoritosUsuario/{id}', 'FavoriteUserController@destroyPost')->name('favorites');
 
 
@@ -38,6 +40,11 @@ Route::delete('/FavoritosUsuario/{id}', 'FavoriteUserController@destroyPost')->n
 Route::post('/FavoritesUsuario/{id}', 'FavoriteUserController@response')->name('favoritesUser.create');
 Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->name('favoriteUser.createPost');
 Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
+
+//Route::get('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+Route::post('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+Route::get('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+
 
 Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
 Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -34,11 +35,31 @@ class Post extends Model
     public function latestResponse($id)
     {
         $post = Post::find($id);
-//        $latestResponse= UserResponse::with('posts')->where('post_id',$post->id)->orderBy('created_at','DESC')->first();
-        $latestResponse = UserResponse::where('post_id', $post->id)->orderBy('created_at', 'DESC')->first();
+        $latestResponse = UserResponse::where('post_id', $post->id)->orderBy('created_at', 'DESC')->get()->first();
 
-        //        dd('LatestResponse:',$latestResponse);
         return $latestResponse;
+
+    }
+
+    public function isFavorite($post_id, $user_id)
+    {
+        $favorite = FavoriteUser::where('user_id', $user_id)
+            ->where('post_id', $post_id)
+            ->get()
+            ->first();
+
+
+        return $favorite;
+    }
+
+    public static function lastResponse($replier)
+    {
+        $post = Post::find($replier->pivot->post_id);
+        $latestResponse = UserResponse::where('post_id', $post->id)->orderBy('created_at', 'DESC')->get()->first();
+        $response = DB::table('user_responses')
+            ->where('id', $latestResponse->id)
+            ->get()->first();
+        return $response;
 
     }
 
