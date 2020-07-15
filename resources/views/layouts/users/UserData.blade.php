@@ -95,7 +95,7 @@
                     {{--                    </li>--}}
                     <li><a href="{{!empty($user->id)? route('favorites',$user->id): '#'}}" style="color:inherit">
                             <span class="fa-li"><i class="fas fa-heart"
-                                                   style="font-size:20px ; color: #000000"></i></span>
+                                                   style="font-size:20px ; color: #000000"></i></span><a href="{{route('users.profile', Auth::user()->id)}}">
                             Favoritos {{!empty($user->favorites)? count($user->favorites): ''}}
                         </a>
                     </li>

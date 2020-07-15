@@ -162,3 +162,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Em contrução
+
+Route::get('/EmConstrucao', 'PagesController@emConstrucao')->name('EmConstrucao');
