@@ -3,7 +3,7 @@
 
 <head>
     <link href="{{ asset('/css/estilo_feed.css') }}" rel="stylesheet">
-    <script src="{{ asset('/js/likePosts.js') }}"></script>
+    {{--    <script src="{{ asset('/js/likePosts.js') }}"></script>--}}
 </head>
 
 @section('content')
@@ -46,44 +46,48 @@
 
                 <!-- Seccao de nova publicacao -->
                 <section class="div_nova_publicacao col-md-10">
-                    <div class="card text-center">
-                        <div class="card-body col-md-12">
-                            <!-- Foto e dados do usuario logado -->
-                            <div class="info_usuario_publicacao container row">
-                                <div class="col-md-3 perfil">
-                                    @if(empty(auth()))
-                                        <a href="#">
-                                            <img onclick="redirectToProfile(this.src)"
-                                                 src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
-                                                 alt="perfil" title="perfil usuario logado"/>
-                                        </a>
-                                    @else
-                                        <div class=" fundo_img">
-                                            <h5>Usuario não logado</h5>
-                                        </div>
-                                    @endif
+                    <form method="post" action="{{ route('posts.store') }}"
+                          enctype="multipart/form-data"
+                          autocomplete="off">
+                        @csrf
+                        <div class="card text-center">
+                            <div class="card-body col-md-12">
+                                <!-- Foto e dados do usuario logado -->
+                                <div class="info_usuario_publicacao container row">
+                                    <div class="col-md-3 perfil">
+                                        @if(!empty(auth()))
+                                            <a href="#">
+                                                <img onclick="redirectToProfile(this.src)"
+                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+                                                     alt="perfil" title="perfil usuario logado"/>
+                                            </a>
+                                        @else
+                                            <div class=" fundo_img">
+                                                <h2>Usuario não logado</h2>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="opcoes_usuario">
+                                        <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
+                                        <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
+                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                    </div>
                                 </div>
-                                <div class="opcoes_usuario">
-                                    <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
-                                    <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
-                                    <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                <div class="col-md-8">
+                                    <!-- Detalhe do item publicado -->
+                                    <img src="" class="profile"
+                                         id="imgPost"
+                                         name="imgPost"
+                                    >
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <!-- Detalhe do item publicado -->
-                                <img src="" class="profile"
-                                     id="imagePost"
-                                     name="imagePost"
-                                >
-                            </div>
-                            <div class="input-group text_nova_publicacao">
+                                <div class="input-group text_nova_publicacao">
                                 <textarea class="form-control"
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
                                           autocomplete="off">
                                 </textarea>
-                            </div>
+                                </div>
 
                             <div class="acoes_nova_publicacao container row">
                                 <div class="col-md-6">
@@ -156,7 +160,8 @@
                                         <div class="detalhe_item shadow-sm">
                                             <!-- Detalhe do item publicado -->
                                             <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
-                                            <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()}}"> <!--TODO: Work with Auth()-->
+                                            <input type="hidden" name="user_id" id="user_id"
+                                                   value="{{$post->user->id}}"> <!--TODO: Work with Auth()-->
                                             @if(!empty($post->image->id))
                                                 <a href="#">
                                                     <img
@@ -178,7 +183,7 @@
                                                     <button type="submit"
                                                             class="like btn btn-link"
                                                     >
-                                                        @if((!empty($post->isFavorite($post->id,Auth::user())->created_at)))
+                                                        @if((!empty($post->isFavorite($post->id,$post->user->id)->created_at)))
                                                             <img
                                                                 src={{asset('/img/icons/favoriteSelected.png')}} alt="favorito"
                                                                 title="favorito"
@@ -285,11 +290,11 @@
     {{--            $()--}}
     {{--        });--}}
 
-    $('.like').on('click', function (event) {
-    event.preventDefault();
-    console.log('like event', event);
+    {{--    $('.like').on('click', function (event) {--}}
+    {{--    event.preventDefault();--}}
+    {{--    console.log('like event', event);--}}
 
-    });
+    {{--    });--}}
     {{--    </script>--}}
     </body>
 @endsection
