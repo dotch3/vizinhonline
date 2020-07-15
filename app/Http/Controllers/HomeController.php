@@ -25,14 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        if (Auth::check()) {
-////            dd('logado');
-//            $posts = Post::orderBy('created_at', 'desc')->get();
-//            return view('layouts/main/Feed', compact('posts'));
-//        } else {
-//            return view('layouts/main/Home');
-//        }
-        $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('layouts/main/Feed', compact('posts'));
+        if (Auth::check()) { //TODO: trabalhar a parte de auth
+
+            $posts = Post::orderBy('created_at', 'desc')->get();
+
+//            }
+            return view('layouts/main/Feed', compact('posts'));
+        } else {
+            return view('layouts/main/Home');
+        }
+
     }
 }

@@ -10,7 +10,7 @@
 <section class="user_data col-12">
 
     <h2>
-        {{ !empty($user->id)? $user->name: '' }}
+        {{ Auth::check()? Auth::user()->name: '' }}
     </h2>
     {{-- <a href="#">
         <img src="{{!empty($user ?? ''->id) ? asset('/img/avatar/'.$user ?? ''->image->slug): '' }} "
@@ -19,7 +19,7 @@
     </a> --}}
     <div class="row">
         <div class="col-8">
-            @if(!empty($user->image->id))
+            @if(!empty(Auth::user()->image->id))
                 {{--                    @elseif(Storage::disk('public')->exists($user->image->name))--}}
 
                 {{-- <img src="{{asset('/storage/avatar/'.$user->image->slug)}}" id="imgProfile" class="profile"
@@ -29,7 +29,7 @@
                         <label class="label">
                             <input type="file" multiple accept='image/*' name="image" id="image" style="width: 200px;">
                             <figure class="personal-figure">
-                                <img id="imgProfile" src="{{asset('/storage/avatar/'.$user->image->slug)}}"
+                                <img id="imgProfile" src="{{asset('/storage/avatar/'.Auth::user()->image->slug)}}"
                                      id="imgProfile"
                                      class="personal-avatar" alt="avatar">
                                 <figcaption class="personal-figcaption">
@@ -72,17 +72,17 @@
             <div class="container">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-user" style="font-size:20px ; color: #000000"></i>
-            </span>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</li>
+            </span>{{ !empty(Auth::user()->id) ? Auth::user()->name." ".Auth::user()->lastname: '' }}</li>
                     <li><span class="fa-li"><i class="fas fa-envelope"
-                                               style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->id) ? $user->email: '' }}
+                                               style="font-size:20px ; color: #000000"></i></span>{{ !empty(Auth::user()->id) ? Auth::user()->email: '' }}
                     </li>
                     <li><span class="fa-li"><i class="fas fa-building"
-                                               style="font-size:20px ; color: #000000"></i></span>{{ !empty($user->location) ? $user->location->building." ".$user->location->apartment_number: 'Não Informado' }}
+                                               style="font-size:20px ; color: #000000"></i></span>{{ !empty(Auth::user()->location) ? Auth::user()->location->building." ".Auth::user()->location->apartment_number: 'Não Informado' }}
                     </li>
-                    <li><a href="{{ !empty($user->id) ? route('posts',$user->id): '#' }} " style="color:inherit">
+                    <li><a href="{{ !empty(Auth::user()->id) ? route('posts',Auth::user()->id): '#' }} " style="color:inherit">
                     <span class="fa-li"><i class="fas fa-check-square"
                                            style="font-size:20px ; color: #000000"></i></span>
-                            Meus posts {{!empty($user->posts)? count($user->posts): ''}}
+                            Meus posts {{!empty(Auth::user()->posts)? count(Auth::user()->posts): ''}}
                         </a>
                     </li>
                     <!-- verificar se os itens abaixo serão necessarios, pois invite é muito complicado a programacao e contagem de emprestimo será comprometida se fizer fora da plataforma -->
@@ -93,15 +93,15 @@
                     {{--                    <li><span class="fa-li"><i class="fas fa-thumbs-up"--}}
                     {{--                                               style="font-size:20px ; color: #000000"></i></span>Recomendeme--}}
                     {{--                    </li>--}}
-                    <li><a href="{{!empty($user->id)? route('favorites',$user->id): '#'}}" style="color:inherit">
+                    <li><a href="{{!empty(Auth::user()->id)? route('favorites',Auth::user()->id): '#'}}" style="color:inherit">
                             <span class="fa-li"><i class="fas fa-heart"
                                                    style="font-size:20px ; color: #000000"></i></span>
-                            Favoritos {{!empty($user->favorites)? count($user->favorites): ''}}
+                            Favoritos {{!empty(Auth::user()->favorites)? count(Auth::user()->favorites): ''}}
                         </a>
                     </li>
                     <li><span class="fa-li"><i class="fas fa-cog"
                                                style="font-size:20px ; color: #000000"></i></span>
-                        <a style="color:inherit" href="{{!empty($user->id)? route('users.profile',$user->id) :''}}">
+                        <a style="color:inherit" href="{{!empty(Auth::user()->id)? route('users.profile',Auth::user()->id) :''}}">
                             Configuração de conta</a>
                     </li>
                     <li><a style="color:inherit" href="{{Auth::logout()}}"><span class="fa-li"><i

@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function home()
     {
         if (Auth::check()) { //TODO: trabalhar a parte de auth
             $posts = Post::orderBy('created_at', 'desc')->get();
-           dd($posts);
-
 //                dd(count($posts));
 //            }
             return view('layouts/main/Feed', compact('posts'));
