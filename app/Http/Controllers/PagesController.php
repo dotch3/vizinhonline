@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function home()
     {
         if (Auth::check()) { //TODO: trabalhar a parte de auth
