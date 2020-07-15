@@ -6,6 +6,7 @@ use App\Images;
 use App\Locations;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Str;
 use Image;
@@ -162,7 +163,7 @@ class UsersController extends Controller
             'name' => $request->get('name'),
             'lastname' => $request->get('lastname'),
             'email' => $request->get('email'),
-            'password' => $request->get('password'),
+            'password' => Hash::make( $request->get('password')),
             'cellphone' => $request->get('cellphone'),
             'rg' => $request->get('rg'),
             'cpf' => $request->get('cpf'),
