@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
     public function home()
     {
@@ -67,10 +67,15 @@ class PagesController extends Controller
         return view('layouts/posts/PostsUsuario', compact('user'));
     }
 
+    public function emConstrucao()
+    {
+        return view('layouts/main/EmConstrucao');
+    }
 
     public function favoritesUsuario($id)
     {
         $user = User::find($id);
         return view('layouts/favorites/FavoritesUsuario', compact('user'));
     }
+    
 }

@@ -16,15 +16,23 @@
     <div class="row">
         <header class="header">
             <nav>
+            <ul class="nav">
+                    <li class="nav-item col-2 mt-1"><img src="{{asset('/img/icons/logo.png')}}" width="90" height="80" alt="logo" title="logo" class="logo"></li>
+                    <li class="nav-item col-7 mt-4">
+                    <button class="buttonHeader" onclick="window.location.href='{{route('home')}}'">
+                    Voltar</button>
+
+                    </li>
+                </ul>
             </nav>
         </header>
     <div class="row">
 
         <div class="fundoTexto">
             <h2>EM CONSTRUÇÃO</h2>
-            <div class="col-2">
+            <div class="">
             </div>
-            <div class="texto col-10">
+            <div class="">
                 <p>
                     Em breve lançaremos a funcionalidade!
                 </p>
