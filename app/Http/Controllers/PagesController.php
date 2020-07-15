@@ -14,8 +14,6 @@ class PagesController extends Controller
     {
         if (Auth::check()) { //TODO: trabalhar a parte de auth
             $posts = Post::orderBy('created_at', 'desc')->get();
-           dd($posts);
-
 //                dd(count($posts));
 //            }
             return view('layouts/main/Feed', compact('posts'));
