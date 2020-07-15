@@ -101,7 +101,7 @@
                     </li>
                     <li><span class="fa-li"><i class="fas fa-cog"
                                                style="font-size:20px ; color: #000000"></i></span>
-                        <a style="color:inherit" href="{{!empty($user->id)? route('users.profile',$user->id) :''}}">
+                        <a style="color:inherit" href="{{route('users.profile', Auth::user()->id)}}">
                             Configuração de conta</a>
                     </li>
                     <li><a style="color:inherit" href="{{Auth::logout()}}"><span class="fa-li"><i

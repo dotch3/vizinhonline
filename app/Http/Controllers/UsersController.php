@@ -211,7 +211,7 @@ class UsersController extends Controller
 
             $user->image()->save($image);
         }
-        return redirect()->route('users.profile', $user->id)->with('alert-success', 'Usuario criado corretamente!');
+        return redirect()->route('users.profile', $user->id)->with('alert-success', 'Usuário criado! Acesse o sistema');
     }
 
 // Updating the entire profile of a registered user
