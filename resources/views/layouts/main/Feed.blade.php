@@ -50,13 +50,13 @@
                             <div class="card-body col-md-12">
                                 <!-- Foto e dados do usuario logado -->
                                 <div class="info_usuario_publicacao container row">
-                                    <div class="col-md-3 perfil">
+                                    <div class="col-md-4 perfil">
                                         @if(!empty(Auth::check()))
                                             {{--                                            <p>{{Auth::user()}}</p>--}}
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
                                                      src="{{!empty(Auth::user()->image->slug) ? asset('/storage/avatar/'.Auth::user()->image->slug): '' }} "
-                                                     alt="perfil" title="perfil usuario logado"/>
+                                                     class="col-md-9" alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
                                             <div class=" fundo_img">
@@ -129,11 +129,11 @@
                                           id="favoriteForm">
                                         @csrf
                                         <div class="info_usuario container row">
-                                            <div class="col-md-3 perfil">
+                                            <div class="col-md-4 perfil">
                                                 @if(!empty($post->user->image->id))
                                                     <a href="#">
                                                         <img onclick="redirectToProfile(this.src)"
-                                                             src={{asset('/storage/avatar/'.$post->user->image->slug)}}
+                                                        class="col-md-10" src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                                     </a>
@@ -167,7 +167,7 @@
                                                 <a href="#">
                                                     <img
                                                         src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
-                                                        title="imagem item publicado"/>
+                                                        class="col-md-11" title="imagem item publicado"/>
                                                 </a>
                                             @endif
                                             <h5>{{$post->comment}}</h5>
