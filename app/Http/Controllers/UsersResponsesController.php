@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\UserResponse;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UsersResponsesController
@@ -19,7 +20,9 @@ class UsersResponsesController extends Controller
             'reply' => 'required|string|max:300'
         ]);
         $post = Post::find($id);
-        $user = User::where('name', 'Marcelo')->first(); //using hardcode to MArcelo
+        $user = User::find(Auth::user()->id);
+
+//        dd('values',$user,$post, $request,$id);
         if ($post && $user) {
             $response = new UserResponse();
             $response->reply = $request->reply;
@@ -46,26 +49,8 @@ class UsersResponsesController extends Controller
             return redirect()->route('home')->with('alert-success', 'Resposta enviada corretamente!');
 
         }
-        return redirect()->route('home')->with('alert-error');
+        return redirect()->route('home')->with('alert-error','Nao pode enviar resposta :( ');
     }
 
-    public function test()
-    {   echo "Test";
-        $post = Post::where('id', 15)->first();
-        echo "<p>Post {{$post->id}}</p>";
-
-        $replier = $post->repliers()->get();
-        foreach ($replier as $pu){
-            echo " <p>Replier $pu->name </p>";
-        }
-
-        $reply = $post->repliers->first()->pivot;
-        echo "$reply->created_at";
-        echo "$reply->udpated_at";
-
-        dd('ReplierPivot:',$reply);
-
-
-    }
 
 }

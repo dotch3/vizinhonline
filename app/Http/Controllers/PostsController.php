@@ -58,12 +58,12 @@ class PostsController extends Controller
         }
 
         //Checking the User info
-        if ($request->user_id !== null) {
-            $user = User::find($request->user_id);
-            if ($user) {
-                $post->user()->associate($user);
-                $post->save();
-            }
+        $user = User::findOrFail(Auth::user()->id);
+        if ($user) {
+
+            $post->user()->associate($user);
+            $post->save();
+
         } else {
             //Hard for Fernando until have auth() working
 //            $user = User::find($request->user_id);
@@ -76,8 +76,8 @@ class PostsController extends Controller
         }
 
 
-        // Image validation
-        //Section for the image
+// Image validation
+//Section for the image
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             //Getting info from the image to upload
             $destinationPath = public_path('/posts/');
@@ -120,7 +120,8 @@ class PostsController extends Controller
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         $post = Post::find($id);
         return view('layouts.cruds.posts.DetailPost', compact('post'));
@@ -132,7 +133,8 @@ class PostsController extends Controller
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         $post = Post::find($id);
         return view('layouts.cruds.posts.EditPost', compact('post'));
@@ -146,7 +148,8 @@ class PostsController extends Controller
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required|string|max:100',
@@ -236,7 +239,8 @@ class PostsController extends Controller
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         $post = Post::findOrFail($id);
 //        $post->users()->detach(); //Removing the record from the pivot

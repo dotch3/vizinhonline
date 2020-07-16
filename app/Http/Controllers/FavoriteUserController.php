@@ -9,6 +9,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteUserController extends Controller
 {
@@ -105,16 +106,11 @@ class FavoriteUserController extends Controller
 
     public function savePostFavorite(Request $request)
     {
-        $post = Post::find($request->post_id);
-//        dd($request);
-//        $user_id=Auth::user()->id;
-        if (!empty(Auth::user()->id)) {
-            $user = User::find($request->user_id);
-//            dd('Auth?', $user);
-        } else {
-            $user = User::find(4); //TODO: Work with Auth()
-//            dd('HardCode',$user);
-        }
+        $post = Post::find($request->post_id); //Post selected
+//        dd($request,Auth::user());
+        $user = Auth::user(); //User that calls the favorite
+//        dd('$user_id',$user_id,$post->id);
+
 
         $favorite = Favorite::Where('name', 'POST_FAVORITE')->first(); //TODO: Add logic for resources {ITEM, USER}
 
@@ -129,12 +125,19 @@ class FavoriteUserController extends Controller
 
             $exist = FavoriteUser::where($matchQuery)->get();
             if (count($exist) > 0) {
+                //Exist the favorite
+//                dd('Values:',$post->id,$user->id,$favorite->id);
 
-                return redirect()->route('posts', $user->id)
-                    ->with('alert-error', '[Favorito ja existe!]');
+                $favoriteUser = FavoriteUser::where('user_id', $user->id)
+                    ->where('post_id', $post->id)
+                    ->get()
+                    ->first();
+
+                $favoriteUser->delete();
+                return redirect()->route('home')
+                    ->with('alert-success', 'Eliminado de favoritos');
 
             } else {
-
                 $favoriteUser = new FavoriteUser();
 
                 $favoriteUser->favorite_id = $favorite->id;

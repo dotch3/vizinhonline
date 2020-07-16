@@ -62,13 +62,14 @@
                                             </div>
                                             @if(!empty($favorite->post_id))
                                                 <div class=" container detalhe_post form-group row">
-{{--                                                    <h5> {{ $post = $favorite->posts($favorite->post_id)->get()->first()}}</h5>--}}
+                                                    {{--                                                    <h5> {{ $post = $favorite->posts($favorite->post_id)->get()->first()}}</h5>--}}
                                                 </div>
 
                                                 <div class=" container col-md-12 detalhe_post form-group row">
                                                     @if( $favorite->posts($favorite->post_id)->get()->first()->image)
                                                         <div class="detalhe_post  col-md-6 container text-center">
                                                             <a href="">
+
                                                                 <img
                                                                     src="{{asset('/storage/posts/'. $favorite->posts($favorite->post_id)->get()->first()->image->slug)}}"
                                                                     id="imagePost"
