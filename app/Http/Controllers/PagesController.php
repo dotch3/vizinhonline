@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-        dd('Entrou');
+//        dd('Entrou');
         if (Auth::check()) {
             $posts = Post::orderBy('created_at', 'desc')->get();
             return view('layouts/main/Feed', compact('posts'));

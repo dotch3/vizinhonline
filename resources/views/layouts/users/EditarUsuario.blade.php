@@ -192,14 +192,18 @@
                         </div>
                         <br/>
                         <div>
+                            @if(empty($user->id))
                             <button type="button" class="btn btn-secondary"
                                     onclick="window.location.href='/'">Voltar
                             </button>
-                            @if(empty($user->id))
+
 
                                 <button type="submit" class="btn btn-success">Cadastrar</button>
 
                             @else
+                                <button type="button" class="btn btn-secondary"
+                                        onclick="window.location.href='/home'">Inicio
+                                </button>
 
                                 <button type="submit" class="btn btn-warning">Editar</button>
 
