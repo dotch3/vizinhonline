@@ -51,10 +51,11 @@
                                 <!-- Foto e dados do usuario logado -->
                                 <div class="info_usuario_publicacao container row">
                                     <div class="col-md-3 perfil">
-                                        @if(!empty(auth()))
+                                        @if(!empty(Auth::check()))
+{{--                                            <p>{{Auth::user()}}</p>--}}
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
-                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+                                                     src="{{!empty(Auth::user()->image->slug) ? asset('/storage/avatar/'.Auth::user()->image->slug): '' }} "
                                                      alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
@@ -64,9 +65,9 @@
                                         @endif
                                     </div>
                                     <div class="opcoes_usuario">
-                                        <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
-                                        <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
-                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                        <h3>{{ !empty(Auth::user()->id) ? Auth::user()->name." ".Auth::user()->lastname: '' }}</h3>
+                                        <p>{{ !empty(Auth::user()->location) ? Auth::user()->location->building." - " .Auth::user()->location->apartment_number: '' }}</p>
+{{--                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>--}}
                                     </div>
                                 </div>
                                 <div class="col-md-8">
