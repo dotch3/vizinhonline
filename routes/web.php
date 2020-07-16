@@ -39,6 +39,10 @@ Route::post('/FavoritesUsuario/{id}', 'FavoriteUserController@response')->name('
 Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->name('favoriteUser.createPost');
 Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
 
+Route::post('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+Route::get('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+
+
 Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
 Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');
 //Route::delete('/FavoritosUsuario/{id}','FavoritesUserController@destroyPost')->name('favoritesUser.destroy'); //TODO Working on this
