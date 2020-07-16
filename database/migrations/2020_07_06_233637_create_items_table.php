@@ -25,8 +25,12 @@ class CreateItemsTable extends Migration
             $table->date('loan_start_date');
             $table->date('loan_end_date');
             $table->float('replacement_cost')->nullable();
-            $table->integer('itemstatus_id')->nullable(); //TODO: configurar relacionamento com item_status
+            $table->foreignId('item_status_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('item_status_id')
+                ->references('id')
+                ->on('item_status');
         });
     }
 

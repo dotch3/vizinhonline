@@ -107,7 +107,8 @@ class FeedbacksController extends Controller
         $feedbacks->score = $request->input('score');
         $feedbacks->comment = $request->input('comment');
         $feedbacks->save();
-        return redirect()->route('feedbacks.index')->with('alert-success', 'Feedback has been updated!');
+        return redirect()->route('feedbacks.index')
+            ->with('alert-success', 'Feedback has been updated!');
     }
 
     /**
@@ -121,7 +122,8 @@ class FeedbacksController extends Controller
         $feedbacks = Feedbacks::findOrFail($id);
         $feedbacks->delete();
 
-        return redirect()->route('feedbacks.index')->with('alert-success', 'Feedback has been deleted!');
+        return redirect()->route('feedbacks.index')
+            ->with('alert-success', 'Feedback has been deleted!');
 
     }
 }

@@ -90,16 +90,6 @@ class User extends Authenticatable
         return $this->hasOne(Locations::class);
     }
 
-    //Relationship many-many user-> posts
-    // Using the pivot user_post
-
-//    public function posts()
-//    {
-//        return $this->belongsToMany(Post::class, 'user_post', 'user_id', 'post_id');
-//
-//        //A user can be associated to a post:
-//        //$user->posts()->attach($posts);
-//    }
 
     public function posts()
     {
@@ -114,7 +104,8 @@ class User extends Authenticatable
 
     public function items()
     {
-        return $this->belongsToMany(Items::class, 'item_user');
+        return $this->belongsToMany(Item::class, 'item_user')
+            ->withTimestamps();
     }
 
 }

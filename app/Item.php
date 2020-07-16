@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Items extends Model
+class Item extends Model
 {
     protected $table = "items";
     protected $primaryKey = "id";
@@ -18,34 +18,32 @@ class Items extends Model
         'feedback_score',
         'units',
         'replacement_cost',
-        'itemstatus_id',
+        'item_status_id',
         'loan_start_date',
         'loan_end_date'
     ];
 
     public function status()
     {
-        return $this->belongsTo(StatusItems::class, 'id_status');
+        return $this->belongsTo(ItemStatus::class, 'item_status_id');
 
     }
 
     //Relationship with user_favorites
     public function favorites()
     {
-        return $this->belongsToMany(Favorite::class, 'users_favorites', 'id_item', 'id_user_favorite');
+        return $this->belongsToMany(Favorite::class, 'favorite_user', 'item_id', 'favorite_id')
+            ->withTimestamps;
     }
 
-    public function getFavorite()
+    public function images()
     {
-        $fav = Favorite::find(2);
-        return $fav;
-    }
-
-    public function images() {
         return $this->belongsToMany(Images::class, 'image_item');
     }
 
-    public function users() {
-        return $this->belongsToMany(User::class, 'item_user');
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'item_user')
+            ->withTimestamps();
     }
 }

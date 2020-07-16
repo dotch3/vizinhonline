@@ -51,10 +51,11 @@
                                 <!-- Foto e dados do usuario logado -->
                                 <div class="info_usuario_publicacao container row">
                                     <div class="col-md-3 perfil">
-                                        @if(!empty(auth()))
+                                        @if(!empty(Auth::check()))
+                                            {{--                                            <p>{{Auth::user()}}</p>--}}
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
-                                                     src="{{!empty($user->image->slug) ? asset('/storage/avatar/'.$user->image->slug): '' }} "
+                                                     src="{{!empty(Auth::user()->image->slug) ? asset('/storage/avatar/'.Auth::user()->image->slug): '' }} "
                                                      alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
@@ -64,9 +65,9 @@
                                         @endif
                                     </div>
                                     <div class="opcoes_usuario">
-                                        <h3>{{ !empty($user->id) ? $user->name." ".$user->lastname: '' }}</h3>
-                                        <p>{{ !empty($user->location) ? $user->location->building." - " .$user->location->apartment_number: '' }}</p>
-                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                        <h3>{{ !empty(Auth::user()->id) ? Auth::user()->name." ".Auth::user()->lastname: '' }}</h3>
+                                        <p>{{ !empty(Auth::user()->location) ? Auth::user()->location->building." - " .Auth::user()->location->apartment_number: '' }}</p>
+                                        {{--                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>--}}
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -114,248 +115,162 @@
                         </div>
                     </form>
                 </section>
-                <!-- Seccao dos Feeds -->
                 <section class="div_feed_items col-md-10">
                     <!-- Texto inicial antes dos feeds -->
                     <h2> O que meus vizinhos estão compartilhando?</h2>
                     <p>Aqui você encontra os itens publicados recentemente</p>
                     <!-- Publicacoes feitas sao listadas a partir daqui -->
-                    <article>
-                        <div class="card text-center">
-                            <div class="card-body col-md-12">
-                                <!-- Foto e dados do usuario -->
-                                <div class="info_usuario container row">
-                                    <div class="col-md-3 perfil">
-                                        <a href="#">
-                                            <img onclick="redirectToProfile(this.src)"
-                                                 src={{asset('/storage/avatar/Marcelo.png')}}
-                                                     alt="perfil" title="perfil usuario da
+                    @forelse($posts as $post)
+                        <article class="post">
+                            <div class="card text-center">
+                                <div class="card-body col-md-12">
+                                    <form action="{{route('favoriteUser.savePostFavorite',$post->user->id)}}"
+                                          method="post"
+                                          id="favoriteForm">
+                                        @csrf
+                                        <div class="info_usuario container row">
+                                            <div class="col-md-3 perfil">
+                                                @if(!empty($post->user->image->id))
+                                                    <a href="#">
+                                                        <img onclick="redirectToProfile(this.src)"
+                                                             src={{asset('/storage/avatar/'.$post->user->image->slug)}}
+                                                                 alt="perfil" title="perfil usuario da
                                         publicacao"/>
-                                        </a>
-                                    </div>
-                                    <div class="opcoes_usuario">
-                                        <h3>Marcelo</h3>
-                                        <p>Apto 12 - Bloco A</p>
-                                        <div class="opcoes_usuario_avaliacao">
-                                            <ul>
-                                                <li><a href="#">
-                                                        <img
-                                                            src={{asset('/img/icons/star_amarela.png')}} alt="avaliacao"
-                                                            title="avaliacao"/>
                                                     </a>
-                                                    <p>4.5</p>
-                                                </li>
-                                                <li><a href="#">
-                                                        <img src={{asset('/img/icons/hands.png')}} alt="publicacoes"
-                                                             title="publicacoes"/>
+                                                @else
+                                                    <div class="fundo_img">
+                                                        <a href="#">
+                                                            <img onclick="return redirectToProfile(this.src)"
+                                                            /> Sem imagem
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class=" detalhe_post_feed">
+                                                <h4>{{$post->user->name." ".$post->user->lastname}}</h4>
+                                                <h3>{{(!empty($post->user->location) ?" Apto ".$post->user->location->apartment_number.", ".$post->user->location->building : 'Apto: N/A, Bloco: N/A')}}</h3>
+
+                                            </div>
+                                        </div>
+                                        <div class="detalhe_item shadow-sm">
+                                            <!-- Detalhe do item publicado -->
+                                            <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
+                                            <input type="hidden" name="user_id" id="user_id"
+                                                   value="{{$post->user->id}}"> <!--TODO: Work with Auth()-->
+                                            @if(!empty($post->image->id))
+                                                <a href="#">
+                                                    <img
+                                                        src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
+                                                        title="{{$post->title}}"/>
+                                                </a>
+                                            @else
+                                                <a href="#">
+                                                    <img
+                                                        src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
+                                                        title="imagem item publicado"/>
+                                                </a>
+                                            @endif
+                                            <h5>{{$post->comment}}</h5>
+                                        </div>
+                                        <div class="row container mt-3">
+                                            <div class="col-md-6">
+                                                <div class="acoes_detalhe_item interaction">
+                                                    <button type="submit"
+                                                            class="like btn btn-link"
+                                                    >
+                                                        @if((!empty($post->isFavorite($post->id,$post->user->id)->created_at)))
+                                                            <img
+                                                                src={{asset('/img/icons/favoriteSelected.png')}} alt="favorito"
+                                                                title="favorito"
+                                                                name="favoritePost"
+                                                                id="favoritePost"
+                                                            >
+                                                        @else
+                                                            <img
+                                                                src={{asset('/img/icons/favorite3.png')}} alt="favorito"
+                                                                title="favorito"
+                                                                name="favoritePost"
+                                                                id="favoritePost"
+                                                            >
+                                                        @endif
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="acoes_detalhe_item">
+                                                    <a href="#">
+                                                        <img src={{asset('/img/icons/messagem.png')}} alt="message"
+                                                             title="message"/>
                                                     </a>
-                                                    <p>25</p>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                    <!--FORM-->
                                 </div>
-                                <div class="detalhe_item shadow-sm">
-                                    <!-- Detalhe do item publicado -->
-                                    <a href="#">
-                                        <img src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
-                                             title="imagem item publicado"/>
-                                    </a>
-                                    <h5>Ferramentas?? Eu tenho!</h5>
-                                </div>
-                                <div class="row container mt-3">
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/favorite3.png')}} alt="favorito"
-                                                     title="favorito"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/messagem.png')}} alt="message"
-                                                     title="message"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/compartilhar.png')}} alt="compartilhar"
-                                                     title="compartilhar"/>
-                                            </a>
-                                        </div>
+
+                                <!-- Section for the responses-->
+                                <div
+                                    class=" container col-md-11 justify-content-end detalhe_respostas">
+
+                                    {{--                                    <h4>Ultima resposta:</h4>--}}
+                                    <div class="container shadow-sm respostas">
+
+                                        {{--                                        {{$response=$post->repliers()->where('post_id',$post->id)->orderBy('id','desc')->first()}}--}}
+
+                                        @forelse($post->repliers()->get() as $replier)
+                                            @if($replier->pivot->created_at == $post->lastResponse($replier)->created_at)
+                                                <div class="container">
+                                                    <p>última resposta <span class="badge badge-light">({{$replier->created_at}})</span>
+                                                    </p>
+                                                </div>
+
+                                                <div class="row container mt-3">
+                                                    <div class="col-md-2">
+                                                        <div class="info_usuario_resposta">
+                                                            @if(!empty($replier->image))
+                                                                <a href="#">
+                                                                    <img onclick="redirectToProfile(this.src)"
+                                                                         src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
+                                                                         alt="replier" title="replier"
+                                                                         width="80 px"/>
+                                                                </a>
+                                                            @else
+                                                                <div class="fundo_img">
+                                                                    <h5>Sem imagem</h5>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 reply">
+                                                        <h5>{{ !empty($replier->id) ? $replier->name." ".$replier->lastname: '' }}</h5>
+                                                        <p>{{ !empty($replier->location) ? $replier->location->building." - " .$replier->location->apartment_number: '' }}</p>
+                                                        <p>{{!empty(auth())? 'Auth ok:' :'No Auth'}}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    class="input-group resposta col-md-12 d-flex justify-content-md-center">
+                                                    <input class="form-control"
+                                                           id="reply" name="reply"
+                                                           value="{{!empty($replier->id)?  $replier->pivot->reply:''}}"
+                                                           disabled
+                                                    >
+                                                </div>
+
+                                            @endif
+
+                                        @empty
+                                            <p>Nao tem respostas ainda!</p>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
-                    <!-- Article com resposta, sem imagem so texto na publicacao -->
-                    <article>
-                        <div class="card text-center">
-                            <div class="card-body col-md-12">
-                                <!-- Foto e dados do usuario -->
-                                <div class="info_usuario container row">
-                                    <div class="col-md-3 perfil">
-                                        <a href="#">
-                                            <img src={{asset('/storage/avatar/Fernando.png')}}  alt="perfil_usuario"
-                                                 title="perfil usuario da publicacao"/>
-                                        </a>
-                                    </div>
-                                    <div class="opcoes_usuario">
-                                        <h3>Fernando</h3>
-                                        <p>Apto 205 - Bloco A</p>
-                                        <div class="opcoes_usuario_avaliacao">
-                                            <ul>
-                                                <li><a href="#">
-                                                        <img
-                                                            src={{asset('/img/icons/star_amarela.png')}}  alt="avaliacao"
-                                                            title="avaliacao"/>
-                                                    </a>
-                                                    <p>4.8</p>
-                                                </li>
-                                                <li><a href="#">
-                                                        <img src={{asset('/img/icons/hands.png')}} alt="publicacoes"
-                                                             title="publicacoes"/>
-                                                    </a>
-                                                    <p>30</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="detalhe_item shadow-sm ">
-                                    <!-- Detalhe do item publicado -->
-                                    <!-- Publicacao sem imagem -->
-                                    <!-- <a href="#">
-                                        <img src="img/ferramenta1.png" alt="imagem item publicado"
-                                            title="imagem item publicado" />
-                                    </a> -->
-                                    <h5>Alguém teria 4 ovos para me emprestar?</h5>
-                                </div>
-                                <div class="row container mt-3">
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/favorite3.png')}} alt="favorito"
-                                                     title="favorito"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-
-                                                <img src={{asset('/img/icons/messagem.png')}} alt="message"
-                                                     title="message"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/compartilhar.png')}} alt="compartilhar"
-                                                     title="compartilhar"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Resposta a uma publicacao -->
-                                <div class="row container mt-3">
-                                    <div class="col-md-2">
-                                        <div class="info_usuario_resposta">
-                                            <a href="#">
-                                                <img src={{asset('/storage/avatar/lucia.png')}} alt="perfil_usuario"
-                                                     title="perfil usuario resposta"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 info_usuario_resposta">
-                                        <h3>Lucia</h3>
-                                        <p>Apto 62 - Bloco B</p>
-                                    </div>
-                                </div>
-
-                                <div class="input-group resposta col-md-12 d-flex justify-content-end">
-                                    <textarea class="form-control" placeholder="Eu Tenho!" readonly></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- outro article -->
-                    <article>
-                        <div class="card text-center">
-                            <div class="card-body col-md-12">
-                                <!-- Foto e dados do usuario -->
-                                <div class="info_usuario container row">
-                                    <div class="col-md-3 perfil">
-                                        <a href="#">
-                                            <img src={{asset('/img/avatar/Lucia.png')}} alt="perfil_usuario"
-                                                 title="perfil usuario da publicacao"/>
-                                        </a>
-                                    </div>
-                                    <div class="opcoes_usuario">
-                                        <h3>Lucia</h3>
-                                        <p>Apto 62 - Bloco B</p>
-                                        <div class="opcoes_usuario_avaliacao">
-                                            <ul>
-                                                <li><a href="#">
-                                                        <img
-                                                            src={{asset('/img/icons/star_amarela.png')}} alt="avaliacao"
-                                                            title="avaliacao"/>
-                                                    </a>
-                                                    <p>4.7</p>
-                                                </li>
-                                                <li><a href="#">
-                                                        <img src={{asset('/img/icons/hands.png')}} alt="publicacoes"
-                                                             title="publicacoes"/>
-                                                    </a>
-                                                    <p>26</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="detalhe_item shadow-sm">
-                                    <!-- Detalhe do item publicado -->
-                                    <a href="#">
-                                        <img src={{asset('/img/itens/ferramenta2.png')}} alt="item_publicado" title="imagem
-                                    item publicado"/>
-                                    </a>
-                                    <h5>Empresto essa bolsa linda, ótima para viajar!</h5>
-                                </div>
-                                <div class="row container mt-3">
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/favorite3.png')}} alt="favorito"
-                                                     title="favorito"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/messagem.png')}} alt="message"
-                                                     title="message"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="acoes_detalhe_item">
-                                            <a href="#">
-                                                <img src={{asset('/img/icons/compartilhar.png')}} alt="compartilhar"
-                                                     title="compartilhar"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    @empty
+                        <p>Não ha posts</p>
+                    @endforelse
 
                 </section>
             </div>

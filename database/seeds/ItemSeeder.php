@@ -1,6 +1,6 @@
 <?php
 
-use App\Items;
+use App\Item;
 use Illuminate\Database\Seeder;
 
 /**
@@ -17,7 +17,7 @@ class ItemSeeder extends Seeder
     {
 //        Items::truncate();
         for ($i = 0; $i < 6; $i++) {
-            factory(Items::class)->create();
+            factory(Item::class)->create();
         }
     }
 }

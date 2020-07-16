@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +15,53 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// vizinhoonlineRoute
+// VIZINHONLINE MAIN ROUTES
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
+
+//Posts
 Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
+Route::delete('/PostsUsuario/{id}','PostsController@destroy')->name('postsUser.destroy');
+
+
+
+//Favorites
 Route::get('/FavoritosUsuario/{id}', 'PagesController@favoritesUsuario')->name('favorites');
+Route::delete('/FavoritosUsuario/{id}', 'FavoriteUserController@destroyPost')->name('favorites');
 
 
-// Section favorites
+// Resources that user favorites
+Route::post('/FavoritesUsuario/{id}', 'FavoriteUserController@response')->name('favoritesUser.create');
+Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->name('favoriteUser.createPost');
+Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
+
+Route::post('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+Route::get('/FavoritesUsuario/{id}','FavoriteUserController@savePostFavorite')->name('favoriteUser.savePostFavorite');
+
+
+Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
+Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');
+//Route::delete('/FavoritosUsuario/{id}','FavoritesUserController@destroyPost')->name('favoritesUser.destroy'); //TODO Working on this
+
+//
+Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
+
+
+//User
+Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
+Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
+Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
+
+//User-Post-Response
+Route::post('/PostsUsuario/{id}', 'UsersResponsesController@response')->name('PostResponse.create');
+
+
+
+//  SECTION RESOURCES
 Route::resource('favorites', 'FavoritesController');
 
 Route::get('/favorites', 'FavoritesController@index')->name('favorites.index');
@@ -38,15 +73,10 @@ Route::get('/EditFavorite/{id}', 'FavoritesController@edit')->name('favorites.ed
 Route::patch('/detailFavorite', 'FavoritesController@update')->name('favorites.update');
 Route::delete('FavoritesController@destroy')->name('favorites.destroy');
 
-// Resources that user favorites
-Route::get('/CreatePostFavorite/{id?}','FavoriteUserController@createPost')->name('favoriteUser.createPost'); //TODO working on this
-Route::post('/CreatePostFavorite','FavoriteUserController@storePost')->name('favoriteUser.storePost');
-Route::get('/EditPostFavorite/{id}','FavoriteUserController@editPost')->name('favoriteUser.editPost');
-Route::patch('/EditPostFavorite/{id}','FavoriteUserController@udpatePost')->name('favoriteUser.updatePost');
 
-Route::post('/FavoritesUsuario/{id}', 'FavoriteUserController@response')->name('favoritesUser.create');
 
-Route::get('/DestroyUserFavorite','FavoriteUserController@destroyPost')->name('favoriteUser.destroyPost'); //TODO: Analizar se precisa de um destroy
+
+
 
 // Section for User
 Route::resource('users', 'UsersController');
@@ -60,10 +90,6 @@ Route::post('/users', 'UsersController@store')->name('users.store');
 Route::delete('/detailsUser/{id}', 'UsersController@destroy')->name('users.destroy');
 
 
-//User relationships
-Route::post('/CadastroUsuario', 'UsersController@new')->name('users.new');
-Route::get('/EditarUsuario/{id}', 'UsersController@profile')->name('users.profile');
-Route::post('/EditarUsuario/{id}', 'UsersController@register')->name('users.register');
 
 //Section for Feedbacks
 Route::resource('feedbacks', 'FeedbacksController');
@@ -89,9 +115,9 @@ Route::delete('/categories/{id}', 'CategoriesController@destroy')->name('categor
 
 
 //Items
-Route::resource('items', 'ItemsController');
+Route::resource('items', 'ItemController');
 
-Route::get('/items', 'ItemsController@index')->name('items.index');
+Route::get('/items', 'ItemController@index')->name('items.index');
 
 
 //Imagem upload
@@ -128,16 +154,8 @@ Route::get('/editPost/{id}', 'PostsController@edit')->name('posts.edit');
 Route::post('/editPost/{id})', 'PostsController@update')->name('posts.update');
 Route::delete('/post/{id}', 'PostsController@destroy')->name('posts.destroy');
 
+//AUTH ROUTES
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//comments on posts
-
-Route::post('/PostsUsuario/{id}', 'UsersResponsesController@response')->name('PostResponse.create');
-
-Route::get('/responses','UsersResponsesController@test');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
