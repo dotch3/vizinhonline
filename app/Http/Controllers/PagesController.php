@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function home()
     {
 //        dd('Entrou');
@@ -41,4 +46,27 @@ class PagesController extends Controller
         $user = User::find($id);
         return view('layouts/favorites/FavoritesUsuario', compact('user'));
     }
+
+    
+    public function perfilUsuario()
+    {
+        $user = Auth::user();
+
+        if (!empty($user->id)) {
+            return view('layouts/users/PerfilUsuario', compact('user'));
+        } else {
+            return view('layouts/users/PerfilUsuario', compact('user'));
+        }
+
+    }
+    public function perfilVizinho()
+    {
+        $user = Auth::user();
+        if (!empty($user->id)) {
+            return view('layouts/users/PerfilVizinho', compact('user'));
+        } else {
+            return view('layouts/users/PerfilVizinho', compact('user'));
+        }
+    }
+
 }
