@@ -6,7 +6,7 @@
 </head>
 
 @section('content')
-    <body>
+
     @if (session('alert-success'))
         <div class="container alert alert-success" role="alert">
             {{session('alert-success')}}
@@ -22,7 +22,7 @@
         </div><br/>
     @endif
     <!-- Main -->
-
+    <body>
     <main class="main">
 
         <div class="row ">
@@ -199,7 +199,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="acoes_detalhe_item">
-                                                    <a href="#">
+                                                    <a href="{{route('posts.show', $post->id)}}">
                                                         <img src={{asset('/img/icons/messagem.png')}} alt="message"
                                                              title="message"/>
                                                     </a>
