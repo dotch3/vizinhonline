@@ -139,7 +139,7 @@
                                                 @else
                                                     <div class="fundo_img">
                                                         <a href="{{ route('perfilVizinho', $post->user->id) }}">
-                                                            <img onclick="return redirectToProfile(this.src)"
+                                                            <img
                                                             /> Sem imagem
                                                         </a>
                                                     </div>
@@ -157,13 +157,13 @@
                                             <input type="hidden" name="user_id" id="user_id"
                                                    value="{{$post->user->id}}"> <!--TODO: Work with Auth()-->
                                             @if(!empty($post->image->id))
-                                                <a href="#">
+                                                <a href="{{route('posts.show', $post->id)}}">
                                                     <img
                                                         src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
                                                         title="{{$post->title}}"/>
                                                 </a>
                                             @else
-                                                <a href="#">
+                                                <a href="{{route('posts.show', $post->id)}}">
                                                     <img
                                                         src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
                                                         class="col-md-11" title="imagem item publicado"/>
@@ -229,7 +229,7 @@
                                                     <div class="col-md-2">
                                                         <div class="info_usuario_resposta">
                                                             @if(!empty($replier->image))
-                                                                <a href="#">
+                                                                <a href="{{ route('perfilVizinho', $replier->id) }}">
                                                                     <img onclick="redirectToProfile(this.src)"
                                                                          src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
                                                                          alt="replier" title="replier"
