@@ -82,8 +82,7 @@
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
-                                          autocomplete="off">
-                                </textarea>
+                                          autocomplete="off"></textarea>
                                 </div>
 
                                 <div class="acoes_nova_publicacao container row">
@@ -131,15 +130,15 @@
                                         <div class="info_usuario container row">
                                             <div class="col-md-4 perfil">
                                                 @if(!empty($post->user->image->id))
-                                                    <a href="#">
-                                                        <img onclick="redirectToProfile(this.src)"
-                                                        class="col-md-10" src={{asset('/storage/avatar/'.$post->user->image->slug)}}
+                                                    <a href="{{ route('perfilVizinho', $post->user->id) }}">
+                                                        <img 
+                                                             src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                                     </a>
                                                 @else
                                                     <div class="fundo_img">
-                                                        <a href="#">
+                                                        <a href="{{ route('perfilVizinho', $post->user->id) }}">
                                                             <img onclick="return redirectToProfile(this.src)"
                                                             /> Sem imagem
                                                         </a>

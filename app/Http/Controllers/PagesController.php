@@ -10,14 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function home()
     {
-//        dd('Entrou');
+        //        dd('Entrou');
         if (Auth::check()) {
             $posts = Post::orderBy('created_at', 'desc')->get();
             return view('layouts/main/Feed', compact('posts'));
@@ -33,10 +28,7 @@ class PagesController extends Controller
 
     public function postsUsuario($id)
     {
-        $user = User::find($id);
-//        $user = User::where('name', 'Fernando')->first();
-
-
+        $user = User::findOrFail($id);
         return view('layouts/posts/PostsUsuario', compact('user'));
     }
 
@@ -47,7 +39,7 @@ class PagesController extends Controller
         return view('layouts/favorites/FavoritesUsuario', compact('user'));
     }
 
-    
+
     public function perfilUsuario()
     {
         $user = Auth::user();
@@ -57,16 +49,11 @@ class PagesController extends Controller
         } else {
             return view('layouts/users/PerfilUsuario', compact('user'));
         }
-
     }
-    public function perfilVizinho()
+    public function perfilVizinho($id)
     {
-        $user = Auth::user();
-        if (!empty($user->id)) {
-            return view('layouts/users/PerfilVizinho', compact('user'));
-        } else {
-            return view('layouts/users/PerfilVizinho', compact('user'));
-        }
-    }
+        $user = User::findOrFail($id);
 
+        return view('layouts/users/PerfilVizinho', compact('user'));
+    }
 }

@@ -22,61 +22,16 @@
                 <!-- Seccao de items -->
                 <section class="div_feed_items col-md-10">
                     <!-- Texto inicial antes dos itens do Usuario -->
-                    <h2> Itens Marcelo </h2>
+                    <h2> Itens {{$user->name.' '.$user->lastname}} </h2>
                     <!-- Incluindo o arquivo de ver detalhes de um item -->
+
+                    <h3> Em breve </h3>
+
+                <a href="{{ route('posts', $user->id )}}"><h3> Ver posts </h3></a>
 
 
                     <!-- Itens do usuario sao listadas a partir daqui -->
                     <!-- Vamos utilizar bootstrap cards e o estilo do feeds para ter menos mudanças -->
-                    <div class="row">
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/furadeiraView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Furadeira</p>
-                        </div>
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/muffinView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Muffin</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/pescaView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Pesca</p>
-                        </div>
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/mergulhoView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Mergulho</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/guardasolView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>guarda sol</p>
-                        </div>
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/malaView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Mala</p>
-                        </div>
-                    </div>
                     <!-- modal detalhe do item -->
                     <div class="modal fade" id="modaldetalhe" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-md" role="document">
