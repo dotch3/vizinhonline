@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
 Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario')->middleware('auth');
-Route::get('/PerfilVizinho', 'PagesController@perfilVizinho')->name('perfilVizinho')->middleware('auth');
+Route::get('/PerfilVizinho/{id}', 'PagesController@perfilVizinho')->name('perfilVizinho')->middleware('auth');
 Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario')->name('cadastroUsuario');
 
 //Posts

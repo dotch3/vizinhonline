@@ -50,9 +50,9 @@ class PagesController extends Controller
             return view('layouts/users/PerfilUsuario', compact('user'));
         }
     }
-    public function perfilVizinho()
+    public function perfilVizinho($id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($id);
 
         return view('layouts/users/PerfilVizinho', compact('user'));
     }

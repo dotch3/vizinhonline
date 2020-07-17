@@ -130,15 +130,15 @@
                                         <div class="info_usuario container row">
                                             <div class="col-md-3 perfil">
                                                 @if(!empty($post->user->image->id))
-                                                    <a href="#">
-                                                        <img onclick="redirectToProfile(this.src)"
+                                                    <a href="{{ route('perfilVizinho', $post->user->id) }}">
+                                                        <img 
                                                              src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                                     </a>
                                                 @else
                                                     <div class="fundo_img">
-                                                        <a href="#">
+                                                        <a href="{{ route('perfilVizinho', $post->user->id) }}">
                                                             <img onclick="return redirectToProfile(this.src)"
                                                             /> Sem imagem
                                                         </a>
