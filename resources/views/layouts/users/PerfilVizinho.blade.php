@@ -24,97 +24,53 @@
                     <!-- Texto inicial antes dos itens do Usuario -->
                     <h2> Itens {{$user->name.' '.$user->lastname}} </h2>
                     <!-- Incluindo o arquivo de ver detalhes de um item -->
+                    <a href="{{ route('posts', $user->id )}}"><h6 style="text-align: center"> Ver Posts </h6></a>
+                    <h6 style="text-align: center"><span class="badge badge-info">(Em breve)</span></h6>
+                </section>
+                <section class="div_feed_items col-md-10">
+                    <div class="row">
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/furadeiraView.png')}}" alt="item" title="item"/>
+                                </a>
+                                <p>Furadeira</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/muffinView.png')}}" alt="item" title="item"/>
+                                </a>
+                                <p>Muffin</p>
+                            </article>
+                        </div>
+                    </div>
 
-                    <h3> Em breve </h3>
-
-                <a href="{{ route('posts', $user->id )}}"><h3> Ver posts </h3></a>
-
-
-                    <!-- Itens do usuario sao listadas a partir daqui -->
                     <!-- Vamos utilizar bootstrap cards e o estilo do feeds para ter menos mudanças -->
-                    <!-- modal detalhe do item -->
-                    <div class="modal fade" id="modaldetalhe" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Item</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="row border-light">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <div class="">
-                                                @include('.layouts/items/ViewItemData')
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                            data-dismiss="modal" data-target="#modalInteresse">Eu Quero
-                                    </button>
-                                </div>
-                            </div>
-
+                    <div class="row">
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/guardasolView.png')}}" alt="Cadeira e Guarda-sol"
+                                         title="item"/>
+                                </a>
+                                <p>Cadeira e Guarda-sol</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/malaView.png')}}" alt="Mala" title="item"/>
+                                </a>
+                                <p>Mala</p>
+                            </article>
                         </div>
                     </div>
-                    <!-- Modal Mensagem de Interesse -->
-                    <div class="modal fade" id="modalInteresse" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Mensagem</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="row border-light">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <div class="">
-                                                @include('.layouts/items/Interesse')
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                            data-toggle="modal" data-target="#modalSucesso">Enviar
-                                    </button>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                    <!-- Modal Sucesso -->
-                    <div class="modal fade" id="modalSucesso" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Mensagem Enviada</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <p>Um e-mail foi enviado para o proprietário do objeto! </p>
-                                <BR>
-                                <p>Em breve retornará o contato! </p>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                            data-toggle="modal">Ok
-                                    </button>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
+                </section>
             </div>
-        </div>
-
-        </section>
-        </div>
         </div>
 
 

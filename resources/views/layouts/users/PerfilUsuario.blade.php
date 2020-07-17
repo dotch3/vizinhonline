@@ -26,6 +26,7 @@
                     <h2> Meus Itens </h2>
                     <!-- Incluindo o arquivo com o form para cadastro o ediçao de um item -->
                     <!-- Itens do usuario sao listadas a partir daqui -->
+                    <h6 style="text-align: center"><span class="badge badge-info">(Em breve)</span></h6>
 
                     <div class="row">
                         <div class="col">

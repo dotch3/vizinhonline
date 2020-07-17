@@ -130,8 +130,8 @@
                                         <div class="info_usuario container row">
                                             <div class="col-md-4 perfil">
                                                 @if(!empty($post->user->image->id))
-                                                    <a href="{{ route('perfilVizinho', $post->user->id) }}">
-                                                        <img 
+                                                    <a href="{{ route('posts', $post->user->id) }}">
+                                                        <img
                                                              src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da
                                         publicacao"/>
