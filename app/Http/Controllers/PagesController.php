@@ -28,7 +28,7 @@ class PagesController extends Controller
 
     public function postsUsuario($id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($id);
         return view('layouts/posts/PostsUsuario', compact('user'));
     }
 
