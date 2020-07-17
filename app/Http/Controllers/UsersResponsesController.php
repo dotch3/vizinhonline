@@ -22,7 +22,6 @@ class UsersResponsesController extends Controller
         $post = Post::find($id);
         $user = User::find(Auth::user()->id);
 
-//        dd('values',$user,$post, $request,$id);
         if ($post && $user) {
             $response = new UserResponse();
             $response->reply = $request->reply;
@@ -34,19 +33,9 @@ class UsersResponsesController extends Controller
 
             $post->repliers()->attach($response->id); //Use IDs
 
-//
-//            $post->repliers()->detach(); //Remove ALL
-//
-//            $post->repliers()->detach($response->id); //Use IDs
-//
-//            $post->repliers()->sync($response->id); // Use sync
-
-
-//            dd('test',$post->with('user_comments')->get());
-//            dd($user);
             $post->save();
-//            dd('post',$post);
-            return redirect()->route('home')->with('alert-success', 'Resposta enviada corretamente!');
+
+            return redirect()->route('posts.show', $id)->with('alert-success', 'Resposta enviada corretamente!');
 
         }
         return redirect()->route('home')->with('alert-error','Nao pode enviar resposta :( ');
