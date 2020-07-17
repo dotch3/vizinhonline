@@ -1,7 +1,12 @@
 <?php
 
+use App\Images;
+use App\Post;
 use App\User;
 use Illuminate\Database\Seeder;
+
+use Faker\Generator as Faker;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,10 +47,11 @@ class DatabaseSeeder extends Seeder
             'rg' => '323.112.334.33-1',
             'name' => 'Fernando',
             'lastname' => 'Souza',
+            'age'=>45,
             'email' => 'fernando@vizinhonline.com',
             'password' => bcrypt('fernando'),
             'cellphone' => '911232245',
-            'cpf'=>'201.958.864-22',
+            'cpf' => '201.958.864-22',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -79,10 +85,11 @@ class DatabaseSeeder extends Seeder
             'rg' => '201.433.011.33-1',
             'name' => 'Marcelo',
             'lastname' => 'Silva',
+            'age'=>31,
             'email' => 'marcelo@vizinhonline.com',
             'password' => bcrypt('marcelo'),
             'cellphone' => '151123225',
-            'cpf'=>'321.221.12-44',
+            'cpf' => '321.221.12-44',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -116,9 +123,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Lucia',
             'lastname' => 'Millanes',
             'email' => 'lucia@vizinhonline.com',
+            'age'=>23,
             'password' => bcrypt('lucia'),
             'cellphone' => '922232650',
-            'cpf'=>'110.221.12-77',
+            'cpf' => '110.221.12-77',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -147,13 +155,107 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        // Creating posts for demo:
+
+
+        DB::table('posts')->insert([
+            'title' => "Post_demo_guitarra",
+            'comment' => "Procurando aulas de guitarra?, me contacte!",
+            'user_id' => $fernando->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('posts')->insert([
+            'title' => "Post_demo_bateria",
+            'comment' => "Conserto baterias!",
+            'user_id' => $fernando->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('posts')->insert([
+            'title' => "Post_demo_impressora",
+            'comment' => "Alguem tem uma  impressora para me emprestar?",
+            'user_id' => $marcelo->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('posts')->insert([
+            'title' => "Post_demo_ferramentas.",
+            'comment' => "Ferramentas??, eu tenho!!",
+            'user_id' => $marcelo->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('posts')->insert([
+            'title' => "Post_demo_mala",
+            'comment' => "Empresto essa linda bolsa linda, otima para viajar!",
+            'user_id' => $lucia->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        //Images for posts
+        $postFerramenta = Post::where('title', 'like', '%ferramentas%')->first();
+        DB::table('images')->insert([
+            'name' => 'ferramentas',
+            'slug' => 'ferramentas.png',
+            'format_image' => 'png',
+            'post_id' => $postFerramenta->id,
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+        $postMala = Post::where('title', 'like', '%mala%')->first();
+        DB::table('images')->insert([
+            'name' => 'mala',
+            'slug' => 'mala.png',
+            'format_image' => 'png',
+            'post_id' => $postMala->id,
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
+        $postGuitarra = Post::where('title', 'like', '%guitarra%')->first();
+        DB::table('images')->insert([
+            'name' => 'guitar',
+            'slug' => 'guitar.jpeg',
+            'format_image' => 'jpeg',
+            'post_id' => $postGuitarra->id,
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
+        $postImpressora = Post::where('title', 'like', '%impressora%')->first();
+        DB::table('images')->insert([
+            'name' => 'impressora',
+            'slug' => 'impressora.jpg',
+            'format_image' => 'jpg',
+            'post_id' => $postImpressora->id,
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
+        $postBateria = Post::where('title', 'like', '%bateria%')->first();
+        DB::table('images')->insert([
+            'name' => 'bateria',
+            'slug' => 'bateria.png',
+            'format_image' => 'png',
+            'post_id' => $postBateria->id,
+            'created_at' => now(),
+            'updated_at' => now()
+
+        ]);
+
         $this->call(UserSeeder::class);
         $this->call(FavoritesSeeder::class);
 
-        $this->call(PostSeeder::class);
+//        $this->call(PostSeeder::class);
 
-        $this->Call(ItemStatusSeeder::class);
-        $this->call(ItemSeeder::class);
+//        $this->Call(ItemStatusSeeder::class);
+//        $this->call(ItemSeeder::class);
 
     }
 }
