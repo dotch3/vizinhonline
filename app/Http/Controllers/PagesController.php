@@ -44,11 +44,8 @@ class PagesController extends Controller
     {
         $user = Auth::user();
 
-        if (!empty($user->id)) {
-            return view('layouts/users/PerfilUsuario', compact('user'));
-        } else {
-            return view('layouts/users/PerfilUsuario', compact('user'));
-        }
+
+        return view('layouts/users/PerfilUsuario', compact('user'));
     }
     public function perfilVizinho($id)
     {

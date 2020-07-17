@@ -87,7 +87,7 @@
 
                                 <div class="acoes_nova_publicacao container row">
                                     <div class="col-md-6">
-                                        <a href="#">
+                                        <a href="{{ route('perfilUsuario') }}">
                                             <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
@@ -123,14 +123,14 @@
                         <article class="post">
                             <div class="card text-center">
                                 <div class="card-body col-md-12">
-                                    <form action="{{route('favoriteUser.savePostFavorite',$post->user->id)}}"
+                                    <form action="{{ route('favoriteUser.savePostFavorite',$post->user->id) }}"
                                           method="post"
                                           id="favoriteForm">
                                         @csrf
                                         <div class="info_usuario container row">
                                             <div class="col-md-4 perfil">
                                                 @if(!empty($post->user->image->id))
-                                                    <a href="{{ route('posts', $post->user->id) }}">
+                                                    <a href="{{ route('perfilVizinho', $post->user->id) }}">
                                                         <img
                                                              src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da

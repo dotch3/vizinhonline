@@ -47,8 +47,7 @@
                             <h2> Posts {{($user->name.' '.$user->lastname)}} </h2>
 
                             <a href="{{ route('perfilVizinho', $user->id) }}">
-                                <h6 style="    text-align: center;"> Itens <span
-                                        class="badge badge-info">(Em breve)</span></h6>
+                                <h6 style="    text-align: center;"> Perfil </h6>
                             </a>
                         @endif
                         @forelse($user->posts as $post)

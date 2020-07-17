@@ -146,7 +146,7 @@
                                 </button>
                             </div>
                             <div class="col-md-4 btn-group btn-group-lg">
-                                <a href="{{route('posts',$post->user->id)}}"
+                                <a href="{{ route('perfilVizinho', $post->user->id) }}"
                                    class="btn btn-secondary btn-lg ">Ver vizinho
                                 </a>
                             </div>
