@@ -101,34 +101,38 @@
                                             </label>
 
                                         </div>
-
-                                        {{-- <div class="fundo_img">
-                                                    <h2>Post Image</h2>
-                                                </div> --}}
                                         @endif
-
                                         <div class="row detalhe_post col-md-10 input-group">
-                                            <!--Post Comment-->
+
+                                            @if ($user->id == Auth::id())
+
                                             <input type="text" class="form-control-file comment_post" id="comment"
                                                 name="comment" autocomplete="off"
                                                 value="{{!empty($post->comment)? $post->comment:''}}">
+
+                                            @else
+
+                                            <input disabled type="text" class="form-control-file comment_post"
+                                                id="comment" name="comment" autocomplete="off"
+                                                value="{{!empty($post->comment)? $post->comment:''}}">
+
+                                            @endif
+
+
                                         </div>
                                     </div>
-                                    {{-- <div class="acoes_nova_publicacao container row">
-                                            <div class="col-md-6">
-                                                <a href="#">
-                                                    <img
-                                                        src={{asset('/img/icons/camera.png')}} alt="Escolha_uma_imagem"
-                                    title="Escolha uma imagem"/>
-                                    </a>
-                                    <input type="file" name="image" id="image" multiple accept='image/*' size='50'>
-                                </div> --}}
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-outline-secondary">Editar
-                                    </button>
 
-                                </div>
-                                {{-- </div> --}}
+                                    <div class="col-md-6">
+                                        @if ($user->id == Auth::id())
+                                        <button type="submit" class="btn btn-outline-secondary">Editar</button>
+
+                                        @else
+
+                                        <button disabled type="submit" class="btn btn-outline-secondary">Editar</button>
+
+                                        @endif
+
+                                    </div>
                             </form>
 
                         </div>
@@ -224,15 +228,33 @@
                             @csrf
                             @method('DELETE')
                         </form>
+
+                        @if ($user->id == Auth::id())
+
                         <button onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
-                                            event.preventDefault();
-                                            document.getElementById('delete-form-{{$post->id}}').submit();
-                                            }
-                                            else{
-                                            event.preventDefault();
-                                            }
-                                            " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
+                            event.preventDefault();
+                            document.getElementById('delete-form-{{$post->id}}').submit();
+                            }
+                            else{
+                            event.preventDefault();
+                            }
+                            " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
                         </button>
+
+                        @else
+
+                        <button disabled onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
+                            event.preventDefault();
+                            document.getElementById('delete-form-{{$post->id}}').submit();
+                            }
+                            else{
+                            event.preventDefault();
+                            }
+                            " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
+                        </button>
+
+                        @endif
+
                     </div>
             </div>
             @empty

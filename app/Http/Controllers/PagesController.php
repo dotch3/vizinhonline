@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-//        dd('Entrou');
+        //        dd('Entrou');
         if (Auth::check()) {
             $posts = Post::orderBy('created_at', 'desc')->get();
             return view('layouts/main/Feed', compact('posts'));
@@ -39,7 +39,7 @@ class PagesController extends Controller
         return view('layouts/favorites/FavoritesUsuario', compact('user'));
     }
 
-    
+
     public function perfilUsuario()
     {
         $user = Auth::user();
@@ -49,16 +49,11 @@ class PagesController extends Controller
         } else {
             return view('layouts/users/PerfilUsuario', compact('user'));
         }
-
     }
     public function perfilVizinho()
     {
         $user = Auth::user();
-        if (!empty($user->id)) {
-            return view('layouts/users/PerfilVizinho', compact('user'));
-        } else {
-            return view('layouts/users/PerfilVizinho', compact('user'));
-        }
-    }
 
+        return view('layouts/users/PerfilVizinho', compact('user'));
+    }
 }
