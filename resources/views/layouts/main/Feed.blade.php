@@ -159,7 +159,7 @@
                                             @if(!empty($post->image->id))
                                                 <a href="{{route('posts.show', $post->id)}}">
                                                     <img
-                                                        src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
+                                                    class="col-md-11" src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
                                                         title="{{$post->title}}"/>
                                                 </a>
                                             @else
