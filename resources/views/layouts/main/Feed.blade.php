@@ -82,8 +82,7 @@
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
-                                          autocomplete="off">
-                                </textarea>
+                                          autocomplete="off"></textarea>
                                 </div>
 
                                 <div class="acoes_nova_publicacao container row">

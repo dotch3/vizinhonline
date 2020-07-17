@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function home()
     {
 //        dd('Entrou');
@@ -33,10 +28,7 @@ class PagesController extends Controller
 
     public function postsUsuario($id)
     {
-        $user = User::find($id);
-//        $user = User::where('name', 'Fernando')->first();
-
-
+        $user = Auth::user();
         return view('layouts/posts/PostsUsuario', compact('user'));
     }
 

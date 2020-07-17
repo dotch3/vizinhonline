@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/CadastroItem', 'PagesController@cadastroItem');
-Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario');
+Route::get('/PerfilUsuario', 'PagesController@perfilUsuario')->name('perfilUsuario')->middleware('auth');
 Route::get('/PerfilVizinho', 'PagesController@perfilVizinho');
-Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario');
+Route::get('/CadastroUsuario', 'PagesController@cadastroUsuario')->name('cadastroUsuario');
 
 //Posts
 Route::get('/PostsUsuario/{id}', 'PagesController@postsUsuario')->name('posts');
