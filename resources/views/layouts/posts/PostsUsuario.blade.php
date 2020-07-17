@@ -125,11 +125,6 @@
                                     <div class="col-md-6">
                                         @if ($user->id == Auth::id())
                                         <button type="submit" class="btn btn-outline-secondary">Editar</button>
-
-                                        @else
-
-                                        <button disabled type="submit" class="btn btn-outline-secondary">Editar</button>
-
                                         @endif
 
                                     </div>
@@ -240,19 +235,6 @@
                             }
                             " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
                         </button>
-
-                        @else
-
-                        <button disabled onclick="if (confirm('Eliminação e irreversível. Tem certeza que quer eliminar o POST?')){
-                            event.preventDefault();
-                            document.getElementById('delete-form-{{$post->id}}').submit();
-                            }
-                            else{
-                            event.preventDefault();
-                            }
-                            " class="btn btn-lg btn-block btn-outline-secondary">Eliminar
-                        </button>
-
                         @endif
 
                     </div>
