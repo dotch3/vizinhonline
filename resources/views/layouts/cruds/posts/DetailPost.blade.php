@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="description">Usuario Criador:</label>
                                     <input type="text" class="form-control" name="user_id" id="user_id"
-                                           value="{{ !empty($post->user) ?$post->user->id." ".$post->user->name: '' }}"
+                                           value="{{ !empty($post->user) ? $post->user->name." ".$post->user->lastname: '' }}"
                                            disabled
                                     />
                                 </div>
@@ -146,7 +146,7 @@
                                 </button>
                             </div>
                             <div class="col-md-4 btn-group btn-group-lg">
-                                <a href="{{route('posts',$post->user->id)}}"
+                                <a href="{{ route('perfilVizinho', $post->user->id) }}"
                                    class="btn btn-secondary btn-lg ">Ver vizinho
                                 </a>
                             </div>

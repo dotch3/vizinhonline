@@ -18,148 +18,122 @@
                 </div>
             </div>
             <!-- Panel dereito -->
-            <div class="col-md-8 container">
+            <div class="container col-md-8 ">
                 <!-- Seccao de items -->
                 <section class="div_feed_items col-md-10">
                     <!-- Texto inicial antes dos itens do Usuario -->
-                    <h2> Itens Marcelo </h2>
-                    <!-- Incluindo o arquivo de ver detalhes de um item -->
 
+                    <h2> Perfil {{ $user->name.' '.$user->lastname }} </h2>
 
+                    <div class="row">
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="name" style="font-weight: bold;font-size:16px;padding-top: 20px;">Nome:</label>
+                            <input type="text" name="name" value="{{ $user->name.' '.$user->lastname}}" disabled>
+                        </div>
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="email"
+                                   style="font-weight: bold;font-size:16px;padding-top: 20px;">E-mail:</label>
+                            <input type="email" name="email" disabled
+                                   value="{{ !empty($user->id) ? $user->email: 'Sem e-mail cadastrado' }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="building"
+                                   style="font-weight: bold;font-size:16px;padding-top: 20px;">Bloco/Edifício:</label>
+                            <input type="text" name="building" disabled
+                                   value="{{ !empty($user->location) ? $user->location->building: 'Sem bloco cadastrado' }}">
+                            <!-- Relation with locations come here -->
+                        </div>
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="apartment_number"
+                                   style="font-weight: bold;font-size:16px;padding-top: 20px;">Nro
+                                Apto:</label>
+                            <input type="text" name="apartment_number"
+                                   value="{{ !empty($user->location) ? $user->location->apartment_number: 'Sem apartamento cadastrado' }}"
+                                   disabled> <!-- Relation with locations come here -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="celular"
+                                   style="font-weight: bold;font-size:16px;padding-top: 20px;">Celular:</label>
+                            <input type="text" name="cellphone"
+                                   value="{{ !empty($user->id) ? $user->cellphone: 'Sem celular cadastrado' }}"
+                                   onkeydown="javascript: fMasc( this, mTel );" disabled>
+                        </div>
+                        <div class="col-6 profile-head text-center">
+                            <label class="label" for="intercom_branch"
+                                   style="font-weight: bold;font-size:16px;padding-top: 20px;">Interfone:</label>
+                            <input type="text" name="intercom_branch" disabled
+                                   value="{{ !empty($user->location) ? $user->location->intercom_branch: 'Sem interfone cadastrado' }}">
+                        </div>
+                    </div>
+                    <!-- Incluindo o arquivo com o form para cadastro o ediçao de um item -->
                     <!-- Itens do usuario sao listadas a partir daqui -->
+
+                </section>
+
+
+                <section class="div_feed_items col-md-10">
+                    <a href="{{ route('posts', $user->id )}}" style="text-align: center;
+                            font-size: 36px;
+                            line-height: 36px;
+                            text-shadow: 1px 1px #111111;
+                            color: #a60356;">
+                        <h3 style="text-align: center">Ver Posts </h3>
+                    </a>
+                </section>
+                <section class="div_feed_items col-md-10">
+                    <!-- Texto inicial antes dos itens do Usuario -->
+                    <h2> Itens </h2>
+                    <!-- Incluindo o arquivo de ver detalhes de um item -->
+                    <h6 style="text-align: center"><span class="badge badge-info">(Em breve)</span></h6>
+                </section>
+                <section class="div_feed_items col-md-10">
+                    <div class="row">
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/furadeiraView.png')}}" alt="item" title="item"/>
+                                </a>
+                                <p>Furadeira</p>
+                            </article>
+                        </div>
+                        <div class="col">
+                            <article class="article_items">
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/muffinView.png')}}" alt="item" title="item"/>
+                                </a>
+                                <p>Muffin</p>
+                            </article>
+                        </div>
+                    </div>
+
                     <!-- Vamos utilizar bootstrap cards e o estilo do feeds para ter menos mudanças -->
                     <div class="row">
                         <div class="col">
                             <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/furadeiraView.png')}}" alt="item" title="item"/>
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/guardasolView.png')}}" alt="Cadeira e Guarda-sol"
+                                         title="item"/>
                                 </a>
-                                <p>Furadeira</p>
+                                <p>Cadeira e Guarda-sol</p>
+                            </article>
                         </div>
                         <div class="col">
                             <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/muffinView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Muffin</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/pescaView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Pesca</p>
-                        </div>
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/mergulhoView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>Mergulho</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/guardasolView.png')}}" alt="item" title="item"/>
-                                </a>
-                                <p>guarda sol</p>
-                        </div>
-                        <div class="col">
-                            <article class="article_items">
-                                <a href="#" class="card-link" data-toggle="modal" data-target="#modaldetalhe">
-                                    <img src="{{asset('/img/itens/malaView.png')}}" alt="item" title="item"/>
+                                <a href="#">
+                                    <img src="{{asset('/img/itens/malaView.png')}}" alt="Mala" title="item"/>
                                 </a>
                                 <p>Mala</p>
+                            </article>
                         </div>
                     </div>
-                    <!-- modal detalhe do item -->
-                    <div class="modal fade" id="modaldetalhe" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Item</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="row border-light">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <div class="">
-                                                @include('.layouts/items/ViewItemData')
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                            data-dismiss="modal" data-target="#modalInteresse">Eu Quero
-                                    </button>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                    <!-- Modal Mensagem de Interesse -->
-                    <div class="modal fade" id="modalInteresse" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Mensagem</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="row border-light">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <div class="">
-                                                @include('.layouts/items/Interesse')
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                            data-toggle="modal" data-target="#modalSucesso">Enviar
-                                    </button>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                    <!-- Modal Sucesso -->
-                    <div class="modal fade" id="modalSucesso" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light">
-                                    <h5 class="modal-title">Mensagem Enviada</h5>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <p>Um e-mail foi enviado para o proprietário do objeto! </p>
-                                <BR>
-                                <p>Em breve retornará o contato! </p>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                            data-toggle="modal">Ok
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                </section>
             </div>
-        </div>
-
-        </section>
-        </div>
         </div>
 
 

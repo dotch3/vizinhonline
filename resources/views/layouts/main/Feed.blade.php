@@ -50,13 +50,13 @@
                             <div class="card-body col-md-12">
                                 <!-- Foto e dados do usuario logado -->
                                 <div class="info_usuario_publicacao container row">
-                                    <div class="col-md-3 perfil">
+                                    <div class="col-md-4 perfil">
                                         @if(!empty(Auth::check()))
                                             {{--                                            <p>{{Auth::user()}}</p>--}}
                                             <a href="#">
                                                 <img onclick="redirectToProfile(this.src)"
                                                      src="{{!empty(Auth::user()->image->slug) ? asset('/storage/avatar/'.Auth::user()->image->slug): '' }} "
-                                                     alt="perfil" title="perfil usuario logado"/>
+                                                     class="col-md-9" alt="perfil" title="perfil usuario logado"/>
                                             </a>
                                         @else
                                             <div class=" fundo_img">
@@ -82,13 +82,12 @@
                                           placeholder="O que você vai compartilhar hoje?"
                                           id="comment"
                                           name="comment"
-                                          autocomplete="off">
-                                </textarea>
+                                          autocomplete="off"></textarea>
                                 </div>
 
                                 <div class="acoes_nova_publicacao container row">
                                     <div class="col-md-6">
-                                        <a href="#">
+                                        <a href="{{ route('perfilUsuario') }}">
                                             <img src="{{asset('/img/icons/camera.png')}}" alt="Escolha_uma_imagem"
                                                  title="Escolha uma imagem"/>
                                         </a>
@@ -124,23 +123,23 @@
                         <article class="post">
                             <div class="card text-center">
                                 <div class="card-body col-md-12">
-                                    <form action="{{route('favoriteUser.savePostFavorite',$post->user->id)}}"
+                                    <form action="{{ route('favoriteUser.savePostFavorite',$post->user->id) }}"
                                           method="post"
                                           id="favoriteForm">
                                         @csrf
                                         <div class="info_usuario container row">
-                                            <div class="col-md-3 perfil">
+                                            <div class="col-md-4 perfil">
                                                 @if(!empty($post->user->image->id))
-                                                    <a href="#">
-                                                        <img onclick="redirectToProfile(this.src)"
+                                                    <a href="{{ route('perfilVizinho', $post->user->id) }}">
+                                                        <img
                                                              src={{asset('/storage/avatar/'.$post->user->image->slug)}}
                                                                  alt="perfil" title="perfil usuario da
                                         publicacao"/>
                                                     </a>
                                                 @else
                                                     <div class="fundo_img">
-                                                        <a href="#">
-                                                            <img onclick="return redirectToProfile(this.src)"
+                                                        <a href="{{ route('perfilVizinho', $post->user->id) }}">
+                                                            <img
                                                             /> Sem imagem
                                                         </a>
                                                     </div>
@@ -158,16 +157,16 @@
                                             <input type="hidden" name="user_id" id="user_id"
                                                    value="{{$post->user->id}}"> <!--TODO: Work with Auth()-->
                                             @if(!empty($post->image->id))
-                                                <a href="#">
+                                                <a href="{{route('posts.show', $post->id)}}">
                                                     <img
-                                                        src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
+                                                    class="col-md-11" src={{asset('/storage/posts/'.$post->image->slug)}}  alt="{{$post->title}}"
                                                         title="{{$post->title}}"/>
                                                 </a>
                                             @else
-                                                <a href="#">
+                                                <a href="{{route('posts.show', $post->id)}}">
                                                     <img
                                                         src={{asset('/img/itens/ferramenta1.png')}}  alt="item_publicado"
-                                                        title="imagem item publicado"/>
+                                                        class="col-md-11" title="imagem item publicado"/>
                                                 </a>
                                             @endif
                                             <h5>{{$post->comment}}</h5>
@@ -230,7 +229,7 @@
                                                     <div class="col-md-2">
                                                         <div class="info_usuario_resposta">
                                                             @if(!empty($replier->image))
-                                                                <a href="#">
+                                                                <a href="{{ route('perfilVizinho', $replier->id) }}">
                                                                     <img onclick="redirectToProfile(this.src)"
                                                                          src="{{!empty($replier->image->slug) ? asset('/storage/avatar/'.$replier->image->slug): '' }} "
                                                                          alt="replier" title="replier"

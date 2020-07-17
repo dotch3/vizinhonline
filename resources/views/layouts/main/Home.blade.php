@@ -25,7 +25,7 @@
                 </li>
 
                     <li class="nav-item col-3 mt-4">
-                        <button onclick="window.location.href='/login'" class="buttonHeader">login </button>
+                        <button onclick="window.location.href='/login'" class="buttonHeader">Login </button>
                         
                     </li>
                 </ul>
